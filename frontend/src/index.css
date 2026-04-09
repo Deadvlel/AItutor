@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #3C3489;
+  --color-primary-hover: #534AB7;
+}
