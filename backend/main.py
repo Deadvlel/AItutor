@@ -1,34 +1,24 @@
-import os
-from dotenv import load_dotenv
-import google.generativeai as genai
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from routers import chat
+from database import engine, Base
+import models
 
-load_dotenv()
-api_key = os.getenv("gemini_api_key")
-genai.configure(api_key=api_key)
+app=FastAPI()
 
-model = genai.GenerativeModel('gemini-2.5-flash')
+Base.metadata.create_all(bind=engine)
 
-chat = model.start_chat(history=[])
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials =True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 
-prompt = "bạn là một gia sư ai thông minh, hãy giúp đỡ học sinh trong việc giải bài bằng cách gợi ý cho họ lưu ý là bạn phải gợi ý trước và nếu họ thật sự không biết hãy đưa ra đáp án và giải thích kỹ càng và đưa ra một bài tập tương tự"
-print("Bắt đầu học")
-chat.send_message(prompt)
+)
 
-print("gia sư đã sẵn sàng")
+app.include_router(chat.router, prefix="/api", tags=["chatbot AI"])
 
-while True:
-    user_input = input("Bạn: ")
-
-    if user_input == "exit" :
-        print("Gia sư AI: hẹn gặp lại ")
-        break
-
-    if not user_input.strip():
-        continue
-
-    try:
-        cau_hoi = chat.send_message(user_input)
-        print(f"\n gia sư AI: {cau_hoi.text}\n")
-    except Exception as e:
-        print(f"\ncó lỗi kết nối: {e}\n")
-
+@app.get("/", tags=["check"])
+def read_root():
+    return {"status":"He thong dang khoi dong"}
