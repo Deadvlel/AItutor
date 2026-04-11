@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Bot, User, Send, MessageCircle } from 'lucide-react';
+import { useChat } from '../hooks/useChat'; // <-- GỌI "NÃO" TỪ HOOK VÀO ĐÂY
 
 function TypingDots() {
   return (
@@ -45,13 +46,8 @@ function Bubble({ msg }) {
 
 export default function ChatBox() {
   const [open, setOpen] = useState(false)
-  const [messages, setMessages] = useState([
-    { role: 'bot', text: 'Chào bạn! Mình là AI Tutor. Mình có thể giúp gì cho đồ án của bạn hôm nay?' },
-    { role: 'user', text: 'Mình đang học cách làm giao diện React.' }
-  ])
   const [input, setInput] = useState('')
-  const [loading, setLoading] = useState(false) 
-
+  const { messages, loading, send } = useChat() 
   const bottomRef = useRef(null)
   const inputRef = useRef(null)
 
@@ -66,16 +62,10 @@ export default function ChatBox() {
   const handleSend = () => {
     if (!input.trim() || loading) return;
     
-    const newMessages = [...messages, { role: 'user', text: input }];
-    setMessages(newMessages);
+    const text = input;
     setInput('');
     
-    setLoading(true);
-
-    setTimeout(() => {
-      setMessages([...newMessages, { role: 'bot', text: 'Tuyệt vời! Bạn đang làm rất tốt. Hãy tiếp tục nhé!' }]);
-      setLoading(false);
-    }, 1500);
+    send(text);
   }
 
   return (
@@ -110,7 +100,7 @@ export default function ChatBox() {
           </div>
           <div>
             <p className="text-sm font-semibold text-white">Gia sư AI</p>
-            <p className="text-xs text-emerald-400">● Sẵn sàng hỗ trợ</p>
+            <p className="text-xs text-emerald-400">● Đang hoạt động</p>
           </div>
           <button
             onClick={() => setOpen(false)}
@@ -139,7 +129,7 @@ export default function ChatBox() {
             onKeyDown={(e) => {
               if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend() }
             }}
-            placeholder="Hỏi về bài học..."
+            placeholder="Hỏi AI câu hỏi của bạn..."
             className="flex-1 bg-[#1e1b4b] border border-white/10 rounded-xl px-3 py-2
               text-sm text-white placeholder-slate-400 resize-none outline-none
               focus:border-amber-400/50 transition-colors"
