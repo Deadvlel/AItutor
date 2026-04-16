@@ -1,193 +1,273 @@
-const courses = [
-  {
-    id: 1,
-    subject: 'Toán học',
-    title: 'Phương trình bậc 2',
-    progress: 65,
-    chapters: 12,
-    done: 8,
-    color: 'from-violet-600 to-violet-800',
-    emoji: '📐',
-  },
-  {
-    id: 2,
-    subject: 'Vật lý',
-    title: 'Định luật Newton',
-    progress: 40,
-    chapters: 10,
-    done: 4,
-    color: 'from-blue-600 to-blue-800',
-    emoji: '⚛️',
-  },
-  {
-    id: 3,
-    subject: 'Hóa học',
-    title: 'Phản ứng oxi hóa khử',
-    progress: 20,
-    chapters: 8,
-    done: 2,
-    color: 'from-emerald-600 to-emerald-800',
-    emoji: '🧪',
-  },
-  {
-    id: 4,
-    subject: 'Văn học',
-    title: 'Truyện Kiều - Nguyễn Du',
-    progress: 85,
-    chapters: 6,
-    done: 5,
-    color: 'from-amber-600 to-amber-800',
-    emoji: '📖',
-  },
+import { useState, useRef, useEffect } from 'react'
+import { useConversation } from '../hooks/useConversation'
+
+const CARD_COLORS = [
+  'from-violet-600 to-violet-800',
+  'from-blue-600 to-blue-800',
+  'from-emerald-600 to-emerald-800',
+  'from-amber-600 to-amber-800',
+  'from-pink-600 to-pink-800',
+  'from-cyan-600 to-cyan-800',
 ]
 
-const currentLesson = {
-  subject: 'Toán học',
-  title: 'Phương trình bậc 2: ax² + bx + c = 0',
-  content: [
-    {
-      type: 'section',
-      heading: '1. Định nghĩa',
-      text: 'Phương trình bậc hai một ẩn là phương trình có dạng ax² + bx + c = 0, trong đó a, b, c là các số thực và a ≠ 0.',
-    },
-    {
-      type: 'formula',
-      heading: '2. Công thức nghiệm',
-      formula: 'x = (-b ± √Δ) / 2a',
-      sub: 'Trong đó Δ = b² - 4ac (delta)',
-    },
-    {
-      type: 'cases',
-      heading: '3. Biện luận theo Δ',
-      cases: [
-        { cond: 'Δ > 0', result: 'Phương trình có 2 nghiệm phân biệt' },
-        { cond: 'Δ = 0', result: 'Phương trình có nghiệm kép x = -b/2a' },
-        { cond: 'Δ < 0', result: 'Phương trình vô nghiệm (trong ℝ)' },
-      ],
-    },
-    {
-      type: 'example',
-      heading: '4. Ví dụ',
-      problem: 'Giải: x² - 5x + 6 = 0',
-      steps: [
-        'a = 1, b = -5, c = 6',
-        'Δ = (-5)² - 4·1·6 = 25 - 24 = 1 > 0',
-        'x₁ = (5 + 1) / 2 = 3',
-        'x₂ = (5 - 1) / 2 = 2',
-      ],
-    },
-  ],
+const CARD_EMOJIS = ['💬', '🧠', '📚', '✏️', '🔬', '💡', '🎯', '📝']
+
+function TypingDots() {
+  return (
+    <div className="flex items-end gap-2">
+      <div className="w-7 h-7 rounded-full bg-amber-400 flex items-center justify-center text-sm flex-shrink-0">🎓</div>
+      <div className="bg-[#1e1b4b] border border-white/10 rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1.5 items-center">
+        {[0, 1, 2].map((i) => (
+          <span key={i} className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-bounce"
+            style={{ animationDelay: `${i * 0.18}s` }} />
+        ))}
+      </div>
+    </div>
+  )
 }
 
-function LessonContent() {
+
+function Bubble({ msg }) {
+  const isUser = msg.role === 'user'
   return (
-    <div className="flex flex-col gap-5">
-      {currentLesson.content.map((block, i) => {
-        if (block.type === 'section') return (
-          <div key={i}>
-            <h3 className="text-sm font-semibold text-amber-400 mb-2">{block.heading}</h3>
-            <p className="text-slate-300 text-sm leading-relaxed">{block.text}</p>
+    <div className={`flex items-end gap-2 ${isUser ? 'flex-row-reverse' : ''}`}>
+      <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs flex-shrink-0 font-semibold
+        ${isUser ? 'bg-violet-500 text-white' : 'bg-amber-400 text-[#1a1040]'}`}>
+        {isUser ? '👤' : '🎓'}
+      </div>
+      <div className={`max-w-[80%] px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap
+        ${isUser
+          ? 'bg-violet-600 text-white rounded-br-sm'
+          : 'bg-[#1e1b4b] text-slate-100 rounded-bl-sm border border-white/10'
+        }`}>
+        {msg.noi_dung}
+      </div>
+    </div>
+  )
+}
+
+function WelcomeContent({ onCreate }) {
+  return (
+    <div className="flex flex-col gap-5 h-full">
+      <div className="bg-gradient-to-r from-violet-700 to-violet-900 rounded-2xl p-6">
+        <p className="text-violet-300 text-xs font-medium uppercase tracking-wider mb-1">Gia sư AI</p>
+        <h1 className="text-white text-xl font-semibold leading-snug">Chào mừng trở lại! 👋</h1>
+        <p className="text-violet-200/70 text-sm mt-2">Chọn một cuộc trò chuyện bên phải hoặc bắt đầu hỏi bài mới</p>
+      </div>
+      <div className="bg-[#130f2e] border border-white/5 rounded-2xl p-8 flex flex-col items-center justify-center flex-1 gap-5 text-center">
+        <div className="w-20 h-20 rounded-2xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-4xl">🎓</div>
+        <div>
+          <p className="text-white font-semibold text-lg">Bắt đầu hỏi bài</p>
+          <p className="text-slate-400 text-sm mt-1 leading-relaxed max-w-xs">
+            AI gia sư sẽ gợi ý từng bước, giải thích kỹ càng và đưa ra bài tập tương tự
+          </p>
+        </div>
+        <button
+          onClick={onCreate}
+          className="flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-400 text-[#0a0720]
+            font-semibold text-sm hover:bg-amber-300 transition-all active:scale-95 shadow-lg shadow-amber-500/20"
+        >
+          + Cuộc trò chuyện mới
+        </button>
+      </div>
+    </div>
+  )
+}
+
+function ChatContent({ activeCuoc, messages, loading, onSend }) {
+  const [input, setInput] = useState('')
+  const bottomRef = useRef(null)
+  const inputRef = useRef(null)
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages, loading])
+
+  useEffect(() => {
+    if (activeCuoc) setTimeout(() => inputRef.current?.focus(), 100)
+  }, [activeCuoc?.id])
+
+  const handleSend = () => {
+    if (!input.trim() || loading) return
+    onSend(input)
+    setInput('')
+  }
+
+  const colorIdx = activeCuoc ? (activeCuoc.id % CARD_COLORS.length) : 0
+  const color = CARD_COLORS[colorIdx]
+
+  return (
+    <div className="flex flex-col gap-4 h-full">
+      <div className={`bg-gradient-to-r ${color} rounded-2xl px-6 py-5 flex-shrink-0`}>
+        <p className="text-white/60 text-xs font-medium uppercase tracking-wider mb-1">Gia sư AI</p>
+        <h1 className="text-white text-xl font-semibold leading-snug line-clamp-2">
+          {activeCuoc?.tieu_de || 'Cuộc trò chuyện mới'}
+        </h1>
+      </div>
+
+      <div className="flex-1 overflow-y-auto bg-[#130f2e] border border-white/5 rounded-2xl p-5
+        flex flex-col gap-4 scrollbar-thin scrollbar-thumb-white/10 min-h-0">
+        {messages.length === 0 && !loading && (
+          <div className="flex flex-col items-center justify-center h-full gap-3 text-center">
+            <span className="text-3xl">💬</span>
+            <p className="text-slate-400 text-sm">Gửi tin nhắn đầu tiên để bắt đầu!</p>
           </div>
-        )
-        if (block.type === 'formula') return (
-          <div key={i}>
-            <h3 className="text-sm font-semibold text-amber-400 mb-2">{block.heading}</h3>
-            <div className="bg-[#1e1b4b] border border-violet-500/30 rounded-xl p-4 text-center">
-              <p className="text-white font-mono text-lg font-medium">{block.formula}</p>
-              <p className="text-slate-400 text-xs mt-1">{block.sub}</p>
-            </div>
+        )}
+        {messages.map((msg, i) => <Bubble key={i} msg={msg} />)}
+        {loading && <TypingDots />}
+        <div ref={bottomRef} />
+      </div>
+
+      <div className="flex gap-2 flex-shrink-0">
+        <textarea
+          ref={inputRef}
+          rows={1}
+          value={input}
+          onChange={(e) => {
+            setInput(e.target.value)
+            e.target.style.height = 'auto'
+            e.target.style.height = Math.min(e.target.scrollHeight, 120) + 'px'
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend() }
+          }}
+          placeholder="Hỏi về bài học... (Enter để gửi, Shift+Enter xuống dòng)"
+          className="flex-1 bg-[#1e1b4b] border border-white/10 rounded-xl px-4 py-3
+            text-sm text-white placeholder-slate-500 resize-none outline-none
+            focus:border-amber-400/50 transition-colors"
+        />
+        <button
+          onClick={handleSend}
+          disabled={loading || !input.trim()}
+          className="w-11 h-11 rounded-xl bg-amber-400 text-[#1a1040] flex items-center justify-center
+            self-end font-bold hover:bg-amber-300 disabled:opacity-40 disabled:cursor-not-allowed
+            transition-all active:scale-95"
+        >
+          ➤
+        </button>
+      </div>
+    </div>
+  )
+}
+
+function HistorySidebar({ lichSu, activeCuoc, loadingHistory, onSelect, onCreate, onDelete }) {
+  const [hoverId, setHoverId] = useState(null)
+
+  return (
+    <div className="w-64 flex-shrink-0 flex flex-col gap-4 overflow-hidden h-full">
+      <div className="flex items-center justify-between flex-shrink-0">
+        <h2 className="text-white font-semibold text-sm">Lịch sử trò chuyện</h2>
+        <button
+          onClick={onCreate}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-violet-600
+            hover:bg-violet-500 text-white text-xs font-medium transition-colors"
+          title="Cuộc trò chuyện mới"
+        >
+          + Mới
+        </button>
+      </div>
+
+      <div className="flex-1 overflow-y-auto flex flex-col gap-3 scrollbar-thin scrollbar-thumb-white/10 pb-2">
+
+        {loadingHistory && (
+          <div className="flex flex-col gap-3">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="h-24 rounded-xl bg-white/5 animate-pulse" />
+            ))}
           </div>
-        )
-        if (block.type === 'cases') return (
-          <div key={i}>
-            <h3 className="text-sm font-semibold text-amber-400 mb-2">{block.heading}</h3>
-            <div className="flex flex-col gap-2">
-              {block.cases.map((c, j) => (
-                <div key={j} className="flex items-center gap-3 bg-white/5 rounded-lg px-4 py-2.5">
-                  <span className="font-mono text-sm text-violet-300 w-16 flex-shrink-0">{c.cond}</span>
-                  <span className="text-slate-300 text-sm">{c.result}</span>
+        )}
+
+        {!loadingHistory && lichSu.length === 0 && (
+          <div className="text-center mt-8">
+            <p className="text-slate-500 text-xs leading-relaxed">
+              Chưa có cuộc trò chuyện nào.<br />Bấm "+ Mới" để bắt đầu!
+            </p>
+          </div>
+        )}
+
+        {lichSu.map((c, idx) => {
+          const color = CARD_COLORS[idx % CARD_COLORS.length]
+          const emoji = CARD_EMOJIS[idx % CARD_EMOJIS.length]
+          const isActive = activeCuoc?.id === c.id
+
+          return (
+            <div
+              key={c.id}
+              onMouseEnter={() => setHoverId(c.id)}
+              onMouseLeave={() => setHoverId(null)}
+              onClick={() => onSelect(c)}
+              className={`relative rounded-xl p-4 cursor-pointer transition-all
+                bg-gradient-to-br ${color}
+                ${isActive ? 'ring-2 ring-white/40 scale-[1.02]' : 'hover:opacity-90 hover:scale-[1.01]'}`}
+            >
+              <div className="flex items-start justify-between mb-3">
+                <div className="flex-1 pr-5">
+                  <p className="text-white/70 text-xs mb-0.5">Trò chuyện AI</p>
+                  <p className="text-white text-sm font-medium leading-snug line-clamp-2">
+                    {c.tieu_de}
+                  </p>
                 </div>
-              ))}
-            </div>
-          </div>
-        )
-        if (block.type === 'example') return (
-          <div key={i}>
-            <h3 className="text-sm font-semibold text-amber-400 mb-2">{block.heading}</h3>
-            <div className="bg-[#1e1b4b] border border-white/10 rounded-xl p-4">
-              <p className="text-white font-medium text-sm mb-3">📝 {block.problem}</p>
-              <div className="flex flex-col gap-1.5">
-                {block.steps.map((s, j) => (
-                  <div key={j} className="flex items-start gap-2 text-sm">
-                    <span className="text-violet-400 font-mono mt-0.5">→</span>
-                    <span className="text-slate-300">{s}</span>
-                  </div>
-                ))}
+                <span className="text-2xl flex-shrink-0">{emoji}</span>
               </div>
+
+              {c.ngay_tao && (
+                <p className="text-white/50 text-xs">{c.ngay_tao}</p>
+              )}
+
+              {isActive && (
+                <div className="absolute bottom-3 left-4 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  <span className="text-white/70 text-xs">Đang xem</span>
+                </div>
+              )}
+
+              {hoverId === c.id && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); onDelete(c.id) }}
+                  className="absolute top-2.5 right-2.5 w-5 h-5 rounded bg-black/30
+                    hover:bg-red-500/60 text-white/70 hover:text-white
+                    flex items-center justify-center text-xs transition-colors"
+                  title="Xoá"
+                >
+                  ✕
+                </button>
+              )}
             </div>
-          </div>
-        )
-        return null
-      })}
+          )
+        })}
+      </div>
     </div>
   )
 }
 
 export default function CoursesPage() {
+  const {
+    lichSu, activeCuoc, messages, loading, loadingHistory,
+    moiCuoc, taoCuocMoi, guiTin, xoaCuoc,
+  } = useConversation()
+
   return (
-    <div className="flex gap-6 h-full">
-      {/* Main lesson area */}
-      <div className="flex-1 flex flex-col gap-5 overflow-y-auto pr-1">
-        {/* Lesson header */}
-        <div className="bg-gradient-to-r from-violet-700 to-violet-900 rounded-2xl p-6">
-          <p className="text-violet-300 text-xs font-medium uppercase tracking-wider mb-1">{currentLesson.subject}</p>
-          <h1 className="text-white text-xl font-semibold leading-snug">{currentLesson.title}</h1>
-          <div className="flex items-center gap-4 mt-4">
-            <div className="flex-1 h-1.5 bg-white/20 rounded-full overflow-hidden">
-              <div className="h-full w-[65%] bg-amber-400 rounded-full" />
-            </div>
-            <span className="text-white/70 text-xs">65% hoàn thành</span>
-          </div>
-        </div>
-
-        {/* Lesson content */}
-        <div className="bg-[#130f2e] border border-white/5 rounded-2xl p-6">
-          <LessonContent />
-        </div>
-
-        {/* Navigation buttons */}
-        <div className="flex justify-between pb-6">
-          <button className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-300 text-sm hover:bg-white/10 transition-colors">
-            ← Bài trước
-          </button>
-          <button className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-violet-600 text-white text-sm font-medium hover:bg-violet-500 transition-colors">
-            Bài tiếp theo →
-          </button>
-        </div>
+    <div className="flex gap-6 h-full overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden min-h-0">
+        {activeCuoc
+          ? <ChatContent
+              activeCuoc={activeCuoc}
+              messages={messages}
+              loading={loading}
+              onSend={guiTin}
+            />
+          : <WelcomeContent onCreate={taoCuocMoi} />
+        }
       </div>
 
-      {/* Course list sidebar */}
-      <div className="w-64 flex-shrink-0 flex flex-col gap-4 overflow-y-auto">
-        <h2 className="text-white font-semibold text-sm">Khóa học của bạn</h2>
-        {courses.map((c) => (
-          <div
-            key={c.id}
-            className={`rounded-xl p-4 bg-gradient-to-br ${c.color} cursor-pointer hover:opacity-90 transition-opacity`}
-          >
-            <div className="flex items-start justify-between mb-3">
-              <div>
-                <p className="text-white/70 text-xs">{c.subject}</p>
-                <p className="text-white text-sm font-medium leading-snug mt-0.5">{c.title}</p>
-              </div>
-              <span className="text-2xl">{c.emoji}</span>
-            </div>
-            <div className="h-1 bg-white/20 rounded-full overflow-hidden">
-              <div className="h-full bg-white/80 rounded-full" style={{ width: `${c.progress}%` }} />
-            </div>
-            <p className="text-white/60 text-xs mt-1.5">{c.done}/{c.chapters} chương</p>
-          </div>
-        ))}
-      </div>
+      <HistorySidebar
+        lichSu={lichSu}
+        activeCuoc={activeCuoc}
+        loadingHistory={loadingHistory}
+        onSelect={moiCuoc}
+        onCreate={taoCuocMoi}
+        onDelete={xoaCuoc}
+      />
     </div>
   )
 }
