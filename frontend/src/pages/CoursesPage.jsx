@@ -1,5 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
 import { useConversation } from '../hooks/useConversation'
+import { 
+  GraduationCap, User, Plus, Send, X, 
+  MessageSquare, Brain, BookOpen, PenTool, 
+  Microscope, Lightbulb, Target, FileText 
+} from 'lucide-react'
 
 const CARD_COLORS = [
   'from-violet-600 to-violet-800',
@@ -10,12 +15,14 @@ const CARD_COLORS = [
   'from-cyan-600 to-cyan-800',
 ]
 
-const CARD_EMOJIS = ['💬', '🧠', '📚', '✏️', '🔬', '💡', '🎯', '📝']
+const CARD_ICONS = [MessageSquare, Brain, BookOpen, PenTool, Microscope, Lightbulb, Target, FileText]
 
 function TypingDots() {
   return (
     <div className="flex items-end gap-2">
-      <div className="w-7 h-7 rounded-full bg-amber-400 flex items-center justify-center text-sm flex-shrink-0">🎓</div>
+      <div className="w-7 h-7 rounded-full bg-amber-400 flex items-center justify-center text-[#1a1040] flex-shrink-0">
+        <GraduationCap size={16} />
+      </div>
       <div className="bg-[#1e1b4b] border border-white/10 rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1.5 items-center">
         {[0, 1, 2].map((i) => (
           <span key={i} className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-bounce"
@@ -26,21 +33,23 @@ function TypingDots() {
   )
 }
 
-
 function Bubble({ msg }) {
   const isUser = msg.role === 'user'
+  const content = msg.noi_dung || msg.text || ""
+
   return (
     <div className={`flex items-end gap-2 ${isUser ? 'flex-row-reverse' : ''}`}>
-      <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs flex-shrink-0 font-semibold
+      <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0
         ${isUser ? 'bg-violet-500 text-white' : 'bg-amber-400 text-[#1a1040]'}`}>
-        {isUser ? '👤' : '🎓'}
+        {isUser ? <User size={14} /> : <GraduationCap size={16} />}
       </div>
-      <div className={`max-w-[80%] px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap
+      
+      <div className={`max-w-[80%] px-4 py-3 rounded-2xl text-sm leading-relaxed overflow-x-auto whitespace-pre-wrap
         ${isUser
           ? 'bg-violet-600 text-white rounded-br-sm'
           : 'bg-[#1e1b4b] text-slate-100 rounded-bl-sm border border-white/10'
         }`}>
-        {msg.noi_dung}
+        {content}
       </div>
     </div>
   )
@@ -55,7 +64,9 @@ function WelcomeContent({ onCreate }) {
         <p className="text-violet-200/70 text-sm mt-2">Chọn một cuộc trò chuyện bên phải hoặc bắt đầu hỏi bài mới</p>
       </div>
       <div className="bg-[#130f2e] border border-white/5 rounded-2xl p-8 flex flex-col items-center justify-center flex-1 gap-5 text-center">
-        <div className="w-20 h-20 rounded-2xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-4xl">🎓</div>
+        <div className="w-20 h-20 rounded-2xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400">
+          <GraduationCap size={40} />
+        </div>
         <div>
           <p className="text-white font-semibold text-lg">Bắt đầu hỏi bài</p>
           <p className="text-slate-400 text-sm mt-1 leading-relaxed max-w-xs">
@@ -67,7 +78,7 @@ function WelcomeContent({ onCreate }) {
           className="flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-400 text-[#0a0720]
             font-semibold text-sm hover:bg-amber-300 transition-all active:scale-95 shadow-lg shadow-amber-500/20"
         >
-          + Cuộc trò chuyện mới
+          <Plus size={18} /> Cuộc trò chuyện mới
         </button>
       </div>
     </div>
@@ -108,9 +119,9 @@ function ChatContent({ activeCuoc, messages, loading, onSend }) {
       <div className="flex-1 overflow-y-auto bg-[#130f2e] border border-white/5 rounded-2xl p-5
         flex flex-col gap-4 scrollbar-thin scrollbar-thumb-white/10 min-h-0">
         {messages.length === 0 && !loading && (
-          <div className="flex flex-col items-center justify-center h-full gap-3 text-center">
-            <span className="text-3xl">💬</span>
-            <p className="text-slate-400 text-sm">Gửi tin nhắn đầu tiên để bắt đầu!</p>
+          <div className="flex flex-col items-center justify-center h-full gap-3 text-center text-slate-500">
+            <MessageSquare size={48} className="opacity-20 mb-2" />
+            <p className="text-sm">Gửi tin nhắn đầu tiên để bắt đầu!</p>
           </div>
         )}
         {messages.map((msg, i) => <Bubble key={i} msg={msg} />)}
@@ -143,7 +154,7 @@ function ChatContent({ activeCuoc, messages, loading, onSend }) {
             self-end font-bold hover:bg-amber-300 disabled:opacity-40 disabled:cursor-not-allowed
             transition-all active:scale-95"
         >
-          ➤
+          <Send size={18} className="ml-1" />
         </button>
       </div>
     </div>
@@ -163,12 +174,11 @@ function HistorySidebar({ lichSu, activeCuoc, loadingHistory, onSelect, onCreate
             hover:bg-violet-500 text-white text-xs font-medium transition-colors"
           title="Cuộc trò chuyện mới"
         >
-          + Mới
+          <Plus size={14} /> Mới
         </button>
       </div>
 
       <div className="flex-1 overflow-y-auto flex flex-col gap-3 scrollbar-thin scrollbar-thumb-white/10 pb-2">
-
         {loadingHistory && (
           <div className="flex flex-col gap-3">
             {[1, 2, 3].map((i) => (
@@ -187,7 +197,7 @@ function HistorySidebar({ lichSu, activeCuoc, loadingHistory, onSelect, onCreate
 
         {lichSu.map((c, idx) => {
           const color = CARD_COLORS[idx % CARD_COLORS.length]
-          const emoji = CARD_EMOJIS[idx % CARD_EMOJIS.length]
+          const Icon = CARD_ICONS[idx % CARD_ICONS.length]
           const isActive = activeCuoc?.id === c.id
 
           return (
@@ -207,7 +217,9 @@ function HistorySidebar({ lichSu, activeCuoc, loadingHistory, onSelect, onCreate
                     {c.tieu_de}
                   </p>
                 </div>
-                <span className="text-2xl flex-shrink-0">{emoji}</span>
+                <div className="text-white/80 flex-shrink-0">
+                  <Icon size={24} />
+                </div>
               </div>
 
               {c.ngay_tao && (
@@ -224,12 +236,12 @@ function HistorySidebar({ lichSu, activeCuoc, loadingHistory, onSelect, onCreate
               {hoverId === c.id && (
                 <button
                   onClick={(e) => { e.stopPropagation(); onDelete(c.id) }}
-                  className="absolute top-2.5 right-2.5 w-5 h-5 rounded bg-black/30
-                    hover:bg-red-500/60 text-white/70 hover:text-white
-                    flex items-center justify-center text-xs transition-colors"
+                  className="absolute top-2.5 right-2.5 w-6 h-6 rounded bg-black/30
+                    hover:bg-red-500/80 text-white/70 hover:text-white
+                    flex items-center justify-center transition-colors"
                   title="Xoá"
                 >
-                  ✕
+                  <X size={14} />
                 </button>
               )}
             </div>

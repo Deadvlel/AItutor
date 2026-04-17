@@ -1,11 +1,8 @@
 import { useState } from 'react'
 import { authService } from './services/authService'
-
 import AuthPage from './pages/AuthPage'
-
 import Sidebar from './components/Sidebar'
 import Topbar from './components/Topbar'
-import ChatBox from './components/ChatBox' 
 import CoursesPage from './pages/CoursesPage'
 import StatsPage from './pages/StatsPage'
 
@@ -54,10 +51,7 @@ export default function App() {
         <main className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-white/10">
           {pages[active]}
         </main>
-      </div>
-
-      <ChatBox />
-      
+      </div>      
     </div>
   )
 }

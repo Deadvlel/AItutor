@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import chat ,auth ,conversations
+from routers import auth ,conversations
 from database import engine, Base
 import models
 
@@ -17,7 +17,6 @@ app.add_middleware(
 
 )
 
-app.include_router(chat.router, prefix="/api", tags=["chatbot AI"])
 app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 app.include_router(conversations.router, prefix="/api/cuoc-tro-chuyen", tags=["conversations"])
 
