@@ -2,13 +2,12 @@ import { useState, useEffect, useCallback } from 'react'
 import { convService } from '../services/convService'
 
 export function useConversation() {
-  const [lichSu, setLichSu] = useState([])          // danh sách cuộc trò chuyện
-  const [activeCuoc, setActiveCuoc] = useState(null) // cuộc đang mở { id, tieu_de }
-  const [messages, setMessages] = useState([])       // tin nhắn của cuộc đang mở
+  const [lichSu, setLichSu] = useState([])         
+  const [activeCuoc, setActiveCuoc] = useState(null)
+  const [messages, setMessages] = useState([]) 
   const [loading, setLoading] = useState(false)
   const [loadingHistory, setLoadingHistory] = useState(true)
 
-  // Load lịch sử khi mount
   useEffect(() => {
     loadLichSu()
   }, [])
@@ -25,7 +24,6 @@ export function useConversation() {
     }
   }
 
-  // Mở một cuộc trò chuyện cũ
   const moiCuoc = useCallback(async (cuoc) => {
     setActiveCuoc(cuoc)
     setMessages([])
@@ -37,7 +35,6 @@ export function useConversation() {
     }
   }, [])
 
-  // Tạo cuộc trò chuyện mới
   const taoCuocMoi = useCallback(async () => {
     try {
       const cuoc = await convService.taoMoi(null)
@@ -50,18 +47,15 @@ export function useConversation() {
     }
   }, [])
 
-  // Gửi tin nhắn
   const guiTin = useCallback(async (text) => {
     if (!text.trim() || !activeCuoc || loading) return
 
-    // Thêm tin user lên UI ngay
     setMessages((prev) => [...prev, { role: 'user', noi_dung: text, ngay_tao: '' }])
     setLoading(true)
 
     try {
       const data = await convService.guiTin(activeCuoc.id, text)
 
-      // Cập nhật tiêu đề nếu vừa được sinh
       if (data.tieu_de !== activeCuoc.tieu_de) {
         const updated = { ...activeCuoc, tieu_de: data.tieu_de }
         setActiveCuoc(updated)
@@ -70,7 +64,6 @@ export function useConversation() {
         )
       }
 
-      // Thêm reply AI
       setMessages((prev) => [...prev, { role: 'assistant', noi_dung: data.reply, ngay_tao: '' }])
     } catch {
       setMessages((prev) => [
@@ -82,7 +75,6 @@ export function useConversation() {
     }
   }, [activeCuoc, loading])
 
-  // Xoá cuộc trò chuyện
   const xoaCuoc = useCallback(async (id) => {
     try {
       await convService.xoa(id)
