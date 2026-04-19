@@ -3,7 +3,7 @@ import { useState } from 'react'
 const navItems = [
   { icon: '▦', label: 'Thống kê', id: 'stats' },
   { icon: '▤', label: 'Khóa học', id: 'courses' },
-  { icon: '▥', label: 'Thư viện', id: 'library' },
+  { icon: '▥', label: 'Kiểm tra', id: 'exam' },
   { icon: '◈', label: 'Lộ trình', id: 'roadmap' },
 ]
 

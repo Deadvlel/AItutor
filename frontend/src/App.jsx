@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar'
 import Topbar from './components/Topbar'
 import CoursesPage from './pages/CoursesPage'
 import StatsPage from './pages/StatsPage'
+import ExamPage from './pages/ExamPage'
 
 function PlaceholderPage({ title }) {
   return (
@@ -36,7 +37,7 @@ export default function App() {
   const pages = {
     stats: <StatsPage />,
     courses: <CoursesPage />,
-    library: <PlaceholderPage title="Thư viện" />,
+    exam: <ExamPage />,
     roadmap: <PlaceholderPage title="Lộ trình" />,
   }
 
