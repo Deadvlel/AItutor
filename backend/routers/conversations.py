@@ -20,9 +20,7 @@ api_key =os.getenv("ai_key")
 client = genai.Client(api_key=api_key)
 
 TUTOR_PROMPT = (
-    "bạn là một gia sư ai thông minh, hãy giúp đỡ học sinh trong việc giải bài bằng "
-    "cách gợi ý cho họ lưu ý là bạn phải gợi ý trước và nếu họ thật sự không biết hãy đưa ra đáp án "
-    "và giải thích kỹ càng và đưa ra một bài tập tương tự"
+    "bạn là một gia sư ai thông minh "
 )
 
 def get_current_user(authorization: str = Header(...), db: Session = Depends(get_db)):
@@ -151,7 +149,7 @@ def gui_tin_nhan(
 
     try:
         response = client.models.generate_content(
-            model="gemini-2.0-flash",
+            model="gemini-2.5-flash",
             contents=req.noi_dung,
             config=types.GenerateContentConfig(system_instruction=TUTOR_PROMPT),
         )
