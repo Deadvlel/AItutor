@@ -9,6 +9,7 @@ from models import cuocTroChuyen, tinNhan, ngDung
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
+
 router = APIRouter()
 
 load_dotenv()
@@ -21,10 +22,9 @@ client = genai.Client(api_key=api_key)
 
 TUTOR_PROMPT = (
     "bạn là một gia sư ai thông minh "
-)
+) 
 
 def get_current_user(authorization: str = Header(...), db: Session = Depends(get_db)):
-    """Đọc token từ header Authorization: Bearer <token>"""
     try:
         scheme, token = authorization.split()
         if scheme.lower() != "bearer":
