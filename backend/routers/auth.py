@@ -7,8 +7,11 @@ from passlib.context import CryptContext
 from jose import JWTError, jwt
 from database import get_db
 from models import ngDung
+from dotenv import load_dotenv
 
 router = APIRouter()
+
+load_dotenv()
 
 SECRET_KEY = os.getenv("SECRET_KEY", "tutor_secret_key_change_this_in_production")
 ALGORITHM = "HS256"

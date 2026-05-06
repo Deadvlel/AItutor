@@ -1,5 +1,6 @@
 import os
 import json
+import httpx
 from datetime import datetime
 from fastapi import APIRouter, HTTPException, Depends, Header
 from pydantic import BaseModel
@@ -7,17 +8,15 @@ from sqlalchemy.orm import Session
 from jose import JWTError, jwt
 from database import get_db
 from models import kiemTra, cauHoi, dapAn, lichSuBaiLam, ngDung
-from google import genai
-from google.genai import types
 from dotenv import load_dotenv
 
 load_dotenv()
 router = APIRouter()
 
-SECRET_KEY = os.getenv("SECRET_KEY", "tutor_secret_key_change_this_in_production")
-ALGORITHM = "HS256"
-api_key = os.getenv("ai_key")
-client = genai.Client(api_key=api_key)
+SECRET_KEY   = os.getenv("SECRET_KEY")
+ALGORITHM    = "HS256"
+OLLAMA_URL   = os.getenv("OLLAMA_URL")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL")
 
 
 def get_current_user(authorization: str = Header(...), db: Session = Depends(get_db)):
@@ -33,30 +32,61 @@ def get_current_user(authorization: str = Header(...), db: Session = Depends(get
     return user
 
 
+def call_ollama_json(prompt: str) -> str:
+    """
+    Dùng /api/generate (không phải /api/chat) vì cần output JSON thuần.
+    Ollama sẽ trả về text, ta parse JSON từ đó.
+    """
+    try:
+        response = httpx.post(
+            OLLAMA_URL,
+            json={
+                "model":  OLLAMA_MODEL,
+                "prompt": prompt,
+                "stream": False,
+                "format": "json",  
+            },
+            timeout=180,  
+        )
+        response.raise_for_status()
+        data = response.json()
+        return data.get("response", "")
+    except httpx.TimeoutException:
+        raise HTTPException(status_code=504, detail="Ollama phản hồi quá chậm, thử lại")
+    except httpx.ConnectError:
+        raise HTTPException(status_code=503, detail="Không kết nối được Ollama. Chạy: ollama serve")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Lỗi Ollama: {str(e)}")
+
 class TaoDeThiRequest(BaseModel):
-    chu_de: str         
-    so_cau: int = 5     
-    do_kho: str = "trung binh" 
+    chu_de: str
+    so_cau: int = 5
+    do_kho: str = "trung binh"
 
 
 class NopBaiRequest(BaseModel):
     id_kiem_tra: int
-    cau_tra_loi: list[dict] 
-
+    cau_tra_loi: list[dict]
 
 @router.post("/tao-de")
 def tao_de_thi(req: TaoDeThiRequest, user=Depends(get_current_user), db: Session = Depends(get_db)):
     so_cau = max(3, min(10, req.so_cau))
 
-    prompt = f"""Tạo {so_cau} câu hỏi trắc nghiệm về chủ đề "{req.chu_de}" với độ khó "{req.do_kho}".
+    do_kho_desc = {
+        "de":          "câu hỏi cơ bản, định nghĩa, nhận biết",
+        "trung binh":  "câu hỏi vận dụng, tính toán, hiểu bản chất",
+        "kho":         "câu hỏi phân tích, nâng cao, suy luận tổng hợp",
+    }.get(req.do_kho, "câu hỏi vận dụng")
 
-Trả về JSON thuần, KHÔNG có markdown, KHÔNG có ```json. Cấu trúc:
+    prompt = f"""Tạo {so_cau} câu hỏi trắc nghiệm về "{req.chu_de}", độ khó: {do_kho_desc}.
+
+Trả về JSON hợp lệ theo đúng cấu trúc sau (không thêm gì khác ngoài JSON):
 {{
-  "tieu_de": "Tên đề thi",
+  "tieu_de": "Tên đề thi ngắn gọn",
   "cau_hoi": [
     {{
       "noi_dung": "Nội dung câu hỏi",
-      "loi_giai_thich": "Giải thích đáp án đúng",
+      "loi_giai_thich": "Giải thích tại sao đáp án đúng",
       "dap_an": [
         {{"noi_dung": "Đáp án A", "la_dap_an": true}},
         {{"noi_dung": "Đáp án B", "la_dap_an": false}},
@@ -67,26 +97,20 @@ Trả về JSON thuần, KHÔNG có markdown, KHÔNG có ```json. Cấu trúc:
   ]
 }}
 
-Lưu ý:
-- Mỗi câu có đúng 4 đáp án, đúng 1 đáp án đúng (la_dap_an: true)
-- Câu hỏi rõ ràng, chính xác về mặt học thuật
-- Độ khó "{req.do_kho}": {"câu hỏi cơ bản, định nghĩa" if req.do_kho == "de" else "câu hỏi vận dụng, tính toán" if req.do_kho == "trung binh" else "câu hỏi phân tích, nâng cao"}"""
+Quy tắc:
+- Mỗi câu đúng 4 đáp án, đúng 1 la_dap_an: true
+- Câu hỏi chính xác, rõ ràng, tiếng Việt"""
+
+    raw = call_ollama_json(prompt)
 
     try:
-        response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=prompt,
-            config=types.GenerateContentConfig(temperature=0.7),
-        )
-        raw = response.text.strip()
+        raw = raw.strip()
         if raw.startswith("```"):
             raw = raw.split("\n", 1)[1]
             raw = raw.rsplit("```", 1)[0]
         data = json.loads(raw)
     except json.JSONDecodeError:
         raise HTTPException(status_code=500, detail="AI trả về dữ liệu không hợp lệ, thử lại")
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Lỗi AI: {str(e)}")
 
     kiem_tra = kiemTra(
         id_ngDung=user.id_ngDung,
@@ -119,26 +143,26 @@ Lưu ý:
             db.add(d)
             db.flush()
             dap_ans.append({
-                "id": d.id_dapAn,
-                "noi_dung": d.noiDungDapAn,
-                "la_dap_an": d.laDapAn,  
+                "id":        d.id_dapAn,
+                "noi_dung":  d.noiDungDapAn,
+                "la_dap_an": d.laDapAn,
             })
 
         result_cau_hoi.append({
-            "id": cau.id_cauHoi,
-            "noi_dung": cau.noiDung,
-            "loi_giai_thich": cau.loiGiaiThich,
-            "dap_an": dap_ans,
+            "id":              cau.id_cauHoi,
+            "noi_dung":        cau.noiDung,
+            "loi_giai_thich":  cau.loiGiaiThich,
+            "dap_an":          dap_ans,
         })
 
     db.commit()
 
     return {
         "id_kiem_tra": kiem_tra.id_kiemTra,
-        "tieu_de": kiem_tra.tieuDe,
-        "chu_de": req.chu_de,
-        "do_kho": req.do_kho,
-        "cau_hoi": result_cau_hoi,
+        "tieu_de":     kiem_tra.tieuDe,
+        "chu_de":      req.chu_de,
+        "do_kho":      req.do_kho,
+        "cau_hoi":     result_cau_hoi,
     }
 
 
@@ -156,24 +180,24 @@ def nop_bai(req: NopBaiRequest, user=Depends(get_current_user), db: Session = De
     chi_tiet = []
 
     for tra_loi in req.cau_tra_loi:
-        id_cau = tra_loi.get("id_cau_hoi")
+        id_cau     = tra_loi.get("id_cau_hoi")
         id_da_chon = tra_loi.get("id_dap_an")
 
-        cau = db.query(cauHoi).filter(cauHoi.id_cauHoi == id_cau).first()
-        dap_ans = db.query(dapAn).filter(dapAn.id_cauHoi == id_cau).all()
-        da_dung = next((d for d in dap_ans if d.laDapAn), None)
-        la_dung = da_dung and da_dung.id_dapAn == id_da_chon
+        cau      = db.query(cauHoi).filter(cauHoi.id_cauHoi == id_cau).first()
+        dap_ans  = db.query(dapAn).filter(dapAn.id_cauHoi == id_cau).all()
+        da_dung  = next((d for d in dap_ans if d.laDapAn), None)
+        la_dung  = bool(da_dung and da_dung.id_dapAn == id_da_chon)
 
         if la_dung:
             dung += 1
 
         chi_tiet.append({
-            "id_cau_hoi": id_cau,
-            "noi_dung_cau": cau.noiDung if cau else "",
-            "id_da_chon": id_da_chon,
+            "id_cau_hoi":    id_cau,
+            "noi_dung_cau":  cau.noiDung if cau else "",
+            "id_da_chon":    id_da_chon,
             "id_dap_an_dung": da_dung.id_dapAn if da_dung else None,
             "noi_dung_dung": da_dung.noiDungDapAn if da_dung else "",
-            "la_dung": la_dung,
+            "la_dung":       la_dung,
             "loi_giai_thich": cau.loiGiaiThich if cau else "",
         })
 
@@ -182,12 +206,14 @@ def nop_bai(req: NopBaiRequest, user=Depends(get_current_user), db: Session = De
     kiem_tra_obj.diemSo = diem
     db.commit()
 
+    xep_loai = "Giỏi" if diem >= 8 else "Khá" if diem >= 6.5 else "Trung bình" if diem >= 5 else "Yếu"
+
     ls = lichSuBaiLam(
         id_lsl=None,
         id_kiemTra=req.id_kiem_tra,
         id_ngDung=user.id_ngDung,
         diem=diem,
-        xepLoai="Giỏi" if diem >= 8 else "Khá" if diem >= 6.5 else "Trung bình" if diem >= 5 else "Yếu",
+        xepLoai=xep_loai,
         tg_batDau=datetime.utcnow(),
         tg_ketThuc=datetime.utcnow(),
     )
@@ -195,10 +221,10 @@ def nop_bai(req: NopBaiRequest, user=Depends(get_current_user), db: Session = De
     db.commit()
 
     return {
-        "diem": diem,
-        "dung": dung,
-        "tong": tong_cau,
-        "xep_loai": ls.xepLoai,
+        "diem":     diem,
+        "dung":     dung,
+        "tong":     tong_cau,
+        "xep_loai": xep_loai,
         "chi_tiet": chi_tiet,
     }
 
@@ -216,10 +242,10 @@ def lay_lich_su_thi(user=Depends(get_current_user), db: Session = Depends(get_db
     for bl in bai_lams:
         kt = db.query(kiemTra).filter(kiemTra.id_kiemTra == bl.id_kiemTra).first()
         result.append({
-            "id": bl.id_lsl,
-            "tieu_de": kt.tieuDe if kt else "Bài thi",
-            "diem": bl.diem,
+            "id":       bl.id_lsl,
+            "tieu_de":  kt.tieuDe if kt else "Bài thi",
+            "diem":     bl.diem,
             "xep_loai": bl.xepLoai,
-            "ngay": bl.tg_batDau.strftime("%d/%m/%Y") if bl.tg_batDau else "",
+            "ngay":     bl.tg_batDau.strftime("%d/%m/%Y") if bl.tg_batDau else "",
         })
     return result
