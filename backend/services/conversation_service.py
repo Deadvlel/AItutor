@@ -57,9 +57,8 @@ def gui_tin(db: Session, user_id: int, id_cuoc: int, noi_dung: str) -> dict:
         cuocTroChuyen.id_ngDung == user_id,
     ).first()
     if not cuoc:
-        return None   # router xử lý 404
+        return None
 
-    # Lấy lịch sử 20 tin gần nhất để AI nhớ ngữ cảnh
     msgs_cu = (
         db.query(tinNhan)
         .filter(tinNhan.id_cuocTroChuyen == id_cuoc)
@@ -72,7 +71,6 @@ def gui_tin(db: Session, user_id: int, id_cuoc: int, noi_dung: str) -> dict:
         for m in msgs_cu
     ]
 
-    # Lưu tin nhắn user
     db.add(tinNhan(
         id_cuocTroChuyen=id_cuoc,
         noiDung=noi_dung,
@@ -80,17 +78,14 @@ def gui_tin(db: Session, user_id: int, id_cuoc: int, noi_dung: str) -> dict:
         ngayTao=datetime.utcnow(),
     ))
 
-    # Tự sinh tiêu đề từ tin đầu tiên
     if cuoc.tieuDe == "Cuộc trò chuyện mới":
         cuoc.tieuDe = noi_dung[:60] + ("..." if len(noi_dung) > 60 else "")
         db.add(cuoc)
 
     db.commit()
 
-    # Gọi AI
     reply_text = hoi_gia_su(noi_dung, lich_su)
 
-    # Lưu reply AI
     db.add(tinNhan(
         id_cuocTroChuyen=id_cuoc,
         noiDung=reply_text,

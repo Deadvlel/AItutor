@@ -3,9 +3,9 @@ from datetime import datetime, timedelta
 from passlib.context import CryptContext
 from jose import jwt
 
-SECRET_KEY                 = os.getenv("SECRET_KEY", "tutor_secret_key_change_this_in_production")
-ALGORITHM                  = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24   # 1 ngày
+SECRET_KEY                  = os.getenv("SECRET_KEY", "tutor_secret_key_change_this_in_production")
+ALGORITHM                   = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 

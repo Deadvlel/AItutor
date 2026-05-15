@@ -50,6 +50,6 @@ def dang_nhap(req: DangNhapRequest, db: Session = Depends(get_db)):
 def lay_thong_tin(user=Depends(get_current_user)):
     return UserResponse(
         id=user.id_ngDung,
-        full_name=user.full_name,
+        full_name=user.full_name,   
         email=user.email,
     )
