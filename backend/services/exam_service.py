@@ -34,14 +34,14 @@ Trả về JSON hợp lệ theo đúng cấu trúc (không thêm gì khác):
 }}
 Quy tắc: mỗi câu đúng 4 đáp án, đúng 1 la_dap_an true, tiếng Việt."""
 
-    raw = tao_de_thi_json(prompt)   # có thể raise RuntimeError
+    raw = tao_de_thi_json(prompt)
 
     raw = raw.strip()
     if raw.startswith("```"):
         raw = raw.split("\n", 1)[1]
         raw = raw.rsplit("```", 1)[0]
 
-    data = json.loads(raw)   # JSONDecodeError sẽ bắt ở router
+    data = json.loads(raw) 
 
     # Lưu DB
     kt = kiemTra(
