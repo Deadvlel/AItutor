@@ -6,6 +6,8 @@ import Topbar from './components/Topbar'
 import CoursesPage from './pages/CoursesPage'
 import StatsPage from './pages/StatsPage'
 import ExamPage from './pages/ExamPage'
+import DoBaiPage from './pages/DoBaiPage'
+import UploadBaiHocPage from './pages/UploadBaiHocPage'
 
 function PlaceholderPage({ title }) {
   return (
@@ -39,6 +41,8 @@ export default function App() {
     courses: <CoursesPage />,
     exam: <ExamPage />,
     roadmap: <PlaceholderPage title="Lộ trình" />,
+    dobai: <DoBaiPage/>,
+    upload: <UploadBaiHocPage/>,
   }
 
   return (

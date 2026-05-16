@@ -182,7 +182,7 @@ function DoBaiSession({ bai, chuDe, onXong }) {
     const next = cauIdx + 1
     if (next >= cauHois.length) {
       setPhase('done')
-      luuKetQua(score.dung + (nhanXet?.la_dung ? 0 : 0), cauHois.length)
+      luuKetQua(score.dung, cauHois.length)
     } else {
       setCauIdx(next)
       setPhase('reading')

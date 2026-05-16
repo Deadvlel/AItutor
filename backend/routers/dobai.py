@@ -22,8 +22,8 @@ class ChamDoBaiRequest(BaseModel):
 
 class LuuKetQuaRequest(BaseModel):
     id_tai_lieu: int
-    ket_qua: list[dict] 
-
+    tong_cau:    int
+    so_cau_dung: int
 
 @router.get("/tai-file-mau")
 def tai_file_mau():
@@ -236,23 +236,54 @@ Câu hỏi: {cau.noiDung}
 Đáp án chuẩn: {cau.dapAnMau}
 Câu trả lời học sinh: {req.cau_tra_loi}
 
-Hãy:
-1. Đánh giá: Đúng / Đúng một phần / Sai
-2. Chỉ ra điểm thiếu (nếu có)
-3. Nhắc lại kiến thức trọng tâm (2 câu)
-Dùng tiếng Việt, xưng Thầy gọi Em."""
+Hãy đánh giá và trả về JSON thuần (không markdown, không giải thích thêm):
+{{
+  "ket_qua": "dung",
+  "nhan_xet": "Nhận xét ngắn gọn bằng tiếng Việt, xưng Thầy gọi Em"
+}}
 
-    nhan_xet = hoi_gia_su(prompt)
-    la_dung  = any(kw in nhan_xet.lower() for kw in
-                   ["đúng rồi", "chính xác", "đúng!", "tốt lắm", "đúng một phần"])
+Quy tắc ket_qua:
+- "dung"     : trả lời đúng và đủ ý chính
+- "mot_phan" : đúng nhưng thiếu ý hoặc chưa rõ
+- "sai"      : sai hoặc không liên quan
 
-    db.add(aiLog(id_ngDung=user.id_ngDung, loaiHanhDong="do_bai",
-                 noiDungInput=req.cau_tra_loi, noiDungOutput=nhan_xet))
+Nhan_xet: chỉ ra điểm đúng/thiếu, nhắc lại kiến thức trọng tâm (2-3 câu)."""
+
+    raw = hoi_gia_su(prompt)
+
+    # ✅ Xử lý an toàn: strip markdown fence nếu AI vẫn bọc ```json
+    raw = raw.strip()
+    if raw.startswith("```"):
+        raw = raw.split("\n", 1)[1].rsplit("```", 1)[0].strip()
+
+    # ✅ Fallback nếu AI không trả JSON hợp lệ
+    try:
+        data = json.loads(raw)
+        ket_qua  = data.get("ket_qua", "sai")
+        nhan_xet = data.get("nhan_xet", raw)
+    except (json.JSONDecodeError, ValueError):
+        # AI trả text thường → dùng keyword matching như cũ
+        ket_qua  = "dung" if any(kw in raw.lower() for kw in
+                    ["đúng rồi", "chính xác", "đúng!", "tốt lắm"]) else "sai"
+        nhan_xet = raw if raw else "Không nhận được phản hồi từ AI."
+
+    la_dung = ket_qua == "dung"
+
+    db.add(aiLog(
+        id_ngDung=user.id_ngDung,
+        loaiHanhDong="do_bai",
+        noiDungInput=req.cau_tra_loi,
+        noiDungOutput=nhan_xet,
+    ))
     db.commit()
 
-    return {"nhan_xet": nhan_xet, "la_dung": la_dung,
-            "dap_an_mau": cau.dapAnMau, "goi_y": cau.goiY}
-
+    return {
+        "nhan_xet":  nhan_xet,
+        "la_dung":   la_dung,
+        "ket_qua":   ket_qua,
+        "dap_an_mau": cau.dapAnMau,
+        "goi_y":     cau.goiY,
+    }
 
 @router.post("/luu-ket-qua")
 def luu_ket_qua(

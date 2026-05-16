@@ -26,15 +26,10 @@ class taiLieu(Base):
     thoiGianDuKien = Column(Integer, nullable=True)       
 
     chu_de   = relationship("chuDe",  back_populates="tai_lieus")
-    cau_hois = relationship("cauHoiDoBai", back_populates="tai_lieu")
+    cau_hois = relationship("cauHoi", back_populates="tai_lieu")
 
 
 class loaiCauHoi(Base):
-    """
-    Phân loại câu hỏi:
-    id=1 → 'kiem_tra'  : trắc nghiệm bài kiểm tra
-    id=2 → 'do_bai'   : dò bài bằng giọng nói
-    """
     __tablename__ = "loaiCauHoi"
 
     id_loaiCauHoi = Column(Integer, primary_key=True, index=True)
@@ -42,7 +37,7 @@ class loaiCauHoi(Base):
     moTa          = Column(String(255), nullable=True)
 
 
-class cauHoiDoBai(Base):
+class cauHoi(Base):
     __tablename__ = "cauHoi" 
 
     id_cauHoi      = Column(Integer, primary_key=True, index=True)
@@ -57,9 +52,9 @@ class cauHoiDoBai(Base):
     thuTu          = Column(Integer, default=1)
 
     tai_lieu = relationship("taiLieu", back_populates="cau_hois")
-    dap_ans  = relationship("dapAnDoBai", back_populates="cau_hoi")
+    dap_ans  = relationship("dapAn", back_populates="cau_hoi")
 
-class dapAnDoBai(Base):
+class dapAn(Base):
     __tablename__ = "dapAn" 
 
     id_dapAn     = Column(Integer, primary_key=True, index=True)
@@ -67,7 +62,7 @@ class dapAnDoBai(Base):
     noiDungDapAn = Column(Text)
     laDapAnDung  = Column(Boolean, default=False)
 
-    cau_hoi = relationship("cauHoiDoBai", back_populates="dap_ans")
+    cau_hoi = relationship("cauHoi", back_populates="dap_ans")
 
 
 class baiKiemTra(Base):
