@@ -6,8 +6,8 @@ class TaoMoiRequest(BaseModel):
 
 
 class GuiTinRequest(BaseModel):
-    id_cuoc_tro_chuyen: int
-    noi_dung:           str
+    id_cuoc:  int
+    noi_dung: str
 
 
 class TinNhanResponse(BaseModel):
