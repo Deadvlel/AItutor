@@ -1,0 +1,594 @@
+[
+  {
+    "mon": "Giải Tích 12",
+    "cap": 1,
+    "tieu_de": "Chương I. UNG DUNG DAO HAM DE KHAO SAT",
+    "trang": 0,
+    "cha": null,
+    "noi_dung": "BỘ GIÁO DỤC VÀ ĐÀO TẠO 9 2? WW GZ — sat 1U; HỊ/ - a `. k SN 4⁄4“ as A. SA _S ` > see Jian VĂ. Ý ——— == ae LÍ: SỈ i] - bạc 7 << — S - - Deg AWN ``=..‹ Ga i : # £ ` Y Ẳ eee | AS << hủ _-. ÔN. 27 a. ee ee “.w..x Á Ais PA A at oes 5...1. \\ NI 77 Re rae a as a f TÚ NHÀ XUẤT BẢN GIÁO DỤC VIỆT NAM BỘ GIÁO DỤC VÀ ĐÀO TẠO _ TRAN VAN HAO (Téng Chii bién) - VŨ TUẤN (Chủ biên) _ LE THI THIEN HUONG - NGUYEN TIEN TAI - CAN VAN TUAT G A iC (Tái bản lần thứ mười hai) NHÀ XUẤT BẢN GIÁO DỤC VIỆT NAM Hãy bảo quản, giữ gìn sách giáo khoa để dành tặng cho các em học sinh lớp sau ! i HIEU DUNG TRONG SACH Â Phần hoạt động của học sinh. Tuỳ đối tượng cụ thể mà giáo viên sử dụng. s Kết thúc phần chứng minh. Bản quyền thuộc Nhà xuất bản Giáo dục Việt Nam - Bộ Giáo duc va Dao tạo 01 - 2020/CXBIPH/616 — 869/GD Mã số: CH201T0"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "§1. Sự đồng biến, nghịch biến của hàm số",
+    "trang": 4,
+    "cha": "Chương I. UNG DUNG DAO HAM DE KHAO SAT",
+    "noi_dung": "Chương i UNG DUNG DAO HA MM NÊN DE KHAO SAT VA VE DO THI CUA HAM § í CỦA HÀM SỐ I- TÍNH ĐƠN ĐIỆU CỦA HÀM SỐ Từ đồ thị (H.1, H.2) hãy chỉ ra các khoảng tăng, giảm của hàm số y = cosx trên đoạn và của hàm số y=|x| trên khoảng (—œ ; +œ). y =cosx 1 bd TL 7 NY ' gen 0 an + — MÔ * Hinh 1 Hinh 2 1. Nhắc lại định nghĩa Kí hiệu K là khoảng hoặc đoạn hoặc nửa khoảng. Giả sử hàm số y = f(x) xác định trên K. Ta nói Hàm số y = f(x) đồng biến (tăng) trên K nếu với mọi cặp xị, xạ thuộc K mà xị nhỏ hơn x; thì ƒx¡) nhỏ hơn ƒ{x;), tức là x < XQ > ft) <ƒ(%) ; Hàm số y = +) nghịch biến (giảm) trên K nếu với mọi cặp xị, xạ thuộc K ma x, nhd hon x, thi f(x) 16n hon tic 1a x < x2 => > fQ2)- Hàm số đồng biến hoặc nghịch biến trên K được gọi chung là hàm số đơn điệu trên K. NHẬN XÉT. Từ định nghĩa trên ta thấy a) ƒ( đồng biến trên K © fay >0, Vxị,xạ 6K (4 # X2) ; fix) nghịch biến trên K c eK (4 = X2) b) Nếu hàm số đồng biến trên K thì đồ thị đi lên từ trái sang phải (H.3a) : Nếu hàm số nghịch biến trên K thì đồ thị đi xuống từ trái sang phải (H.3b). I ! 1 1 O| a b x oO a 5 & a) b) Hình 3 2. Tính đơn điệu và dấu của đạo hàm Xét các hàm số sau và đồ thị của chúng : a) (H.4a) b) y=— (H.4b) x | 0 +00 x | -0o 0 +00 eet 7 y 0 y |0 +œ SN @ x a) b) Hinh4 Xét dấu đạo ham của mỗi hàm số và điền vào bảng tương ứng. Từ đó hãy nêu nhận xét về mối quan hệ giữa sự đồng biến, nghịch biến của hàm số và dấu của đạo hàm. Ta thừa nhận định lí sau đây. ĐỊNH LÍ Cho hàm số y = f(x) c6 đạo hàm trên K. a) Nếu ƒ'(x) >0 với mọ"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "§2. Cục trị của hàm số",
+    "trang": 18,
+    "cha": "Chương I. UNG DUNG DAO HAM DE KHAO SAT",
+    "noi_dung": "Áp dụng Định lí 2, ta có quy tắc sau đây để tìm các điểm cực trị của một hàm số. QUY TẮC II 1. Tìm tập xác định. 2. Tính Giải phương trình ƒ'(v) = 0 và kí hiệu x; (¡ = l, 2, .... n) là các nghiệm của nó. 3. Tính ƒ \"+%) và 4. Dựa vào dấu của ƒ\"(x;) suy ra tính chất cực trị của điểm x,. Ví dụ 4. Tìm cực trị của hàm số Giải. Hầm số xác định với mọi x € R. F@M= x -4x = x(x? —4) ; =0, x =-2, x, =2. f(x) = 3x\" - 4. và x = 2 là hai điểm cực tiểu ; ƒ\"(0)=-4<0 >x =0 là điểm cực đại. Kết luận ƒ#z) đạt cực tiểu tại x =—2 và x = 2 ; =ƒŒ 2) = 2. Six) dat cuc đại tại x = 0 và ƒcp = f(0) = 6. Ví dụ 5. Tìm các điểm cực trị của hàm s6 f(x) = sin2x. Giải. Hầm số xác định với mọi x € R. 2e= 5 +Ìn<x= (eZ). : T on ƒ\"Œœ) = -4sin2x. -4 nếu j = 2k =—4sin{ (keZ). 4 2 2, 4 nếu / = 2k+1"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "§3. Giá trị lớn nhất và giá trị nhỏ nhất của hàm số",
+    "trang": 19,
+    "cha": "Chương I. UNG DUNG DAO HAM DE KHAO SAT",
+    "noi_dung": "Kết luận x= + kn (k e Z) là các điểm cực đại của hàm số. 3 i + km (k e Z) là các điểm cực tiểu của hàm số. Bòi tập 1. Áp dụng Quy tắc I, hay tìm các điểm cực trị của các hàm số sau : a) y= 2x2 +3x2 — 36x — 10 ; b) ; €y=x+—; đ) ; e)y - x41. 2. Áp dụng Quy tắc II, hãy tìm các điểm cực trị của các hàm số sau : 41; b) y =sin2x c) y = sinx + cosx ; -2x41. 3. Chứng minh rằng hàm số y = không có đạo hàm tại x = 0 nhưng vẫn đạt cực tiểu tại điểm đó. 4... Chứng minh rằng với mọi giá trị của tham số 7, hàm số y=x — me - 2x41 luôn luôn có một điểm cực đại và một điểm cực tiểu. 5. Tìm z và b để các cực trị của hàm số y= + 2ax? -9x +b đều là những số dương và xạ = “9 là điểm cực đại. Z xˆ + Ì 6. Xác định giá trị của tham số m để hàm số y=———————— đạt cực đại + + w ` GIÁ TRỊ LƠN NHẬT VÀ + 2 ^ 2 ` \\ 4 GIA TRI NHO NHAT CUA HAM SỐ I- ĐỊNH NGHĨA Cho hàm số y = ƒ(x) xác định trên tập D. a) Số M được gọi là giá trị lớn nhất của hàm s6 y = f(x) trén | tap D néu f(x) < Mí với moi x thuộc Ð và tồn tại xạ e D sao cho f(x9) = M. Ki hiéu M = max f(x). b) Số m được gọi là giá trị nhỏ nhất của hàm sé y = f(x) trên | tập D nếu ƒ(+x) > m với mọi x thuộc Ð và tồn tại xọ e D sao cho ƒ(xg) = m. Ki hiéu m = min f(x). Ví dụ I. Tìm giá trị nhỏ nhất và giá trị lớn nhất của hàm số y=x-5+ trén khoang (0 ; +00) . Giai, Trén khoang (0 ; +00), tac6 y' = ———? +29 2 1 x -1 ox=1. Bang bién thién x 0 1 +00 y’ _ 0 + +00 +00 Từ bảng biến thiên ta thấy trên khoảng (0 ; +00) ham số có giá trị cực tiểu duy nhất, đó cũng là gi"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "§4. Đường tiệm cận",
+    "trang": 27,
+    "cha": "Chương I. UNG DUNG DAO HAM DE KHAO SAT",
+    "noi_dung": "x —œ 0 +œ y y\" — 0 T Đồ thị của Lồi Điểm uốn T hàm số 0... Ø(0;0) om Vậy đồ thị hàm số lồi trên khoảng (—œ ; 0), lõm trên khoảng (0 ; +). Điểm ; 0) là điểm uốn của đồ thị hàm số (H.13). 9 * b) Ta có y'=—cOsx, y\"=sinx. Bảng xét dấu y\" % 0 T 2m y\" 0 — Hình I3 Đồ thị của Lam Điểm uốn r hàm số A(x ; 0) Vậy trên đoạn [0 ; 2x), đồ thị hàm số lõm trên y khoảng (0 ; z), lồi trên khoảng (z ; 2x). Điểm A(r ; 0) là điểm uốn của đồ thị hàm số (H.14). 1 O NU 2m x Hinh 14 Ví dụ 2. Tìm các khoảng lồi, lõm của đồ thị hàm số Giải. Tập xác định :E WỊIỊ. y'=-—— xae định với moi x#1 ; Œœ-Ù 4 3 2 y\"=——, xác định với mọi x z 1. Bảng xét dấu y\" x —œ 1 +oo y\" fe Đồ thị của hàm số Lồi Lõm Vậy đồ thị của hàm số lồi trên khoảng (—s ; 1) và lõm trên khoảng (1 ; +œ). (Đồ thị không có điểm uốn vì hàm số } không xác định tại điểm x = 1) (H.15). Hinh 15 ⁄ ĐƯỜNG TIỆM CẬN I- ĐƯỜNG TIỆM CẬN NGANG Cho ham sé i M(x; y) x-l I có đồ thị (C). O T x Nêu nhận xét về khoảng cách từ = y=-1 điểm M(x ; y) e (C) tới đường thẳng 2 y =-1 khi |x] > +00 . Hinh 16 Vi du I. Quan sát đồ thị (C) của hàm số fd) = (H.17). Nêu nhận xét về khoảng cách từ điểm M(x; y) e (C) tới đường thẳng y = 2 khi lx|—>+œ và các giới hạn lim [ƒ(x) - 2], lim [ƒ(x) - 2]. x->+œ x->—œ Giải. Kí hiệu M, M' lần lượt là các điểm thuộc (C) và đường thẳng y = 2 có cùng hoành độ x (H.17). Khi |x| càng lớn thì các điểm M, M' trên các đồ thị càng gần nhau. Ta có : 1 il lim [f(x)-2]= lim ||—+2|-2|= lim —=0. x->+œ x->+œ X Tương tự, lim [ƒ(x) - 2] = 0. x->—œ -1 1 x"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "§5. Khảo sát sự biến thiên và vẽ đồ thị của hàm số",
+    "trang": 31,
+    "cha": "Chương I. UNG DUNG DAO HAM DE KHAO SAT",
+    "noi_dung": "Vì Em đường thẳng x->+œ X +2 y y = 1 là tiệm cận ngang của (C). Đồ thị của hàm số được cho trên Hình 18. 1 y=l = = 1 x Hinh 18 2x7 4x41 Vi dụ 4. Tìm tiệm cận đứng của đồ thị hàm số y ` 2 2 E_ TS ee đường thắng là tiệm cận đứng của đồ thị hàm số đã cho. Bai tap 1. Tìm các tiệm cận của đồ thị hàm số : + —x+ 7 13 2—x yy x+1 2x-5 7 c)y = ——__; d)y=—-—I. x 5x—2 x 2. Tìm các tiệm cận đứng và ngang của đồ thị hàm số : 2—x x+x+] ayy ï 3-2x-5x x+1 ` KHẢO SÁT SỰ BIẾN THIÊN VÀ À ? 5 ` 2 VẼ ĐỒ THỊ CỦA HÀM SỐ I- SƠ ĐỒ KHẢO SÁT HÀM SỐ 1. Tập xác định Tìm tập xác định của hàm số. 2. Sự biến thiên s Xét chiều biến thiên của hàm số : + Tính đạo hàm y' ; + Tìm các điểm tại đó đạo hàm y' bằng 0 hoặc không xác định ; + Xét dấu đạo hàm y' và suy ra chiều biến thiên của hàm số. ° Tim cực trị. Tìm các giới hạn tại vô cực, các giới hạn vô cực và tìm tiệm cận (nếu có). * Lập bảng biến thiên. (Ghi các kết quả tìm được vào bảng biến thiên). 3. Đồ thị Dựa vào bảng biến thiên và các yếu tố xác định ở trên để vẽ đồ thị. CHÚ Ý 1. Nếu hàm số tuần hoàn với chu kì 7 thì chỉ cần khảo sát sự biến thiên và vẽ đồ thị trên một chu kì, sau đó tịnh tiến đồ thị song song với trục Ôx. 2. Nên tính thêm toạ độ một số điểm, đặc biệt là toạ độ các giao điểm của đồ thị với các trục toạ độ. 3. Nên lưu ý đến tính chắn, lẻ của hàm số và tính đối xứng của đồ thị để vẽ cho chính xác. II - KHẢO SÁT MỘT SỐ HÀM ĐA THỨC VÀ HÀM PHÂN THỨC Khảo sát sự biến thiên và vẽ đồ thị của các hàm số đã hoc y=ax+b, y=ax?+bx+c theo sơ đồ trên. -"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "Ôn tập chương I",
+    "trang": 45,
+    "cha": "Chương I. UNG DUNG DAO HAM DE KHAO SAT",
+    "noi_dung": ""
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 1,
+    "tieu_de": "Chương II. HÀM SỐ LUỸ THỪA",
+    "trang": 0,
+    "cha": null,
+    "noi_dung": "BỘ GIÁO DỤC VÀ ĐÀO TẠO 9 2? WW GZ — sat 1U; HỊ/ - a `. k SN 4⁄4“ as A. SA _S ` > see Jian VĂ. Ý ——— == ae LÍ: SỈ i] - bạc 7 << — S - - Deg AWN ``=..‹ Ga i : # £ ` Y Ẳ eee | AS << hủ _-. ÔN. 27 a. ee ee “.w..x Á Ais PA A at oes 5...1. \\ NI 77 Re rae a as a f TÚ NHÀ XUẤT BẢN GIÁO DỤC VIỆT NAM BỘ GIÁO DỤC VÀ ĐÀO TẠO _ TRAN VAN HAO (Téng Chii bién) - VŨ TUẤN (Chủ biên) _ LE THI THIEN HUONG - NGUYEN TIEN TAI - CAN VAN TUAT G A iC (Tái bản lần thứ mười hai) NHÀ XUẤT BẢN GIÁO DỤC VIỆT NAM Hãy bảo quản, giữ gìn sách giáo khoa để dành tặng cho các em học sinh lớp sau ! i HIEU DUNG TRONG SACH Â Phần hoạt động của học sinh. Tuỳ đối tượng cụ thể mà giáo viên sử dụng. s Kết thúc phần chứng minh. Bản quyền thuộc Nhà xuất bản Giáo dục Việt Nam - Bộ Giáo duc va Dao tạo 01 - 2020/CXBIPH/616 — 869/GD Mã số: CH201T0 Chương i UNG DUNG DAO HA MM NÊN DE KHAO SAT VA VE DO THI CUA HAM § í CỦA HÀM SỐ I- TÍNH ĐƠN ĐIỆU CỦA HÀM SỐ Từ đồ thị (H.1, H.2) hãy chỉ ra các khoảng tăng, giảm của hàm số y = cosx trên đoạn và của hàm số y=|x| trên khoảng (—œ ; +œ). y =cosx 1 bd TL 7 NY ' gen 0 an + — MÔ * Hinh 1 Hinh 2 1. Nhắc lại định nghĩa Kí hiệu K là khoảng hoặc đoạn hoặc nửa khoảng. Giả sử hàm số y = f(x) xác định trên K. Ta nói Hàm số y = f(x) đồng biến (tăng) trên K nếu với mọi cặp xị, xạ thuộc K mà xị nhỏ hơn x; thì ƒx¡) nhỏ hơn ƒ{x;), tức là x < XQ > ft) <ƒ(%) ; Hàm số y = +) nghịch biến (giảm) trên K nếu với mọi cặp xị, xạ thuộc K ma x, nhd hon x, thi f(x) 16n hon tic 1a x < x2 => > fQ2)- Hàm số đồng bi"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "§1. Luỹ thừa",
+    "trang": 49,
+    "cha": "Chương II. HÀM SỐ LUỸ THỪA",
+    "noi_dung": ""
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "§2. Hàm số luý thừa 5ô",
+    "trang": 0,
+    "cha": "Chương II. HÀM SỐ LUỸ THỪA",
+    "noi_dung": "BỘ GIÁO DỤC VÀ ĐÀO TẠO 9 2? WW GZ — sat 1U; HỊ/ - a `. k SN 4⁄4“ as A. SA _S ` > see Jian VĂ. Ý ——— == ae LÍ: SỈ i] - bạc 7 << — S - - Deg AWN ``=..‹ Ga i : # £ ` Y Ẳ eee | AS << hủ _-. ÔN. 27 a. ee ee “.w..x Á Ais PA A at oes 5...1. \\ NI 77 Re rae a as a f TÚ NHÀ XUẤT BẢN GIÁO DỤC VIỆT NAM BỘ GIÁO DỤC VÀ ĐÀO TẠO _ TRAN VAN HAO (Téng Chii bién) - VŨ TUẤN (Chủ biên) _ LE THI THIEN HUONG - NGUYEN TIEN TAI - CAN VAN TUAT G A iC (Tái bản lần thứ mười hai) NHÀ XUẤT BẢN GIÁO DỤC VIỆT NAM Hãy bảo quản, giữ gìn sách giáo khoa để dành tặng cho các em học sinh lớp sau ! i HIEU DUNG TRONG SACH Â Phần hoạt động của học sinh. Tuỳ đối tượng cụ thể mà giáo viên sử dụng. s Kết thúc phần chứng minh. Bản quyền thuộc Nhà xuất bản Giáo dục Việt Nam - Bộ Giáo duc va Dao tạo 01 - 2020/CXBIPH/616 — 869/GD Mã số: CH201T0 Chương i UNG DUNG DAO HA MM NÊN DE KHAO SAT VA VE DO THI CUA HAM § í CỦA HÀM SỐ I- TÍNH ĐƠN ĐIỆU CỦA HÀM SỐ Từ đồ thị (H.1, H.2) hãy chỉ ra các khoảng tăng, giảm của hàm số y = cosx trên đoạn và của hàm số y=|x| trên khoảng (—œ ; +œ). y =cosx 1 bd TL 7 NY ' gen 0 an + — MÔ * Hinh 1 Hinh 2 1. Nhắc lại định nghĩa Kí hiệu K là khoảng hoặc đoạn hoặc nửa khoảng. Giả sử hàm số y = f(x) xác định trên K. Ta nói Hàm số y = f(x) đồng biến (tăng) trên K nếu với mọi cặp xị, xạ thuộc K mà xị nhỏ hơn x; thì ƒx¡) nhỏ hơn ƒ{x;), tức là x < XQ > ft) <ƒ(%) ; Hàm số y = +) nghịch biến (giảm) trên K nếu với mọi cặp xị, xạ thuộc K ma x, nhd hon x, thi f(x) 16n hon tic 1a x < x2 => > fQ2)- Hàm số đồng bi"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "§3. Logarit",
+    "trang": 61,
+    "cha": "Chương II. HÀM SỐ LUỸ THỪA",
+    "noi_dung": "3 Ví dụ 3. Khảo sát sự biến thiên và vẽ đồ thị của hàm s6 y=x . 1. Tập xác định : D = (0; +œ). 2. Sự biến thiên q Chiều biến thiên : y'= .ằ sa Ta có y' < 0 trên khoảng (0 ; +œ) nên hàm số đã cho nghịch biến. Tiệm cận : lim y=+o, lim y=0. x->+œ y Đồ thị có tiệm cận ngang là trục hoành và có tiệm cận đứng là trục tung. Bảng biến thiên x 0 +00 i}---S a) y=(1-x) 3; b) y y=? -1; d)y mas oes er bà | 60 +00 = * 3. Đồ thị (H.30). Hình 30 Bảng tóm tắt các tính chất của hàm số luỹ thừa y = x trên khoảng (0 ; +œ) Chiều biến thiên Hàm số luôn đồng biến. Hàm số luôn nghịch biến. Tiệm cận ngang là trục Óx, Đồ thị luôn đi qua điểm (1 ; 1). Bai tap 1. Tìm tập xác định của các hàm số : 2. Tính đạo hàm của các hàm số : y=(3x+1)2; đ y=(5—x)Ÿ. 3. Khảo sát sự biến thiên và vẽ đồ thị của các hàm số : a) b) y=x. a) (4,1)””; b) (0,2)03; aq wor) dy 107 FI sự I- KHÁI NIỆM LÔGARIT Tim x dé: 1 1 đưa đến hai bài toán ngược nhau : * Biết z, tính b. ® Biết b, tính ø. 61 2 ‡ 2 : = 4. Hãy so sánh các số sau với l : 5. Hãy so sánh các cặp số sau : a) va (4,3)\"? ; b) th và (4) ; © (0,2)°” ; 2* =8; b)2* =-; 3* =81; d) 5*=—. ay b) y=(4-x-2°)4; S 3 4 LOGARIT yes ) 4’ Luẳnn ) 125 x Cho số z dương, phương trình a* =b Bài toán thứ nhất là tính luỹ thừa với số mũ thực của một số. Bài toán thứ hai dẫn đến khái niệm lấy lôgarit của một số. Người ta chứng minh được rằng với hai số dương a, b, ø # 1, luôn tồn tại duy nhất số ø sao cho = b. 1. Định nghĩa Cho hai số dương a, b với a # 1. Số ø thoả mãn đẳng thức aZ = b được"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "§4. Hàm số mũ. Hàm số lôgarit",
+    "trang": 70,
+    "cha": "Chương II. HÀM SỐ LUỸ THỪA",
+    "noi_dung": "BẠN CÓ BIẾT Thuật ngữ \"Lôgarit tự nhiên\" do Men-gô-li (P. Mengoli - 1659) và Men-ca-tơ 69 của AI ĐÃ PHÁT MINH RA LÔGARIT ? (N. Mencator - 1668) đưa ra. Năm 1893, Prin-xém (A. Pringshelm) da kí hiệu Nê-pe (John Napier) là nhà toán học Xcốt-len (Scotang). lôgarit tự nhiên của số X bởi In N. Bởi vậy, việc gọi lôgarit tự nhiên là lôgarit Nê- Ông sinh năm 1550 tại Me-ti-ston (Metiston-Castle), li pe không có cơ sở. Tuy nhiên, người ta vẫn thường gọi như vậy có lẽ là do đã gần thành phố Ê-đin-bơc (Edinburgh) và tốt nghiệp gắn lôgarit tự nhiên với tên người thiết lập bảng lôgarit đầu tiên. trường Đại học Tổng hợp Ê-đin-bơc. Ngoài ra, Nê-pe còn là tác giả của một loạt các công thức dành cho việc giải các là người phát minh ra lôgarit. Thuật ngữ \"Lôgari'do l7 ` tam giác cầu, rất tiện lợi cho việc lấy lôgarit. ông đề nghị xuất phát từ sự kết hợp hai từ Hi Lạp Aóyoc(đọc Ngày 4-4-1617, Nê-pe qua đời tại quê hương ông. là \"logos\" có nghĩa là f số) và 'œp9u óc (đọc là \"arimos'có lễ nghĩa là số). Trong toán học cổ, bình phương, lập được gọi là các f số kép, bội ba,... Như vậy, đối với Nêpe,từ _ 'œpi 0uós có nghĩa là \"số tỉ số\". Lôgarit được Nê-pe J. Napier xem là số trợ giúp để tính f số của hai số. (1550 — 1617) Trong tác phẩm \"Mô tả bảng lôgarit kì diệu\" (1614), Nê-pe đưa ra định nghĩa và các tính chất của lôgarit. Lôgarit mà Nê-pe xét có cơ số gần bằng HAM SO MU. HAM SO LOGARIT I- HÀM SỐ MŨ Ví dụ 1. Bài toán \"lãi kép\" Một người gửi số tiền 1 triệu đồng vào một ngân hàng với lãi suất 7%/n"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "§5. Phuong trinh mu va phuong trinh logarit",
+    "trang": 78,
+    "cha": "Chương II. HÀM SỐ LUỸ THỪA",
+    "noi_dung": "pr Nêu nhận xét về mối liên hệ giữa đồ thị của các hàm số trên Hình 35 và Hình 36. NHẬN XÉT D6 thi cia cic ham s6 y =a‘ va y= log, x (a>0,a #1) đối xứng với nhau qua đường thẳng y = x. Bảng đạo hàm của các hàm số luỹ thừa, mũ, lôgarit làm sơ | op (x7)! == ext = IY D1 Bì . ' 1 ' = ala cl (e*)'=e* (e\")' = (a*)'=a*Ina (a\")' =a\" Inau' 1 u' ( ea ) xina ea ) ulna log, = —— log, |u| )' = —— Bai tap 1. Vẽ đồ thị của các hàm số : )y )y ( i) a)y = 4” ; b) y=l|—|. 2. Tính đạo hàm của các hàm số : a)y=2xe' +3sin2x; b)y=5x ; oy 3. Tìm tập xác định của các hàm số : a) y = loga(5 — 2x); b) y = log3(x* — 2x); c) y = loBi (x? — 4x + 3); d)y= 5 —x 4. Vẽ đồ thị của các hàm số : a) y = logx; b)y = log, x. 5. Tính đạo hàm của các hàm số : a)y= 3x2 —Inx + 4sinx ; b)y = +x+1); log; x c)y = PHUONG TRINH MU VA \\ 2 PHƯƠNG TRÌNH LÔGARIT I- PHƯƠNG TRÌNH MŨ Bài toán Một người gửi tiết kiệm với lãi suất 8,4%/năm và lãi hàng năm được nhập vào vốn. Hỏi sau bao nhiêu năm người đó thu được gấp đôi số tiền ban đầu ? Giải. Gọi số tiền gửi ban đầu là P. Sau ø năm, số tiền thu được là P„ = P( +0,084)” = P(1,084)”. Để P„ = 2P thì phải có (1,084)” = 2. Do đó n = logy og4 2 8,59. Vin 14 s6 tu nhién nén ta chon n = 9. Vậy muốn thu được gấp đôi số tiền ban đầu, người đó phải gửi 9 năm. * Những bài toán thực tế như trên đưa đến việc giải các phương trình có chứa ẩn số ở số mũ của luỹ thừa. Ta gọi đó là các phương trình mũ. Chang han, cac phương trình 3” = 8, 9 +3 =0 là những phương . sin ai 4 el trình mũ. 1. Phương trì"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "§6. Bất phương trình mũ và bất phương trình lôgarit",
+    "trang": 85,
+    "cha": "Chương II. HÀM SỐ LUỸ THỪA",
+    "noi_dung": "c) Mũ hoá Ví dụ 7. Giải phương trình — 2”) = 2 - x. Điều kiện của phương trình là 5— 2Ï > 0. Giải. Theo định nghĩa, phương trình đã cho tương đương với phương trình alog;(S=2”) = 92-x, (Phép biến đổi này thường được gọi là mũ hoá). Từ đó ta có x 4 2x SE Đặt / = ( > 0), ta có phương trình bậc hai f - 5+4 = 0 với hai nghiệm dương / = 1, = 4. Vậy nghiệm của phương trình đã cho là x = 0, x = 2. Bai tap 1. Giải các phương trình mũ : 3x-2 IY a) (0,3) =1; b) = 25: oj = 4: d) > = 2. 2. Giải các phương trình mũ : a) a ee = 108 oa eo c) 64* - 8* -56 =0; d) 3.4* 3. Giải các phương trình lôgarit : a) loga(Sx + 3) = log3(7x + 5); b) log(x — 1) — log(2x — 11) = log2; c) logy(x — 5) + + 2) = 3; d) log(x? — 6x +7) = log(x — 3). 4. Giải các phương trình lôgarit : a) +x —5) =log5x+ log—-; 2 5X b) — 4x - 1) = log8x — log4x; c) log „+ + 4log, x + logg x = 13. ` ~ ` BẤT PHƯƠNG TRÌNH MŨ VÀ BẤT PHƯƠNG TRÌNH LÔGARIT I- BẤT PHƯƠNG TRÌNH MŨ 1. Bất phương trình mũ cơ bản Bất phương trình mũ cơ ban cé dang a* >b (hoặc >b, <b, a` <b)vớia>0,az Ta xét bất phương trình danga* > b. s Nếu b < 0, tập nghiệm của bất phương trình làlR vì øÏ >0 > b, Vx e R. s Nếu b > 0 thì bất phương trình tương đương với a* > Với a > 1, nghiệm của bất phương trình là x > log„ ở. Với 0<a< 1, nghiệm của bất phương trình là x < log„b. Ví dụ 1 a) 3Ý x >logs81 © x > 4; Minh hoạ bằng đô thị » = way 5 2 1 Vẽ đồ thị hàm số y = a* va dudng thẳng marl y =b trên cùng một hệ trục toạ độ. Trong trường hop a > | ta nhan thay : ;=5 * Nếu b< 0"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "Ôn tập chương II",
+    "trang": 90,
+    "cha": "Chương II. HÀM SỐ LUỸ THỪA",
+    "noi_dung": "2. Bất phương trình lôgarit đơn giản Ta xét một số ví dụ về bất phương trình lôgarit đơn giản. Ví dụ 5. Giải bất phương trình logo s(5x + 10) < logy 5(x* + 6x + 8). Giải. Điều kiện của bất phương trình đã cho là 5x+10>0 x>~-2 Kết hợp với điều kiện, ta được tập nghiệm của bất phương trình đã cho là khoang (—2 ; 1). Vi du 6. Giai bat phuong trinh — 3) + — 2) <1. Giải. Điều kiện của bất phương trình là x > 3. Khi đó, bất phương trình đã cho tương đương với — 3)(x — 2)] < log 2. Vì cơ số 2 lớn hơn 1 nén(x — 3)(x — 2) < 2. Giải bất phương trình này, ta tim được 1 < x < 4. Kết hợp với điều kiện x > 3, ta được nghiệm của bất phương trình đã cho là 3 < x < 4. Giải bất phương trình log¡ (2x +3) > log, 2 2 = = x>-2. Bai tap +6x+8>0 x<-4 hoặc x > -2 1. Giải các bất phương trình mũ : Vì cơ số 0,5 bé hơn 1 nên với điều kiện đó, bất phương trình đã cho tương 2x7 -3x đương với bất phương trình 5x + 10 > x7 + 6x +8 2 a) 2* +3x Ă 4; b) (;) > Pa 2. Giải các bất phương trình lôgarit : a) 2x) > 2 ; b) logq (3x — 5) > logq (x + l) ; 5 5 c) y = logvx? —x-12; d) y = ¥25* —5*. 43 7. Giải các phương trình : gì H963 055 os b) 25” —6.5 c) 49” +12” đ) logz(x — l)log; x = log; x ; x+8 §. Giải các bất phương trình : dị „ b) (0,4)* - > 15 ; c) log, ie (x? - <1; d) x - x < -6. g 90 €) logo + x — logs(x — 2) < logo 2 3 : d) logy x—5loga x + 6 <0. 5. Biết 4' +4 * = 23. Hãy tính 2Ì + 2 *, a) wee, e) lo +lo +lo loø——— = logx. Ôn tộp chương II 6. Cho log, b = 3, log, c = —2. Hay tinh log, x véi: c ) x + log 3 x"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 1,
+    "tieu_de": "Chương III. ` NGUYÊN HẦM - TÍCH PHÂN VÀ ỨNG DỤNG",
+    "trang": 92,
+    "cha": null,
+    "noi_dung": "Bai tap trắc nghiệm Bil a Nam Dee 1. Tập xác định của hàm số y = la: (A) 51) U(2; +0) ; (B) (1; 2); (C) R \\ {1}; (D) R\\ {1;2}. 2. Chọn khẳng định sai trong các khẳng định sau : (A) Inx >0<>x >1; (B) logs x <0@0<x<1; (O logi a > b€a>b>0; (D) logia= logi b©a=b>0. 3 3 a 2 3. Cho ham s6 f(x) = In(4x — x7). Chọn khẳng định đúng trong các khẳng dinh sau : (A) f'(2)=1; (B) f'(2) =0; (C) (D) f'(-1) =-1,2. 4. Cho hàm số g(x) = log, (x? —5x+7). Nghiém cia bất phương trình g(x) > 0 1a: (A3 (B) x< 2 hoặc x > 3 ; (C)2<x<3; (D) x <2. 5. Trong các hàm số : nhà eet sin x cos x cos.x hàm số nào có đạo hàm là ? cosx (A) f@) ; (B) g(x) ; (C) A(x); (D) g(x) va h(x). 6. SO nghiém cia phuong trinh 27* ~7**9 =1 1a: (A) 0; (B) 1; (C) 2; (D) 3. 7. Nghiệm của phương trình 10!°89 = 8x+5 1a: 1 5 7 A)0; B) =; C) -; D)—. (A) (B) 2 (C) § ( 2"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "§1. Nguyên hàm",
+    "trang": 93,
+    "cha": "Chương III. ` NGUYÊN HẦM - TÍCH PHÂN VÀ ỨNG DỤNG",
+    "noi_dung": "NGUYÊN HÀM - TÍCH PHÂN VÀ ỨNG DỤNG Nguyên hàm Tích phân Ung dụng của tích phân trong hình học í NGUYÊN HÀM I- NGUYÊN HÀM VÀ TÍNH CHẤT 1. Nguyên hàm Tìm hàm số F(x) sao cho F''(x) = f(x) néu : a) f(x) = 3x? với x (_—œ ; +œ) ; b) VỚI xe [š ỳ 2} cos” x 22 Kí hiệu K là khoảng hoặc đoạn hoặc nửa khoảng của lR. ĐỊNH NGHĨA Cho hàm số ƒfx) xác định trên K. Ham s6 F(x) duoc goi 1a nguyên hàm của hàm số ƒfx) trên K nếu # '(v) = ƒx) với mọi x e K. Vi du 1 a) Ham s6 F(x) = x* 1A nguyên hàm của hàm số f(x) = 2x trén khoảng (—œ ; +œ) vì F '(x) = (x°)' = 2x, Vx € ; +00). b) Hàm s6 F(x) = Inx 14 mot nguyén ham của hàm số ƒ(x) = trên khoảng (0 ; +0) vi F '(x) = (Inx)' Vx € (0; +00). Hãy tìm thêm những nguyên hàm khác của các hàm số nêu trong Ví dụ 1. ĐỊNH LÍ 1 Nếu F(+) là một nguyên hàm của hàm số ƒ#{y) trên K thì với mỗi hằng số C, hàm số G(x) = F(x) + € cũng là một nguyén ham cia f(x) trên K. ĐỊNH LÍ 2 Nếu F(+) là một nguyên hàm của hàm số f(x) trên K thi mọi nguyên hàm của trên K đều có dang F(x) + C, véi C là một hằng số. Chứng mình. Giả sử G(x) cũng là một nguyên hàm của ƒfx) trên K, tức là x e K. Khi đó (G(x) - = Œ(+) - F '(z) = fz) - f2) = 0. x e K. Vậy G(x) - F(+) là một hàm số không đổi trên K. Ta có G(x) — F(x) =C => G(x) = F(x) + C, x e K. a Hai dinh li trén cho thay : Néu F(x) 14 nguyén ham cla ham s6 f(x) trén K thi F(x) + C, CER là họ tất cả các nguyén ham cua f(x) trên K. Ki hiéu Ỉ f(x)dx = F(x) + C. CHU Y Biểu thức ƒ(x)dx chính là vi phân cia nguyén ham F(x) của vì đF(x) x)dv"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "§2. Tích phân",
+    "trang": 101,
+    "cha": "Chương III. ` NGUYÊN HẦM - TÍCH PHÂN VÀ ỨNG DỤNG",
+    "noi_dung": "Ví dụ 9. Tính a) [xe*ae: b) [ xcos.xde; c) [max Giải a) Dat u =x va dv = ta có đự = dx và y = e*. Do đó [ = xe” = +C. b) Đặt u =x va dv = cosxdx, ta duoc du = dx va v = sinx. Vậy [ xcosxdx = xsinx — [sinxdz hay [xeosxdx = xsin x + cosx + C. c) Dat u = Inx, dv = dx, ta có dự = —dx và v =x. Do đó finxdx = xInx- fac = xInx-x+C. Cho P() là đa thức của x. Từ Ví dụ 9, hãy lập bảng theo mẫu dưới đây rồi điển „ và dy thích hợp vào ô trống theo phương pháp tính nguyên hàm từng phần. pow | Bai tap 1. Trong các cặp hàm số dưới đây, hàm số nào là một nguyên hàm của hàm số còn lại ? ae 2 b) sin2x va sin2x; 2) e* va 1 — Ale 2. Tìm nguyên hàm của các hàm số sau : x+X⁄x+l 1 a) fix) = 3 b) fx) = —— ; c) f(x) = => d) f(x) = sin5x.cos3x ; Sin“.x.€OS“.x e) #v) = ; g) fix) = ; h) f(x) = )/) (1+ x)(1 -— 2x) 3. Sử dụng phương pháp đổi biến số, hãy tinh : a) fd = x)? dx (dat u=1-x); b) [xŒ + x7)? dx (dat =1+ x”) ; ©) [ xdx (dat t = cosx) ; ——— (datu = e* +1). e+e*+2 4. Sử dụng phương pháp tính nguyên hàm từng phần, hãy tính : a) + x)dx; b) f(x? + 2x ©) [ xsin(2x + I)dx; d) [= x)cos.x de. ì 2 TỊCH PHAN I - KHAI NIEM TICH PHAN 1. Dién tich hinh thang cong Kí hiệu 7 là hình thang vuông giới hạn bởi đường thẳng y = 2x + 1, trục hoành và hai đường thẳng x= 1, x=¿ (1 < ¿< 5) 1. Tính diện tích & cia hinh T khi t= 5 (H.46). 2. Tính diện tích S() của hình 7 khi ¢ e [1 ; 5]. + I x ` I ⁄ RN \\ / ! IN Oo} 1 ros x o| 1 5 x Hinh 45 Hinh 46 3. Chứng minh rằng S() là một nguyén ham cla f(s) = + 1, e [1 ; 5] và diện"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "§3. Ứng dụng của tích phân trong hình học",
+    "trang": 114,
+    "cha": "Chương III. ` NGUYÊN HẦM - TÍCH PHÂN VÀ ỨNG DỤNG",
+    "noi_dung": "3. Sử dụng phương pháp đổi biến số, hãy tính : 3 x2 a) (đặt = x + l) ; °q+x)2 b) —x?dx (dat x = ; e*(1+ x) (đặt w = 1+ xeŸ) ; 9 1+ xe\" d) (————ax (a > 0) (dat x = asim). 0 Va? - x7 4. Sử dụng phương pháp tính tích phân từng phan, hay tinh : 5. Tính các tích phân sau : 1 2 3 2 a) [+ 3x)2 de; b) : c) (ran. 0 ow 1 1 *# 6. Tinh ƒza —x) dy bằng hai phương pháp : a) Đổi biến số w = l — x ; b) Tính tích phân từng phần. , 2 2 “A UNG DUNG CUA TICH PHAN \\ 4 TRONG HINH HỌC I- TÍNH DIỆN TÍCH HÌNH PHẲNG Tính diện tích hình thang vuông được giới hạn bởi các đường thẳng y= -2x - 1, y = 0, x= w= 5: So sánh với diện tích hình thang vuông trong của §2. 1. Hình phẳng giới hạn bởi một đường cong và trục hoành + Giả sử hàm số y = f(x) lién tuc, nhận giá trị không âm trên đoạn [øz ; b]. Ta đã biết hình A' —— thang cong giới hạn bởi đồ thị cua fix), trục hoành và hai đường thắng x = a, x = Ð có : diện tích § được tính theo công thức ö| “T7 § =[ƒ()dx. (1) // Trudng hop fix) < 0 trén doan [a ; b], ta cd B -ftx) > 0 và diện tích hình thang cong B aABb bằng diện tích hình thang cong aA'B'°b là hình đối xứng của hình thang đã Hình 51 cho qua trục hoành (H.51). Do đó S = = = | (2) Tổng quát, điện tích $ của hình 2 phẳng giới hạn bởi đồ thị của a ham s6 f(x) lién tuc, truc hoanh va hai dudng thang x = a, x = b (H.52) được tính theo công thức b oO a b x § = (3) a Hinh 52 Ví du 1. Tinh diện tích hình phẳng được giới hạn bởi đồ thị của hàm số y =xŸ, trục hoành và hai đường thẳng x = —l, x = 2 (H.53). Š Giải."
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "Ôn tập chương lIl",
+    "trang": 126,
+    "cha": "Chương III. ` NGUYÊN HẦM - TÍCH PHÂN VÀ ỨNG DỤNG",
+    "noi_dung": "Ta tính diện tích phần tư hình tròn được giới hạn bởi cung tròn y= (o<:<3) và hai trục toạ độ x = 0 và y = 0. Ta chia đoạn [0 ; KỊ trên trục hoành y thành ø phần bởi các điểm x; (¡=0,.... n) M yes sao cho cac diém M; (i=0, ..., n) tung ° y¡) ứng chia cung tròn thành z phần bằng Yi FF nhau. Khi đó, số đo các cung nhỏ ZL đều bằng -—. Điểm & được chọn EE 2n 2 trùng với x, (mút phải đoạn [x, ¡; x,]) A (H.66). Ta c6 WZ K gt —— 4, =Reos( ^ E2 | Mn al ung; 0 Xji-1 Xj X = Rsin( 2 2n Hình 66 *ạ=0, yạ =. Lập tổng dạng (1), ta được LIEN 2 sin| >— =2R?Š”sin(n—i)~——.sin2n~2i+1)~——. i) 2n sin(2n — 2i vr sin tn =2R? sin | sinc + 4n 2n 4n + ++ sin | 2n 4n 2n 4n = R? (cos =) + 4n 4n 4n 4n 4n TL TU tt -coss=)) 4n 4n =ÑRcos-—.(n—1)sin——— 4n 4n - R2 sin = | 4n 4n 4n 4n Vì cos5x+cos9x+...+cos(4nT—3)x 2sin2x nên tổng trên viết thành 8 sin(4n —1) — sin —x-0)= R 7 —— R? ml 2sin— , Ij = R* R?, 4n, 4n 4n Chuyển qua giới hạn đẳng thức trên khi ø —>+œ (vi max (x, -x;4) 30 +0), ta được S= lim | DIEM = Se sige th \" coe 4ã 4n n>+0 4n 4 nj) 7T 4 4n 4n Vậy diện tích hình tròn bằng zZ. On tap chương III 1. a) Phát biểu định nghĩa nguyên hàm của hàm s6 f(x) trên một khoảng. b) Nêu phương pháp tính nguyên hàm từng phần. Cho ví dụ minh hoa. 2. a) Phát biểu định nghĩa tích phân của hàm số f(x) trên một đoạn. b) Nêu các tính chất của tích phân. Cho ví dụ minh hoa. 3. Tìm nguyên hàm của các hàm số sau : a) z) = (x— 1)(1 - 2x)(1 - 3») ; b) ƒ@) = sin 4x cos? 2x 4. Tinh: (x +1) i jos a) |(2-x)sinxdx; b) | — c) (ae; d)"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 1,
+    "tieu_de": "Chương IV. SO PHUC",
+    "trang": 129,
+    "cha": null,
+    "noi_dung": "2. Tính Tis (A) 2#! +C; (B) 2(2# -1)+ es (C) +1) (D) 3. Tich phan [cos*xsin xdx bang : 2, 2 3 (A) 3 (B) 3 (C) 2 (D) A) -=3 B) =; QC =; D) 0. 2 2 2 2 (A) f sin?xdx > [co (B) [sn “xa < [co 0 0 0 0 5. Diện tích hình phẳng giới hạn bởi các đường cong a) y=x và y=x bằng : (A)0; (B) -4; (C) ° (D) 2. b) y=x+sinxvà y=x (0<x<2r) bằng: (B) 4; (C)0; (D) 1. 6. Cho hình phẳng giới hạn bởi các đường y = vx và y=x quay xung quanh trục Óx. Thể tích của khối tròn xoay tạo thành bằng : (A)0; (B)-z; (C)m; (D) ="
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "§1. Số phức",
+    "trang": 130,
+    "cha": "Chương IV. SO PHUC",
+    "noi_dung": "Chương t ENE gay Gl] ) - WUT 3 22 ~ dl ~ ae - = +. Gas” eo aes NSS Gy: y SS NS = “22% | = `: Te | Huong trình bậc hai với hệ số thực | ( SỐ PHUC 1. Sối Ta đã biết các phương trình bậc hai với biệt số âm không có nghiệm thực. Phương trình bậc hai đơn giản nhất không có nghiệm thực là phương trình x2+1=0. Với mong muốn mở rộng tập hợp số thực để mọi phương trình bậc ø0 đều có nghiệm, người ta đưa ra một số mới, kí hiệu là ¡ và coi nó là nghiệm của phương trình trên. Như vậy 2. Định nghĩa số phức Mỗi biểu thức dạng ø + bi, trong dé a,b e lR, ¡7 = —1 được gọi là một số phức. Đối với số phức z = a + bi, ta nói a là phân thực, b là phần ảo của z. Tập hợp các số phức kí hiệu là C. Ví dụ 1. Các số sau là những số phức : - 2 +3i ; 1+(—3)¡ (còn viết là 1— 3i); 1+^/3¡ (còn viết là 1+ iv3). Tìm phần thực và phần ảo của các số phức sau : -3+5i, 4—i2, 0+zi, 1+ 0i. 3. Số phức bằng nhau Hai số phức là bằng nhau nếu phần thực và phần ảo của chúng tương ứng bằng nhau. a+ bi =c+ đi © a= c và b = d. Ví dụ 2. Tìm các số thực x và y, biết (2x +1) + 3y - 2)¡ = (x + 2) + (y + Giđi. Từ định nghĩa của hai số phức bằng nhau, ta có 2x+l=x+2và 3y-2= y+4. Vậy x = l và y = 3. CHÚ Ý ® Mỗi số thực z được coi là một số phức với phần ảo bằng 0 a= a+(Ì. Như vậy, mỗi số thực cũng là một số phức. Ta có R C. s Số phức 0 + b¡ được gọi là số thuần ảo và viết đơn giản 1a bi bi = 0+ bi. Dac biét i=O+1i. Số ¡ được gọi là đơn vị ảo. Viết số phức z có phần thực bằng phan ao bang 4. Biểu diễn hình học số phức Ị Như trên đ"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "§2. Cộng, trừ và nhân số phức",
+    "trang": 134,
+    "cha": "Chương IV. SO PHUC",
+    "noi_dung": "Choz=3-2i. a) Hãy tính z và 7. Nêu nhận xét. b) Tính |z| và [z|. Nêu nhận xét. Từ định nghĩa ta có : °7=2z; ° Izl=lIcl. BAN CO BIET của CAC- DA-NO (G.CARDANO) Các-đa-nô là một nhà bác học người I-ta-li-a. Ông sinh năm chải 1501, đạt học vị tiến sĩ y khoa năm 1526, nhưng không Me J được hành nghề y mà trở thành thầy giáo dạy toán. Ông có trên 200 công trình về các lĩnh vực Toán học, Y học, 7° Triết học, Thiên văn học, Âm nhạc và Thần học. Năm Z| { 1545 ông xuất bản quyển sách \"Nghệ thuật lớn của AE J © % phép giải các phương trình đại số\". Trong cuốn sách Sf TẾ này, ông trình bày cách giải phương trình bậc ba, bậc 4G (bide, ® bốn va đề cập tới căn bậc hai của số âm. Có thể nói sự - hiên cứu số phức khởi ồn từ công trình nà G. Cardano nghiên cứu số phức khởi nguồn từ công trình này. (1501 — 1576) Bai tap 1. Tìm phần thực và phần ảo của số phức z, biết : a) z=1-ni; b) c z=242; đ) z= —7i. 2. Tìm các số thực x và y, biết : a) (3x — 2) + (2y + l)¡ = (x + l)— (y —- 5¡; b) i3 = V5 + c) (2x + y) + (2y - = (x— 3) + (y+ 2x + li. 3. Trên mặt phẳng toạ độ, tìm tập hợp điểm biểu diễn các số phức z thoả mãn điều kiện : a) Phần thực của z bằng —2 ; b) Phần ảo của z bằng 3 ; c) Phần thực của z thuộc khoảng (-—1 ; 2) ; đ) Phần ảo của z thuộc đoạn [1 ; 3] ; e) Phần thực và phần ảo của z đều thuộc đoạn [—2 ; 2]. 4. Tính|z| với : a) z=-2+inN3; b) z = V2 -3i; c) z=-5; d) z = iv3. 5. Trên mặt phẳng toạ độ, tìm tập hợp điểm biểu diễn các số phức z thoả mãn điều kiện : 8) 1; b) |z| < 1; c)1<Ìz|<2; d)"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "§3. Phép chia số phúc",
+    "trang": 136,
+    "cha": "Chương IV. SO PHUC",
+    "noi_dung": "Ví dụ 1 (5+ (347i) = (54+3)4+(24+7)i =84+9i ; (1 + 61) — (4 + 3i) = 0-4) + (6 - 3)i = -3 + 33. Téng quat (a+ bi)+(c+ di) =(at+c)+(b+d)i; (a + bì) — (e + đi) = (a — e) + (b — đì)i. 2. Phép nhân Theo quy tắc nhân đa thức với chú ý i? =-1, hay tinh (3+2i)(2+3i). Phép nhân hai số phức được thực hiện theo quy tắc nhân đa thức rồi thay Pre trong kết quả nhận được. Ví dụ 2 (5+ 20(4 + 3¡) = 20 + 15i + 81 + 6i7 = (20 - 6) + (15 + 8)i = 14 + 237; (2 - 3i\\(6 + 4i) = 12 + 8i — 18i — 12/7 = 12 + 8i — 18i + 12 = (12 +12) + (8 - 18} = 24 - Tổng quát (a + bi)(c + di) = ac + adi + bei + bdi2 = ac + adi + bei — bd. (a + bi)(c + di) = (ac — bd) + (ad + be)i. CHU Y Phép cộng và phép nhân các số phức có tất cả các tính chất của phép cộng và phép nhân các số thực. pr Hãy nêu các tính chất của phép cộng và phép nhân số phức. Bai tap 1. Thực hiện các phép tính sau : a) 3—5¡)+(2+4i) ; b) (2-— +(_—l- 7i); c) (44+ 3i) —(5-Ti) ; d) (2 3i) - (5 - 4i). 2. Tinh a+ B, a- B với : a) @=3, 5 b) a =1-2i, B = 67; c) a=5i, B= -Ti; d) a =15, B =4-2i. 3. Thực hiện các phép tính sau : a) 3— 20 - 3i) ; b) + 7 ; c) 54+ 3i) ; đ) (—2— 5¡).4i. 4. Tính Ÿ, ít, ?. Nêu cách tính ¡” với ø là một số tự nhiên tuỳ ý. §. Tinh: Din {3 a) (2+ 31)\" 3 b) (2+ 3i). ì ý PHÉP CHIA SỐ PHỨC 1. Tổng và tích của hai số phức liên hợp Cho z= 2+3¡. Hãy tính z+z và z.z. Nêu nhận xét. Cho số phức z = + bi. Ta có : z+Z =(a+ bi) +(a - bì) = 24 ; zZ = (a+ bi)(a — bì) = a2 - (bi)? = a2 + = |zÌ. * Tổng của một số phức với số phức liên hợp của nó bằng"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "§4. Phương trình bậc hai với hệ số thực",
+    "trang": 139,
+    "cha": "Chương IV. SO PHUC",
+    "noi_dung": "CHÚ Ý 3 c+di no. ; Trong thuc hanh, dé tinh ta nhân cả tử và mẫu với số phức liên hợp của a + bi. Vi du 2. Thực hiện phép chia 3 + 2¡ cho 2 + 3¡. Giải 3+2i_(3+22-—30 12_ 5. 24+3i (2+ 3i)(2-3i) 13 13. 13 Thuc hién cac phép chia sau : ae kid 2-3i Si Bai tap 1. Thực hiện các phép chia sau : ` ng p 1+2, d) 2+ iv3 2-3i i 2. Tim nghich dao của số phức z, biết : a)z=l+2i; b)z=V2-3i; c)z=i; d)z =5 3. Thực hiện các phép tính sau : a) 2i(3 + i)(2 + 4i) ; p) GON —2+i e) 3+2i+(6+ 3+ 6i 4. Giải các phương trình sau : a) (44+ 5) b) 0+ 3/)z -—(24+ SI) = (24+ 4— 3i PHUONG TRINH BAC HAI VOI HE SO THUC 1. Căn bậc hai của số thực âm Rein nào là căn bậc hai của số thực dương a ? Tương tự căn bậc hai của một số thực dương, từ đẳng thức¡” = -1, ta nói ¡ là một căn bậc hai của ; —¡ cũng là một căn bậc hai của —I, = -1. Từ đó, ta xác định được căn bậc hai của các số thực âm, chẳng hạn : Căn bậc hai của -2 là +iV2, vi (+ iV2)* =-2; Căn bậc hai của -3 là + iV3, vi (+ iv3)? = -3 : Căn bậc hai cia —4 1a + 2i, vi (+ 21)? = -4. Tổng quát, các căn bậc hai của số thực z âm là + inf la 2. Phuong trinh bac hai với hệ số thực Cho phương trình bậc hai ax? + bx+ =0 với a,b,c ER,a #0. Xét biét số A = b? — 4ac cia phuong trinh. Ta thay : *® Khi A = 0, phương trình có một nghiệm thực x * Khi A >0, có hai căn bậc hai (thực) cia A 1a +VA va phuong trình có hai nghiệm thực phân biệt, được xác định bởi công thức 1,2 2a , *® Khi A <0 phương trình không có nghiệm thực vì không tồn tại căn bậc hai thực củaA. Tuy nhiên, tr"
+  },
+  {
+    "mon": "Giải Tích 12",
+    "cap": 2,
+    "tieu_de": "Ôn tập chương IV",
+    "trang": 143,
+    "cha": "Chương IV. SO PHUC",
+    "noi_dung": "x + px+q=0 ¢* được cho bởi công thức sau (thường gọi là công thức Các-đa-nô) : | 35 | 2 3 2 4 27 2 4 27 Các-đa-nô đã công bố công thức này năm 1545, trong quyển sách \"Nghệ thuật lớn của phép giải các phương trình đại số\". 2 „3 Lẽ tự nhiên, ta coi biểu thức trên có nghĩa khi đại lượng A là không âm. Đại lượng A cũng được gọi là biệt số của phương trình (*). Tuy nhiên, dễ chỉ ra những phương trình bậc ba với biệt số A < 0, mà vẫn có nghiệm thực. Chẳng hạn, xét phương trình xŠ—7x+6=0. Phương trình này có ba nghiệm là -3, 1, 2 nhưng biệt số fa gO yy, 4 27 27 Điều đó dẫn đến việc thừa nhận rằng biểu thức x=3/-34+ _ 100 _ 100 \\ \\ 27 \\ \\ 27 là có nghĩa và các giá trị của nó là -3, 1, 2, mặc dù biểu thức này chứa căn bậc hai của một số thực âm. Như chúng ta đã thấy, sự thừa nhận có các căn bậc hai của số thực âm, bắt đầu từ việc đặt ¡=x/—I đã dẫn đến sự ra đời của tập hợp các số phức. Đồng thời với việc sáng tạo ra các số phức, người ta chứng minh được rằng mọi phương trình đại số bậc ø (» > 1) với hệ số phức đều có ø nghiệm phức (các nghiệm không nhất thiết phân biệt). Như vậy, việc mở rộng các tập hợp số gắn với vấn đề có nghiệm của các phương trình đại số đã dừng lại ở tập hợp các số phức. Tuy nhiên, các nhà toán học vẫn theo đuổi bài toán tìm công thức nghiệm dưới dạng biểu thức chứa căn thức cho các phương trình bậc lớn hơn hoặc bằng 5. Gần 300 năm sau khi tìm ra công thức Các-đa-nô, năm 1826, A-ben (Abel), nhà toán học Na Uy đã chứng minh được rằng không có một công thức nghiệm"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 1,
+    "tieu_de": "Tuần 1",
+    "trang": 1945,
+    "cha": null,
+    "noi_dung": ""
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Khái quát văn học Việt Nam từ Cách mạng tháng Tám năm",
+    "trang": 1945,
+    "cha": "Tuần 1",
+    "noi_dung": ""
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Nghị luận về một tư tưởng, đạo lí",
+    "trang": 20,
+    "cha": "Tuần 1",
+    "noi_dung": "GHI NHỚ e Văn học Việt Nam từ Cách mạng tháng Tám năm 1945 đến năm 1975 hình e Từ sau năm 1975, nhất là từ năm 1986, cùng với đất nước, văn học Việt LUYỆN TẬP thành và phát triến trong một hoàn cảnh đặc biệt (cuộc chiến tranh giải Nam bước vào thời kì đổi mới. Văn học vận động theo hướng dân chú hoá, Trong bài Nhận đường, Nguyễn Đình Thi viết : “Văn nghệ phụng sự kháng phóng dân tộc vô cùng ác liệt kéo dài suốt ba mươi năm) ; chia làm ba mang tính nhân bản, nhân văn sâu sắc ; có tính chất hướng nội, quan tâm chiến, nhưng chính kháng chiến đem đến cho văn nghệ một sức sống mới. Sắt chặng (1945 - 1954, 1955 - 1964, 1965 - 1975), mỗi chặng có những nhiều hơn tới số phận cá nhân trong những hoàn cảnh phức tạp, đời lửa mặt trận đang đúc nên văn nghệ mới của chúng ta”. thành tựu riêng. Văn học giai đoạn này có ba đặc điểm cơ bản : vận động thường ; có nhiều tìm tòi đổi mới về nghệ thuật. Hãy bày tỏ suy nghĩ của anh (chị) về ý kiến trên. chú yếu theo hướng cách mạng hoá, gắn bó sâu sắc với vận mệnh chung 19 cúa đất nước ; hướng về đại chúng ; chú yếu mang khuynh hướng sử thi và cảm hứng lãng mạn. NGHỊ LUẬN VE MỘT TƯ TƯỜNG, ĐẠO LTL 1. Tìm hiểu đề và lập dàn ý Đề bài Anh (chị) hãy trả lời câu hỏi sau của nha thơ Tố Hữu : Ôi ! Sống đẹp là thế nào, hỡi bạn ? Gợi ý thảo luận a) Tìm hiểu đề ~ Câu thơ trên của Tố Hữu nêu lên vấn đề gì ? - Với thanh niên, học sinh ngày nay, sống thế nào được coi là sống đẹp ? ~ Với đề bài trên, cần vận dụng những thao tác lập luận nào ? - Bài viết này cần s"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 1,
+    "tieu_de": "Tuần 2",
+    "trang": 23,
+    "cha": null,
+    "noi_dung": ""
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Tuyên ngôn Độc lập",
+    "trang": 23,
+    "cha": "Tuần 2",
+    "noi_dung": "Đến đây, tôi sẽ để các bạn quyết định lấy uăn hoá uà sự khôn ngoan thật sự “Sự khôn ngoan là gì, Chính là sự cố gắng của con người, Vượt lên sợ hãi, Vượt lên hận thù, Sống tự do, Thớ hít khí trời uà biết chờ đợi, Dành trọn tình yêu cho những gì tươi đẹp ”. (Gi. Nê-ru, theo Nhân dân chủ nhật, tháng 12 - 1997) b) Để nghị luận, tác giả đã sử dụng những thao tác lập luận nào ? Nêu ví dụ. 2. Nhà văn Nga L. Tôn-xtôi nói : “Lí tưởng là ngọn đèn chỉ đường. Không có lí Gợi ý : - Giải thích các khái niệm “lí tưởng”, “cuộc sống” và ý nghĩa câu nói của ~ Vai trò quan trọng của lí tưởng trong cuộc sống con người. ~ Nêu suy nghĩ của bản thân đối với ý kiến của nhà văn (lựa chọn lí tưởng và 22 là gì. Chúng ta tiến bộ nhờ học tập, nhờ kiến thức uà kinh nghiệm. Đến lúc tích a) Vấn đề mà Gi. Nê-ru đưa ra nghị luận là gì ? Căn cứ vào nội dung cơ bản c) Cách diễn đạt trong văn bản trên có gì đặc sắc ? tưởng thì không có phương hướng kiên định, mà không có phương hướng nhà văn Nga L. Tôn-xtôi. con đường phấn đấu cho lí tưởng). luy được một lượng khổng lô các thứ đó, chúng ta lại trớ nên không tài nào biết của vấn đề ấy, hãy đặt tên cho văn bản. thì không có cuộc sống”. Anh (chị) hãy nêu suy nghĩ về vai trò của lí tưởng được mình đang ở đâu ! Chúng ta bị tràn ngập bởi mọi thứ uà không hiểu sao, trong cuộc sống con người. chúng ta lại có cảm giác rằng tất cả mọi thứ đó cộng lại chưa hẳn đã nhất thiết đại diện cho sự phát triển của trí khôn con người... Trong tương lai sắp tới, liệu chúng ta có thể"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Giữ gìn sự trong sáng của tiếng Việt",
+    "trang": 30,
+    "cha": "Tuần 2",
+    "noi_dung": "sâu sắc tư tưởng, tình cảm và tâm hồn cao cả của Người. Tìm hiểu văn thơ của 1. Nêu những nét chính về quan điểm sáng tác văn học nghệ thuật của Hồ Chí Minh. Quan điểm đó đã giúp anh (chị) hiểu sâu sắc thêm văn thơ của Người như thế nào ? 2. Hãy nêu những nét khái quát về sự nghiệp văn học của Hồ Chí Minh. e Văn thơ Hồ Chí Minh là di sản vô giá, là một bộ phận gắn bó hữu cơ với sự s Phong cách nghệ thuật Hồ Chí Minh độc đáo, đa dạng. Văn chính luận cúa LUYỆN TẬP Hồ Chí Minh. 2. Những bài học thấm thia và sâu sắc mà anh (chị) tiếp thu được khi học va Hồ Chí Minh, người đọc thuộc nhiều thế hệ sẽ tìm thấy những bài học cao quý. 3. Những đặc điểm cơ bản của phong cách nghệ thuật Hồ Chí Minh ? nghiệp cách mạng vi dai cúa Người. Hồ Chí Minh quan niệm văn học là vũ Người thường ngắn gọn, súc tích, lập luận sắc sảo, chặt chẽ, bằng chứng 1. Phân tích bài thơ Chiều tối (Mộ) trong tập Nhật kí trong tù để làm rõ đọc những bài thơ trong tập Nhật kí trong tù của Hồ Chí Minh ? HUONG DAN HOC BAI GHI NHỚ khí sắc bén phục vụ sự nghiệp cách mạng. Mỗi khi viết, Người luôn tự hỏi : giàu sức thuyết phục và đa dạng về bút pháp. Truyện và kí cúa Người rất sự hoà hợp độc đáo giữa bút pháp cổ điển và bút pháp hiện đại của thơ 29 \"Viết cho ai ?\", \"Viết đế làm gì ?\", sau đó mới quyết định : \"Viết cái gì ?\" và hiện đại, có tính chiến đấu mạnh mẽ và nghệ thuật trào phúng sắc bén. Thơ \"Viết thế nào ?\". nghệ thuật cúa Hỗ Chí Minh có sự hoà hợp độc đáo giữa bút pháp cổ điến và bút pháp hiện đại ; giữa chất t"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Viết bài làm văn số 1 : Nghị luận xã hội",
+    "trang": 35,
+    "cha": "Tuần 2",
+    "noi_dung": "người đàn bà bản lĩnh khác thường, biết điều mà cay nghiệt, có Thúc Sinh, anh (Theo Hoài Thanh toàn tập, tập 2, NXB Văn học, Ha Nội,1999) câu cần thiết vào vị trí thích hợp để đảm bảo sự trong sáng của đoạn văn. Tôi có lấy uí dụ uê một dòng sông dòng sông uừa trôi chảy uừa phải tiếp 3. Nhận xét về việc dùng từ nước ngoài trong trường hợp sau. Hãy thay những Chỉ uài ngày sau khi Microsoft uá lôi nghiêm trọng trong phan mém xử lí 34 chàng sợ ượ, có Từ Hải chợt hiện ra, chợt biến đi như một uì sao lạ, môi người 2. Đoạn văn sau của Chế Lan Viên đã bị lược bỏ các dấu câu. Hãy đặt các dấu nhận dọc đường đi của mình những dòng nước khác dòng ngôn ngữ cũng vay từ ngữ mà anh (chị) cho là lạm dụng bằng từ ngữ tiếng Việt tương xứng. le đồ hoạ, một hacker xưng là “cocoruder” đã công bố chỉ tiết uê hai uấn dé một cá tính khó quên. Đối ưới bọn nhà chứa, ngòi bút Nguyễn Du không tò mò, một mặt nó phải giữ bản sắc cố hữu của dân tộc nhưng nó không được phép tương tự trong hệ điều hành. Nguyên Du ngại bới ra những gì quá dơ dáy, Nguyễn Du chi ghi voi vai nét. gat bỏ từ chối những gì mà thời đại đem lại. Nhưng chỉ uài nét cũng đủ khiến cả cái xã hội ghê đó sống nhơ nhúc dưới ngòi bút Nguyên Du ưới cái màu da “nhờn nhợt\"” của Tú Bà, cái bộ mặt râu nhẫn nhụi\" của Mã Giám Sinh, cái vé “chải “dịu dàng” của Sớ Khanh, cái miệng thê “voen xoét” của Bạc Bà, Bạc Hạnh. VIET BAI LAM VAN SỐ T1 : NGHỊ LUẬN XÃ 1. Ôn lại các kiến thức và ki nang co ban lam một bài nghị luận. Chú ý các 2. Xem lại những bài là"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 1,
+    "tieu_de": "Tuần 3",
+    "trang": 38,
+    "cha": null,
+    "noi_dung": ""
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Tuyên ngôn Độc lập (tiếp theo)",
+    "trang": 38,
+    "cha": "Tuần 3",
+    "noi_dung": "niên cần phải xây dựng tình thương sâu sắc đối với nhân dân lao động và vì Đối với ông già, bà già, thanh niên phải có thái độ kính nhường và hết lòng Khi đi tàu, đi xe, thanh niên không được chen lấn phụ nữ. Trong trường Trong xã hội ta, nhiều thanh niên biết tổ lòng thương yêu quý mến nhân Thanh niên phải có tinh thần xung phong, gương mãu ; bất cứ việc gì tập Thanh niên cũng phải dành thì giờ nhất định để giúp đỡ cha mẹ, săn sóc Tóm lại, thanh niên phải có lòng thương yêu, kính trọng nhân dân như (Lê Duan, Con đường tu dưỡng rèn luyện đạo đức của thanh niên, tình thương đó mà căm ghét bóc lột, ăn bám và tội ác. Tinh cam ấy, ý thức ấy giúp đỡ, bởi vì một lẽ dê hiểu là có ông già, bà già thì mới có chúng ta. Trên hợp phụ nữ, nhất là phụ nữ có thai, chưa có chỗ ngồi, thanh niên phải nhường dân bằng những hành động dũng cảm và hào hiệp ; lúc chiến tranh xông pha thể cần thì thanh niên phải làm với tinh thần trách nhiệm cao nhất ; song phải các em, chăm lo một phần công việc gia đình. Người thanh niên nào không thương yêu, kính trọng cha mẹ và người thân của mình thì mới có quan hệ tốt trong Thanh niên ưới cách mạng xã hội chủ nghĩa, NXB Sự thật, Hà Nội, 1966) phải biểu hiện trong nếp sống, trong sự tiếp xúc hằng ngày với nhân dân. đường đi, thanh niên phải nhường bước cho người cao tuổi, phải đỡ gánh chỗ của mình cho họ. Như vậy là biết khiêm nhường và tôn trọng phụ nữ. Sô lửa đạn để bảo vệ tính mạng và tài sản của đồng bào ; lúc bình thường cứu luôn luôn khiêm tốn, thật thà,"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Giữ gìn sự trong sáng của tiếng Việt (tiếp theo)",
+    "trang": 43,
+    "cha": "Tuần 3",
+    "noi_dung": "chú ý đối tượng mà Chủ tịch Hồ Chí Minh hướng tới để xác định cách trả lời.) 3. Trong phần thứ hai của bản Tuyên ngôn Độc lập, tác giả đã lập luận như thế Hồ Chí Minh trong văn chính luận : lập luận chặt chẽ, lí lẽ sắc bén, ngôn ngữ hùng hồn. Hãy làm sáng tỏ điều đó. GHI NHỚ Lí giải vì sao bản Tuyên ngôn Độc lập từ khi ra đời cho đến nay là một nào để khẳng định quyền độc lập, tự do của nước Việt Nam ta ? ® 7uyên ngôn Độc lập là văn kiện lịch sử tuyên bố trước quốc dân đồng bào áng văn chính luận có sức lay động sâu sắc hàng chục triệu trái tim con 4.Tác phẩm Tuyên ngôn Độc lập thể hiện phong cách nghệ thuật của và thế giới về việc chấm dứt chế độ thực dân, phong kiến ở nước ta, đánh người Việt Nam. dấu kỉ nguyên độc lập, tự do cúa nước Việt Nam mới. 42 e Tác phấm là một áng văn chính luận mẫu mực : lập luận chặt chẽ, lí lẽ đanh thép, ngôn ngữ hùng hồn, vừa tố cáo mạnh mẽ tội ác cúa thực dân Pháp, ngăn chặn âm mưu tái chiếm nước ta cúa các thế lực thù địch và các phe nhóm cơ hội quốc tế, vừa bộc lộ tình cảm yêu nước, thương dân và khát vọng độc lập, tự do cháy bỏng của tác giả và toàn dân tộc. LUYỆN TẬP (Tiếp theo) Giữ gìn sự trong sáng của tiếng Việt là trách nhiệm của môi người Việt Nam, 1. Việc giữ gìn sự trong sáng của tiếng Việt trước hết đòi hỏi phải có tình Mỗi âm thanh, mỗi từ ngữ, mỗi quy tắc trong tiếng Việt,... đều là di sản 2. Việc giữ gìn sự trong sáng của tiếng Việt cũng đòi hỏi mỗi người cần có Muốn có hiểu biết, cần tích luỹ kinh nghiệm từ thực tế giao tiếp, t"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 1,
+    "tieu_de": "Tuần 4",
+    "trang": 47,
+    "cha": null,
+    "noi_dung": ""
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Nguyên Đình Chiểu, ngôi sao sáng trong uăn nghệ của dân tộc",
+    "trang": 47,
+    "cha": "Tuần 4",
+    "noi_dung": "GIỮ GÌN SỰ TRONG SÁNG CỦA TIẾNG VIỆT (trích) “Trong” có nghĩa là trong trẻo, không có chất tạp, không đục ; “sáng” là Phải làm gì để giữ gìn sự trong sáng của tiếng ta, giữ gìn hai đức tính rất Ở đây phải chú ý ba khâu : Một là giữ gìn và phát triển vốn chữ của tiếng ta (tôi không muốn dùng Hai là nói và viết đúng phép tắc của tiếng ta (tôi muốn thay chữ Ba là giữ gìn bản sắc, tinh hoa, phong cách của tiếng ta trong mọi thể văn (Phạm Văn Đồng, trong Giữ gìn sự trong sáng của tiếng Việt, Sđd) Sự trong sáng của ngôn ngữ là kết quả của một cuộc phấn đấu. Trong và (Xuân Diệu, trong Giữ gìn sự trong sáng của tiếng Việt, Sđd) sáng tỏ, sáng chiếu, sáng chói, nó phát huy cái trong, nhờ đó phần ánh được quý của nó là giàu và đẹp, hơn thế nữa, làm sao cho nó càng thêm giàu và đẹp. chữ “từ vựng”). “ngữ pháp”). (văn nghệ, chính trị, khoa học, kĩ thuật,...). SÁNG NGHĨA, TRONG LỜI sáng dính liền nhau. Tuy nhiên, cũng có thể phân tích ra để cho được rõ nghĩa 46 tư tưởng và tình cảm của người Việt Nam ta, diễn tả trung thành và sáng tỏ Và phải chủ động, tích cực, nhạy cảm, đồng thời phải kiên trì, phấn đấu lâu hơn nữa. Theo tôi nghĩ, sáng là sang sua, dễ hiểu, khái niệm được rõ ràng ; những điều chúng ta muốn nói. [...] dài, một cách có tổ chức, có kế hoạch, vững chắc. thường thường khái niệm, nhận thức, suy nghĩ được rõ ràng, thì lời diễn đạt ra cũng được minh bạch. Tuy nhiên, nhất là trong thơ, có rất nhiều trường hợp ý nghĩa sáng rồi, dễ hiểu rồi, nhưng lời diễn đạt còn thô, chưa được tro"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Đọc thêm : Mấy ý nghĩ uê thơ (trích)",
+    "trang": 55,
+    "cha": "Tuần 4",
+    "noi_dung": "3. Tác giả đã giúp chúng ta nhận ra những “ánh sáng khác thường” nào của ngôi sao sáng Nguyên Đình Chiểu trên bầu trời văn nghệ Việt Nam, qua : - Cuộc sống và quan niệm sáng tác của nhà thơ; - Thơ văn mà ông sáng tác để phục vụ cuộc chiến đấu chống xâm lược, bảo vệ Tổ quốc ; — Truyện Lục Vân Tiên ? 4. Vì sao tác giả cho rằng ngôi sao Nguyên Đình Chiểu đáng lẽ phải sáng tỏ hơn nữa không chỉ trong thời ấy, mà cả trong thời đại hiện nay ? 5. Có thể thấy bài văn nghị luận này không khô khan mà trái lại, có sức hấp dân, lõi cuốn. Vì sao ? GHI NHỚ e Bằng cách nhìn, cách nghĩ sâu rộng, mới mẻ và nhiệt tình cúa một người gắn bó hết mình với đất nước, với nhân dân, Phạm Văn Đồng đã làm sáng tỏ mối liên hệ khăng khít giữa thơ văn cúa Nguyễn Đình Chiếu với hoàn cảnh cúa Tổ quốc lúc bấy giờ và với thời đại hiện nay. Đồng thời, tác giả hết lòng ca ngợi Nguyễn Đình Chiếu, một người trọn đời dùng cây bút làm vũ khí chiến đấu cho dan, cho nước, một ngôi sao sáng trong nền văn nghệ cúa dân tộc Việt Nam. e Bài viết có sức lôi cuốn mạnh mẽ do cách nghị luận vừa xác đáng, chặt chẽ vừa xúc động, thiết tha, với nhiều hình ảnh, ngôn từ đặc sắc. LUYỆN TẬP Văn thơ Nguyên Đình Chiểu vấn không xa lạ với giới trẻ ngày nay, và việc học những tác phẩm như Văn tế nghĩa sĩ Cần Giuộc của ông ở nhà trường là rất bổ ích. Anh (chị) hãy viết một bài văn nghị luận tỏ bày ý kiến của mình về vấn đề trên. BOCTHEM, alg ¬ Tháng 9 - 1949, Hội nghị tranh luận văn nghệ đã được tổ chức ở Việt Bắc. Đây là một hoạt 55 _n j"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Đọc thêm : Ðô-xfôï-ép-xkï (trích)",
+    "trang": 61,
+    "cha": "Tuần 4",
+    "noi_dung": "Những hình thức ấy gồm có những phát minh mới, cùng với những hình Thơ chúng ta ngày nay đang ở tuổi trẻ nhất của thời đại mới. Nhịp sống Tôi cho rằng chúng ta không nên lo thơ đi vào hình thức này hay hình Vượt khỏi tất cả mọi luật lệ, không phải thơ trổ nên buông thả, bừa bãi. Sự 12-9- 1949 HƯỚNG DÂN ĐỌC THÊM 1. Nguyễn Đình Thi lí giải như thế nào về đặc trưng cơ bản nhất của thơ là 2. Những yếu tố đặc trưng khác của thơ : hình ảnh, tư tưởng, cẩm xúc, cái 3. Theo Nguyên Đình Thi, ngôn ngữ thơ có gì đặc biệt so với ngôn ngữ các thể 4. Nêu rõ nét tài hoa của Nguyên Đình Thi trong nghệ thuật lập luận, đưa dẫn 5. Quan niệm về thơ của Nguyên Đình Thi ngày nay còn có giá trị không ? 60 thức cũ, nhưng bao giờ cũng đã tái tạo và nâng cao đến một độ khác hẳn xưa. chúng ta, từ sau Cách mạng, đập lên nhiều phen dữ dội đến bàng hoàng, đồng thức khác. Mà trước hết nên lo sao thơ phải nói lên được những tình cảm, tư cẩu thả, buông lỏng chưa bao giờ đi đôi được với nghệ thuật. Nhưng câu (Tuyển tác phẩm uăn học Nguyễn Đình Thi, biểu hiện tâm hồn con người ? thực,... đã được Nguyên Đình Thi giới thiệu ra sao ? loại văn học khác ? Nguyễn Đình Thi quan niệm như thế nào về thơ tự do, chứng, sử dụng từ ngữ, hình ảnh,... để làm sáng tỏ từng vấn đề đặt ra. Vì sao ? thời mở rộng ào ạt. Chúng ta không còn sống khoan thai như một thời nao tưởng mới của thời đại. Dùng bất cứ hình thức nào, miền là thơ diễn tả được chuyện luật lệ trong thơ cũng như câu chuyện kỉ luật trong cách mạng. KỈ luật Tiểu luận"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Nghị luận về một hiện tượng đời sống",
+    "trang": 66,
+    "cha": "Tuần 4",
+    "noi_dung": ""
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Trả bài làm văn số 1 wT",
+    "trang": 0,
+    "cha": "Tuần 4",
+    "noi_dung": "-. we, ñ d `3: NHA XUAT BAN GIAO DUC VIET NAM BỘ GIÁO DỤC VÀ ĐÀO TẠO PHAN TRỌNG LUẬN (Tổng Chủ biên) - TRÂN ĐĂNG SUYÊN (Chủ biên phần Văn) BÙI MINH TOÁN (Chủ biên phản Tiếng Việt) - LÊ A (Chủ biên phần Làm văn) LÊ NGUYÊN CẨN - ĐẶNG ANH ĐÀO - NGUYÊN THỊ NGÂN HOA NGUYEN THAI HOA - ĐỖ KIM HỎI - NGUYEN XUAN NAM ĐOÀN ĐỨC PHƯƠNG - NGUYÊN PHƯỢNG - VŨ DƯƠNG QUY N ] 1 l }ẹ (Tái bản lần thứ mười hai) NHÀ XUẤT BẢN GIÁO DỤC VIỆT NAM Hãy bảo quản, giữ gìn sách giáo khoa đề dành tặng các em học sinh lép sau ! Bản quyền thuộc Nhà xuất bản Giáo dục Việt Nam - Bộ Giáo dục và Đào tạo. 01-2020/CXBIPH/622-869/GD Mã số : CH2II T0 KHAI QUAT VAN HOC VIET NAM Cách mạng tháng Tám năm 1945 vĩ đại đã mở ra một kỉ nguyên mới cho Nền văn học mới đã phát triển qua hai giai đoạn : giai đoạn từ năm 1945 I- KHÁI QUÁT VĂN HỌC VIỆT NAM TỪ CÁCH MANG THANG TAM 1. Vài nét về hoàn cảnh lịch sử, xã hội, văn hoa Văn học Việt Nam từ Cách mạng tháng Tám năm 1945 đến năm 1975 là nền Từ năm 1945 đến năm 1975, trên đất nước ta diễn ra nhiều sự kiện lớn lao : 3 TU CACH MANG THANG TAM NAM 1945 dân tộc ta. Từ đây, một nền van học mới gắn liền với lí độc lập, tự do và đến năm 1975 và giai đoạn từ năm 1975 đến hết thế kỉ XX. NAM 1945 DEN NĂM 1975 văn học của chế độ mới, vận động và phát triển dưới sự lãnh đạo của Đảng cuộc chiến tranh giải phóng dân tộc vô cùng ác liệt kéo dài suốt ba mươi năm, ĐEN HET THẺ KIXX_ chủ nghĩa xã hội được khai sinh. Cộng sản. Đường lối văn nghệ của Đẳng là một trong những nhân tố quan trọng công c"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Viết bài làm văn số 2 : Nghị luận xã hội (bài làm ở nhà)",
+    "trang": 78,
+    "cha": "Tuần 4",
+    "noi_dung": "TRA BAI LAM VAN SỐ 1. Thảo luận chung về đề bài để xác định vấn đề nghị luận, hệ thống ý, 2. Lập dàn ý tóm lược theo yêu cầu của đề bài : Mở bài : Dẫn ý kiến cần nghị luận và giới thiệu hướng nghị luận. Thân bài : Lần lượt triển khai các ý. Chú ý lựa chọn các dân chứng phù hợp. Ví dụ, với đề 1, cần triển khai một số ý sau : - Khái niệm “tình thương” ~ Ý nghĩa và tác dụng của tình thương giữa người với người, giữa người với - Những tấm gương giàu tình thương cần noi theo và những biểu hiện của Kết bài : Bài học về cách sống, cách ứng xử của bản thân. 3. Sau khi nhận được bài trả, anh (chị) thực hiện tiếp các việc : a) Đối chiếu với yêu cầu của đề, so sánh dàn ý vừa lập với bài viết, nhận ra b) Đọc kĩ lời nhận xét của thầy (cô) giáo để hiểu rõ, hiểu sâu hơn những điểm II - LUYỆN TẬP Ở NHÀ VÀ CHUẨN BỊ CHO BÀI VIẾT SAU 1. Chữa lại những sai sót trong bài làm văn của mình, trước hết là sai sót 2. Nếu cần, hãy lập lại dàn ý chi tiết hoặc viết lại bài (viết cả bài hoặc viết 11 KET QUA CAN DAT phạm vi dẫn chứng, các thao tác lập luận cần sử dụng trong bài viết. thiên nhiên và tạo vật,... lối sống ích kỉ, thiếu tình thương cần phê phán. những ưu điểm, nhược điểm trong bài làm của mình. cần rút kinh nghiệm. về nội dung, sau đó là sai sót về chính tả, dùng từ, viết câu,... phần thân bài) để tự luyện tập, rút kinh nghiệm và chuẩn bị tốt hơn cho bài Nhận ra nhtrng uu diém, nhugc diém cúa bản làm văn sau. thân về kiến thức và kĩ năng viết một bài nghị luận về một tư tưởng, đạo lí ; từ đó c"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 1,
+    "tieu_de": "Tuần 6",
+    "trang": 80,
+    "cha": null,
+    "noi_dung": ""
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Thông điệp nhân Ngày Thế giới phòng chống AIDS, 1 - 12 - 2003",
+    "trang": 80,
+    "cha": "Tuần 6",
+    "noi_dung": "II - GỢI Ý CÁCH LÀM BÀI Cả ba đề trên đều bàn về một hiện tượng đời sống có ý nghĩa xã hội, liên Tham khảo những gợi ý thảo luận trong bài Wghj luận uê một hiện tượng Đề 1. - Tai nạn giao thông đang là một quốc nạn, tác động xấu tới nhiều mặt ~ Giảm thiểu tai nạn giao thông là yêu cầu bức thiết, có ý nghĩa lớn đối với Đề2. - Những “mái ấm tình thương” đang xuất hiện ngày càng nhiều ở nước ta ~ Đề xuất quan điểm và biện pháp nhân rộng hiện tượng ấy. Đề3. Cần chỉ rõ 2 ý lớn : — Nói “không” với tiêu cực trong thi cử. — Nói “không” với bệnh thành tích trong giáo duc. Trong mỗi ý, cần nêu một số dân chứng và lí lẽ cụ thể để bác bỏ những sai 79 quan tới trách nhiệm công dân của học sinh. Do đó, người viết cần bộc lộ đời sống và xác định các ý cần thiết cho bài văn. Chẳng hạn : trong cuộc sống. toàn xã hội. Thanh niên, học sinh cần làm những gì để góp phần giảm thiểu có ý nghĩa như thế nào ? Bản thân anh (chị) từng biết (hoặc đã chứng kiến) lầm và đề xuất những suy nghĩ, hành động đúng,... chân thành và đúng đắn nhận thức, thái độ đối với các hiện tượng xã hội ấy. tai nạn giao thông ? hiện tượng ấy ở đâu ? THÔNG ĐIỆP _¬-..- PHONG CHONG AIDS, 1 - 12 - 2003 KET QUA CAN DAT s Thấy được tầm quan trọng và sự bức thiết của công cuộc phòng chống HIV/AIDS!” đối với toàn nhân loại và mỗi cá nhân ; từ đó, nhận thức rõ trách nhiệm cúa các quốc gia và từng cá nhân trong việc sát cánh, chung tay đấy lùi hiếm hoa. e Cảm nhận được sức thuyết phục to lớn cúa bài văn. TIỂU DÂN Cô-phi An-nan sinh ngà"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 1,
+    "tieu_de": "Tuần 7",
+    "trang": 87,
+    "cha": null,
+    "noi_dung": ""
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Tây Tiến",
+    "trang": 87,
+    "cha": "Tuần 7",
+    "noi_dung": "- Nghệ sử dụng hình ảnh và ngôn từ tài tình của tác giả (các từ láy, động từ, tính từ gợi tả, các phép tu từ, giọng thơ,...). Kết bài : Đoạn thơ đã thể hiện rất thành công cảm hứng ngợi ca cuộc kháng chiến chống Pháp của nhân dân ta. 2. Từ các đề bài và kết quả thảo luận, anh (chị) hãy cho biết đối tượng, nội dung của bài nghị luận về một bài tho, đoạn thơ. GHI NHỚ s Đối tượng cúa bài nghị luận về thơ rất đa dạng (một bài thơ, một đoạn thơ, hình tượng thơ,...). Với kiếu bài này, cần tìm hiếu từ ngữ, hình ảnh, âm thanh, nhịp điệu, cấu tứ,... cúa bài thơ, đoạn thơ đó. e Bài viết thường có các nội dung sau : — Giới thiệu khái quát về bài thơ, đoạn thơ. — Ban về những giá trị nội dung và nghệ thuật cúa bài thơ, đoạn thơ. — Đánh giá chung về bài thơ, đoạn thơ. LUYỆN TẬP Hãy phân tích đoạn thơ sau trong bài Tràng giang của Huy Cận : Lớp lớp mây cao đùn núi bạc, Chim nghiêng cánh nhỏ : bóng chiều sa. Lòng quê dợn dợn ười con nước, Không khói hoàng hôn cũng nhớ nhà. CCG DUNG e Cảm nhận được vẻ đẹp riêng cúa thiên s Nắm được những nét đặc sắc về nghệ thuật TIEU DAN Quang Dũng (1921 - 1988) tên khai sinh là Bùi Đình Quang Dũng là một nghệ sĩ đa tài : làm thơ, viết văn, es Tác phẩm chính : Aây đâu 6 (tho, 1986), Tho van ` Quang Dũng (tuyển thơ văn, 1988). ; ® Tây Tiến là một đơn vị quân đội thành lập dau nam 1947, có nhiệm vụ phối hợp với bộ đội Lào, bảo vệ biên giới QUANG DŨNG Việt - Lào và đánh tiêu hao lực lượng quân đội Pháp ở Thượng Lào cũng như ở miền tây Bắc Bộ Việt Nam. Địa bàn"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Nghị luận về một ý kiến bàn về văn học",
+    "trang": 91,
+    "cha": "Tuần 7",
+    "noi_dung": "HUONG DAN HOC BAI 1. Theo văn ban, bài thơ có bốn đoạn. Nêu ý chính của môi đoạn va chi ra 2. Nét đặc sắc của bức tranh thiên nhiên được vẽ ra ở đoạn thơ thứ nhất ? Hình 3. Doan thơ thứ hai lại mổ ra một thế giới khác với những vẻ đẹp mới của con 4. Phân tích hình ảnh người lính Tây Tiến được tác giả tập trung khắc hoạ ở 5. Ở đoạn thơ thứ tư, nỗi nhớ Tây Tiến được diễn tả như thế nào ? Vì sao nhà GHI NHỚ LUYEN TAP 1. Bút pháp của Quang Dũng trong bài thơ là bút pháp hiện thực hay lãng mạn ? 2. Qua bài thơ, anh (chị) hình dung như thế nào về chân dung người lính 90 mạch liên kết giữa các đoạn. ảnh đoàn quân Tây Tiến hiện ra trên nền cảnh thiên nhiên ấy như thế nào ? người và thiên nhiên miền Tây, khác với cảnh vật ở đoạn thơ thứ nhất. Hãy đoạn thơ thứ ba. Qua đó, hãy làm rõ về đẹp lãng mạn và chất bi tráng của thơ viết “Hồn về Sầm Nứa chẳng về xuôi” ? Với cảm hứng lãng mạn và ngòi bút tài hoa, Quang Dũng đã khắc hoạ thành Phân tích, so sánh Tây Tiến với bài thơ Đồng chí của Chính Hữu để làm rõ Tây Tiến ? phân tích để làm rõ vẻ đẹp ấy. hình ảnh người lính Tây Tiến. công hình tượng người lính Tây Tiến trên cái nền cảnh thiên nhiên núi rừng bút pháp đó. miền Tây hùng vĩ, dữ dội và mĩ lệ. Hình tượng người lính Tây Tiến mang vẻ đẹp lang man, đậm chất bi tráng sẽ còn có sức hấp dẫn lâu dài đối với người đọc. NGHỊ LUẬN VE MOT Y KIEN BAN VE VAN HỌC_ — 1. Tìm hiểu đề và lập dàn ý Đề bài Dé 1. Nhà nghiên cứu Đặng Thai Mai cho rằng : “Nhìn chung văn học Hãy trình bày suy nghĩ của anh (ch"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 1,
+    "tieu_de": "Tuần 8",
+    "trang": 94,
+    "cha": null,
+    "noi_dung": ""
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Việt Bắc (trích)",
+    "trang": 94,
+    "cha": "Tuần 8",
+    "noi_dung": "GHI NHỚ LUYỆN TẬP 1. Trình bày suy nghĩ của anh (chị) đối với ý kiến của nhà văn Thạch Lam : 2. Bàn về thơ Tố Hữu, nhà phê bình Hoài Thanh viết : “Thái độ toàn tâm toàn Hãy bày tỏ ý kiến của anh (chị) về nhận xét trên. e Đối tượng nghị luận về một ý kiến bàn về văn học rất đa dạng : về văn học “Văn chương là một thứ khí giới thanh cao và đắc lực mà chúng ta có, để ý vì cách mạng là nguyên nhân chính đưa đến sự thành công của thơ anh.” 93 sứ, về lí luận văn học, về tác phấm văn học,... vừa tố cáo và thay đổi một thế giới giả dối và tàn ác, vừa làm cho lòng người (Tuyển tập Hoài Thanh, NXB Van hoc, Hà Nội, 1982) se Việc nghị luận về một ý kiến bàn về văn học thường tập trung vào giải thích, thêm trong sạch và phong phú hơn”. nêu ý nghĩa và tác dụng cúa ý kiến đó đối với văn học và đời sống. BACLT se Nắm được những nét chính trong đường đời, e Cảm nhận được một thời cách mạng và kháng PHAN MOT : TAC GIA (Trich) đường cách mạng, đường thơ cúa Tố Hữu. Hiếu chiến gian khổ mà anh hùng, nhất là nghĩa tình ` ^ a KET QUA CAN DAT rõ nét nổi bật trong phong cách thơ Tố Hữu là gắn bó thắm thiết cúa những người kháng chiến I - VAI NET VE TIEU SƯ sự hoà quyện giữa nội dung trữ tình chính trị và với Việt Bắc, với nhân dân, đất nước. Thấy rõ ¿ng < Tố Hữu (1920 - 2002) tên khai sinh là nghệ thuật biếu hiện đậm đà tính dân tộc. nội dung bài thơ được thế hiện bằng hình thức xã Nguyễn Kim Thành, quê ở làng Phù Lai, nay nghệ thuật đậm tính dân tộc, làm dạt dào thêm R . _ thuộc xã Quảng Thọ, huyện"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Luật thơ",
+    "trang": 101,
+    "cha": "Tuần 8",
+    "noi_dung": "3. Tại sao nói thơ Tố Hữu mang tính chất trữ tình chính trị ? 4. Tính dân tộc trong hình thức nghệ thuật thơ Tế Hữu biểu hiện ở những GHI NHỚ LUYỆN TẬP 1. Chọn một bài thơ của Tố Hữu mà anh (chị) yêu thích nhất. Phân tích cả bài 2. Xuân Diệu viết : “Tố Hữu đã đưa thơ chính trị lên đến trình độ là thơ rất 100 điểm cơ bản nào ? Đường đời, đường thơ Tố Hữu luôn song hành cùng con đường cách mạng hoặc một đoạn trong bài thơ đó. đỗi trữ tình” (Tố Hữu uới chúng tôi, TÌđd). Anh (chị) hiểu nhận xét đó như cúa cả dân tộc. Với những tác phẩm giàu chất trữ tình chính trị và đậm đà tính thế nào ? dân tộc, Tố Hữu là một trong những nhà thơ xuất sắc nhất cúa thơ ca Việt Nam hiện đại. LUẬT 1. Luật thơ là toàn bộ những quy tắc về số câu, số tiếng (chữ), cách hiệp Các thể thơ Việt Nam có thể phân chia thành 3 nhóm chính : a) Các thể thơ dân tộc gồm : lục bát, song thất lục bát và hát nói. b) Các thể thơ Đường luật gồm : ngũ ngôn, thất ngôn (tứ tuyệt và bát cú). c) Các thể thơ hiện đại gồm : nam tiếng, bảy tiếng, tám tiếng, hỗn hợp, tự 2. Sự hình thành luật thơ cũng như sự vay mượn, mô phỏng và cách tân ~ Tiếng là đơn vị cấu tạo ý nghĩa và nhạc điệu dòng thơ, bài thơ. Ngay tên - Tiếng gồm 3 phần : phụ âm đầu, vần và thanh điệu. Vần thơ là phần Trong đầm gì đẹp bằng sen KET QUA CAN DAT. vàn, phép hài thanh, ngắt nhịp,... trong các thể thơ được khái quát theo những do, thơ - văn xuôi,... các thể thơ đều phải dựa trên các đặc trưng ngữ âm của tiếng Việt, trong đó gọi các thể thơ cũng căn cứ vào s"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Trả bài làm văn số 2",
+    "trang": 108,
+    "cha": "Tuần 8",
+    "noi_dung": "GHI NHỚ Trong luật thơ, tiếng là đơn vị quan trọng. Số tiếng định hình trong dòng thơ, sự phối hợp thanh điệu, sự liên kết bằng vần cúa tiếng, sự đối lập hay kết dính ở dòng trước với dòng sau, cách ngắt nhịp thơ,... đều trở thành những quy tắc cúa thơ ca truyền thống, đặc biệt là các thế thơ Đường luật. Thơ hiện đại đã biến đổi nhiều, tuy nhiên, nhiều trường hợp vẫn dựa trên các quy tắc trong thơ truyền thống. LUYỆN TẬP Phân biệt cách gieo vần, ngắt nhịp và hài thanh của hai câu thơ bảy tiếng trong thể song thất lục bát với thể thất ngôn Đường luật qua các ví dụ sau : a) Trống Tràng thành lung lay bóng nguyệt, Khói Cam Tuyên mờ mịt thức mây, Chín lần gươm báu trao tay Nửa đêm truyền hịch định ngày xuất chỉnh... (Đoàn Thị Điểm (?), Chỉnh phụ ngâm) b) CẢNH KHUYA Tiếng suối trong như tiếng hát xa, Trăng lông cổ thụ bóng lông hoa. Cảnh khuya như Uẽ, người chưa ngủ, Chưa ngủ uì lo nỗi nước nhà. (Hỗ Chí Minh) KET QUA CAN DAT Nhận thức rõ hơn uu diém, nhuoc diém vé kiến thức và kĩ năng trong bài văn đã viết, từ đó rút kinh nghiệm chung về cách làm bài văn nghị luận xã hội. 1. Tham khảo hướng dân trong tiết Trả bài làm van sé 1. 2. Ngoài ra, để khắc sâu kiến thức và củng cố kĩ năng nghị luận xã hội, anh (chị) hãy trả lời các câu hỏi và thực hiện các yêu cầu sau : a) Đối tượng nghị luận xã hội trong trường Trung học phổ thông ? b) Liệt kê một số đề tài cụ thể cho các kiểu bài nghị luận xã hội. c) Để làm tốt bài nghị luận xã hội, cần tích luỹ kiến thức và rèn luyện những thao tác lập"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Phát biểu theo chủ đề",
+    "trang": 115,
+    "cha": "Tuần 8",
+    "noi_dung": "HUONG DAN HOC BAI 1. Nêu hoàn cảnh sáng tác bài thơ và phân tích sắc thái tâm trạng, lối đối đáp của nhân vật trữ tình trong đoạn trích. 2. Qua hồi tưởng của chủ thể trữ tình, vẻ đẹp của cảnh và người Việt Bắc hiện lên như thế nào ? 3. Khung cảnh hùng tráng của Việt Bắc trong chiến đấu, vai trò của Việt Bắc trong cách mạng và kháng chiến đã được Tố Hữu khắc hoạ ra sao ? 4. Nhận xét về hình thức nghệ thuật đậm đà tính dân tộc trong đoạn trích. GHI NHỚ Viét Bac \\a khúc hùng ca và cũng là khúc tình ca về cách mạng, về cuộc kháng chiến và con người kháng chiến. Thế thơ lục bát, kiếu kết cấu đối đáp, ngôn ngữ đậm sắc thái dân gian - tất cả đã góp phần khắc sâu lời nhắn nhú cúa Tố Hữu : Hãy nhớ mãi và phát huy truyền thống quý báu anh hùng bất khuất, ân nghĩa thuý chung cúa cách mạng, của con người Việt Nam. LUYỆN TẬP 1. Nêu rõ nét tài hoa của Tố Hữu trong việc sử dụng cặp đại từ xưng hô ta — minh trong bài thơ. 2. Chon trong doan trich hai doan tiéu biéu : — Mot đoạn về vẻ đẹp của cảnh va người Việt Bắc. ~ Một đoạn về khung cảnh hùng tráng của Việt Bắc trong kháng chiến. Phân tích một trong hai đoạn đó. PHAT BIEU THEO CHỦ Chi đoàn tổ chức hội thảo “Thanh niên, học sinh cần làm gì để góp phần I - CAC BUOC CHUAN BI PHAT BIEU 1. Xác định nội dung cần phát biểu - Theo anh (chị), chủ đề của cuộc hội thảo trên có thể bao gồm những nội - Anh (chị) chọn nội dung nào để phát biểu ? Tại sao ? 2. Dự kiến đề cương phát biểu Giả dụ, anh (chị) định chọn nội dung: “Khắc phục tình trạng đi ẩu, Gợ"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 1,
+    "tieu_de": "Tuần 10",
+    "trang": 117,
+    "cha": null,
+    "noi_dung": ""
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Đất Nước (trích trường ca Mặt đường khát uọng)",
+    "trang": 117,
+    "cha": "Tuần 10",
+    "noi_dung": "GHI NHỚ - Muốn có hạnh phúc thì phải kiếm được nhiều tiền, vì có tiền là có - Hạnh phúc là được làm theo ý thích của mình, là được tự do tuyệt đối, - Hạnh phúc là phải biết cống hiến và hưởng thụ một cách hợp lí, phải biết — Ai biết tạo ra sự hài hoà giữa hạnh phúc cá nhân và hạnh phúc tập thể, Nếu tham gia, anh (chị) sẽ phát biểu những ý nào và phát biểu như thế nào ? 2. Có ý kiến cho rằng : “Vào đại học là cách lập thân duy nhất của thanh niên”. Hãy phát biểu quan niệm của anh (chị). Gợi ý : - Vào được trường đại học mà mình yêu thích là nguyện vọng hết sức chính ~ Tuy nhiên, vì nhiều lí do khác nhau, một số thanh niên sau khi tốt nghiệp - Chúng ta đang cố gắng xây dựng một xã hội học tập, mỗi người sẽ phải 116 Đế phát biếu ý kiến theo chú đề có hiệu quả, cần lưu ý : tất cả. không phụ thuộc vào ai, vào bất cứ cái gì. hi sinh cho lí tưởng. người đó mới có hạnh phúc thật sự. đáng của đa số thanh niên, học sinh, vì đó là môi trường học tập Trung học pho thong khong có điều kiện theo học đại học. Để lập thân và học tập suốt đời. Trong xã hội học tập, mọi người, đặc biệt là thanh niên, ~ Lựa chọn nội dung phát biếu phù hợp với chú đề chung và tình hình thảo luận. lí tưởng, nơi trang bị cho thanh niên, học sinh những tri thức cơ bản, hiện lập nghiệp, họ có thể vào học các trường dạy nghề, các trường trung học sẽ có nhiều cơ hội tiếp tục học tập để nâng cao trình độ của mình. - Dự kiến nội dung chỉ tiết và sắp xếp nhanh thành đề cương phát biếu. đại để sau khi ra trường có khả năn"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Đọc thêm : Đất nước",
+    "trang": 124,
+    "cha": "Tuần 10",
+    "noi_dung": "4. Hãy nêu những ví dụ cụ thể và nhận xét về cách sử dụng chất liệu văn hoá GHI NHỚ se Đoạn trích thế hiện cảm nghĩ mới mẻ cúa tác giả về đất nước qua những e Đóng góp riêng cúa đoạn trích là ở sự nhấn mạnh tư tưởng \"Đất Nước của ¢ Cac chất liệu cúa văn hoá dân gian được sử dụng nhuần nhị, sáng tạo, đem 123 dân gian của tác giả (ca dao, tục ngữ, truyền thuyết, phong tục,...), từ đó vẻ đẹp được phát hiện ở chiều sâu trên nhiều bình diện : lịch sử, địa lí, Nhân dan\" bằng hình thức biếu đạt giàu suy tư, qua giọng thơ trữ tình - lại sức hấp dẫn cho đoạn trích. tìm hiểu những đóng góp riêng của nhà thơ về nghệ thuật biểu đạt. Vì sao văn hoá,... chính luận sâu lắng, thiết tha. có thể nói chất liệu văn hoá dân gian ở đoạn trích này gợi ấn tượng vừa quen thuộc vừa mới lạ ? DOCTHEM) \"¬ (1) Hoi may : hơi của gió heo may, một thứ gió nhẹ, lành lạnh và khó, thường thấy vào đầu mùa thu ở miền Bắc nước ta. KHẾ DAT NUGC NGUYEN DINH THI 124 TIEU DAN Nguyễn Dinh Thi làm thơ từ những năm đầu cuộc kháng chiến chống thực dân Pháp. Thơ ông có bản sắc và giọng điệu riêng, vừa tự do, phóng khoáng vừa hàm súc, sâu lắng suy tư, có những tìm tòi theo xu hướng hiện đại về hình ảnh, nhạc điệu,... Đặc biệt, Nguyễn Đình Thi có những bài thơ đằm thắm, thiết tha về quê hương đất nước Việt Nam trong lam lũ, đau thương đứng lên chiến đấu và chiến thắng. Đất nước là một thi phẩm xuất sắc, tiêu biểu nhất cho sự nghiệp thơ ca của Nguyễn Đình Thi. Bài thơ này có những đoạn lấy từ hai bài thơ Sáng mát trong như sá"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Luật thơ (tiếp theo)",
+    "trang": 127,
+    "cha": "Tuần 10",
+    "noi_dung": "Khói nhà máy cuộn trong sương núi HƯỚNG DÂN ĐỌC THÊM 1. Theo anh (chị), nên chia bài thơ làm mấy phần ? Nêu ý chính của mỗi phần 2. Hình ảnh mùa thu Hà Nội trong hoài niệm của nhà thơ (từ “Sáng mát 3. Phân tích đoạn thơ từ “Mùa thu nay khác rồi” đến “Những buổi ngày xưa 4. Những suy tư và cảm nhận của Nguyên Đình Thi về quê hương, đất nước 5. Nhận xét về độ dài ngắn của các câu thơ, cách chọn lựa hình ảnh và nhịp 126 Kèn gọi quân văng vắng cánh đồng và giải thích mối quan hệ giữa các phần. trong” đến “lá rơi đầy”) có những điểm gì đặc sắc ? vọng nói về”. Việt Nam trong phần cuối của bài thơ (từ “Ôi những cánh đồng quê chảy điệu trong bài thơ. Cách viết như vậy có tác dụng gì ? Ôm đất nước những người áo vải máu” đến hết bài) ? Đã đứng lên thành những anh hùng Ngày nắng đốt theo đêm mưa giội Mỗi bước đường mỗi bước hi sinh Trán cháy rực nghĩ trời đất mới Lòng ta bát ngát ánh bình minh Súng nổ rung trời giận dữ Người lên như nước vỡ bờ Nước Việt Nam từ máu lửa Rũ bùn đứng dậy sáng loà. 1948 - 1955 (Tuyển tập Nguyễn Đình Thi, tập 3 NXB Văn học, Hà Nội, 1997) LUẬTTHO__ (Tiếp theo) KET QUA CAN DAT Qua việc phan tích các yéu t6 : tiéng, van, | nhịp, hài thanh cúa một số đoạn thơ, thấy rõ sự giống nhau và khác nhau cúa các thế thơ hiện đại và truyền thống. LUYỆN TẬP 1. So sánh những nét giống nhau và khác nhau về cách gieo vần, ngắt nhịp, hài thanh trong luật thơ ngũ ngôn truyền thống ở bài Mặt írăng (khuyết danh) dân ở mục II.3 (trang 103 - 104) với đoạn thơ năm tiếng sau đây. Ôi c"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Viết bài làm văn số 3 : Nghị luận văn học",
+    "trang": 132,
+    "cha": "Tuần 10",
+    "noi_dung": "Đoạn thơ trên đã gợi ra được khung cảnh hiểm trổ của vùng rừng núi và sự - Nhịp điệu của các dòng thơ. - Sự phối hợp các thanh trắc và bằng ở ba dòng thơ đầu và cách dùng toàn - Các yếu tố từ ngữ : từ láy, phép đối, phép lặp từ ngữ, phép nhân hoá. - Phép lặp cú pháp. 131 gian lao, vất vả của cuộc hành quân là nhờ có sự đóng góp của nhiều yếu tố thanh bằng (điệp thanh) ở dòng cuối. (có cả những yếu tố không thuộc ngữ âm). Hãy phân tích : VIET BAI LAM VAN SO 3 : NGHỊ LUẬN VAN HỌC e Vận dụng những kiến thức cơ bản đã học e Vận dụng được các kĩ năng nghị luận đế viết I - HUONG DAN CHUNG 1. Ôn lại kiến thức văn học sử trong bài Khái quát uăn học Việt Nam từ 2. Ôn lại kiến thức và kĩ năng tiếng Việt trong bài Luật thơ để có thể van 3. Ôn lại kiến thức và kĩ năng nghị luận trong bài Nghị luận uề một bài thơ, 4. Xem lại bài làm văn số 2 để tránh những lỗi về diễn đạt, lập luận II - GỢI Ý MỘT SỐ ĐỀ BÀI 1. a) Tinh dân tộc trong bài thơ Việt (Tố Hữu) được biểu hiện cụ thể ở b) Phân tích tâm trạng của tác giả khi nhớ về miền tây Bắc Bộ và những 132 KET QUA CAN DAT trong các văn bản phần Văn học đế viết bài bài làm văn nghị luận văn học phù hợp với Cách mạng tháng Tám năm 1945 đến hết thế kỉ XX và kiến thức về các văn bắn : dụng phân tích giá trị biểu cảm, gợi hình tượng của nhạc điệu trong các bài đoạn thơ và vận dụng các thao tác : phân tích, so sánh, bác bỏ, bình luận,... thường mắc. những phương diện nào ? Trình bày vắn tắt và nêu dãn chứng minh hoạ. người đồng đội trong đoạn thơ sau"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 1,
+    "tieu_de": "Tuần 12",
+    "trang": 139,
+    "cha": null,
+    "noi_dung": ""
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Doc thém : Don vé lang",
+    "trang": 139,
+    "cha": "Tuần 12",
+    "noi_dung": "khâm liệm cũng thấy đủ cái thiêng liêng nhuốm một chút không khí oai hùng, Hồn uê Sầm Nứa chẳng uê xuôi. Ngày nay nhìn lại cuộc kháng chiến chống Pháp, chúng ta thấy nhiều (Va Quan Phuong, Thơ ưới lời bình, NXB Giao duc, 2003) cổ xưa, bi thương, kì vĩ. Tạo được không khí ấy trong thơ là việc khó, cảm nhận thiếu thốn gian lao, nhiều thô sơ ấu trĩ trong đời sống, nhưng vẻ đẹp lí tưởng 138 được nó trong đời càng khó hơn. Bản chất lãng mạn trong hồn thơ Quang của con người thật là rực rỡ. Người ta sống bằng lí tưởng và nhìn những gian Dũng bộc lộ rõ ở đoạn thơ tài hoa này. Bài thơ nói nhiều đến mất mát nhưng khổ mất mát bằng cái nhìn cao cả, bất cần, đôi khi ngây thơ nữa. Vẻ đẹp ấy rất không bi luy. Ý kết của bài thơ là một sự tiến lên, đi tiếp : gần với phẩm chất lãng mạn của thơ. Bài thơ Tây Tiến là một kết tinh đẹp dé của hiện thực đời sống đó. ĐỌC THÊM § . 2 5 Nông Quốc Chấn (1923 - 2002), tên khai sinh là -- Nong Van Quynh, dân tộc Tay, qué 6 xa Châu Khê (nay r là xã Cốc Đán), huyện Ngân Sơn, tính Bắc Cạn. Ông tham gia cách mạng từ trước Tổng khởi nghĩa tháng Tám năm 1945. Trong kháng chiến chống thực dân — VY, Pháp, Nông Quốc Chấn công tác ở Tỉnh uỷ Bắc Cạn và NGỘ bắt đầu hoạt động văn hoá, văn nghệ. Ông từng giữ re Uỷ viên Ban Chấp hành Hội Nhà văn Việt Nam, Thứ ` trưởng Bộ Văn hoá - Thông tin, Hiệu trưởng Trường se “ Đại học Văn hoá Hà Nội,... # ` ¿ , Nông Quốc Chãn là một trong những gương mat NONG QUOC CHAN văn hoá tiêu biểu, đại diện cho tầng lớp trí thức các dân tộc t"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Đọc thêm : Tiếng hát con tàu",
+    "trang": 142,
+    "cha": "Tuần 12",
+    "noi_dung": "Mày sẽ chết ! Thằng giặc Pháp hung tàn Băm xương thịt mày, tao mới hả ! Hôm nay Cao - Bắc - Lạng cười vang Dọn lán, rời rừng, người xuống làng Người nói cỏ lay trong rừng rậm Cuốc đất dọn cổ mẹ khuyên con Đường cái kêu vang tiếng ô tô Trong trường ríu rít tiếng cười con trẻ Mờ mờ khói bếp bay trên mái nhà lá Từ nay không ngập cỏ lối đi Hồ không dám đến đẻ con trong vườn chuối Quả trong vườn không lo tự chín, tự rụng Ruộng sẽ không thành nơi máu chảy từng vũng Mặt trời lên ! Sáng rõ rồi mẹ ạ ! Con ẩi bộ đội, mẹ ở lại nhà Giặc Pháp, Mĩ còn giết người, cướp của trên đất ta Đuổi hết nó đi, con sẽ về trồng mẹ. Mùa đông, 1950 (Tác giả dịch từ tiếng Tày, Tuyển tập Nông Quốc Chấn, NXB Văn học, Hà Nội, 1988) HUONG DAN DOC THEM 1. Cuộc sống gian khổ của nhân dân Cao - Bắc - Lạng và tội ác của giặc Pháp đã được diễn tả như thế nào ? 2. Nét độc đáo trong cách thể hiện niềm vui Cao - Bắc - Lạng được giải phóng qua phần đầu và phần cuối của bài thơ? 3. Phân tích màu sắc dân tộc được biểu hiện qua cách sử dụng hình ảnh của tác giả. ĐỌC THÊM. „ 3 3 Chế Lan Viên (1920 - 1989) tên khai sinh là Phan Ngọc Hoan, quê gốc ở xã Cam An, huyện Cam Lộ, tỉnh 4 Quảng Trị. Từ năm 1927, gia đình ông chuyển vào An Nhơn, Bình Định. Sau khi tốt nghiệp Trung học, Chế Lan Viên đi day hoc ở trường tư, làm báo ở Sài Gòn và các tỉnh miền = = Trung. Ông tham gia Cách mang thang Tam ở Quy Nhơn. Ae Á py Trong kháng chiến chống thực dân Pháp, ông hoạt động i — 3 văn nghệ và báo chí ở Liên khu IV và chiến trường Bình -"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Thực hành một số phép tu từ cú pháp",
+    "trang": 150,
+    "cha": "Tuần 12",
+    "noi_dung": ""
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Luyện tập vận dụng kết hợp các phương thức biểu đạt",
+    "trang": 0,
+    "cha": "Tuần 12",
+    "noi_dung": "-. we, ñ d `3: NHA XUAT BAN GIAO DUC VIET NAM BỘ GIÁO DỤC VÀ ĐÀO TẠO PHAN TRỌNG LUẬN (Tổng Chủ biên) - TRÂN ĐĂNG SUYÊN (Chủ biên phần Văn) BÙI MINH TOÁN (Chủ biên phản Tiếng Việt) - LÊ A (Chủ biên phần Làm văn) LÊ NGUYÊN CẨN - ĐẶNG ANH ĐÀO - NGUYÊN THỊ NGÂN HOA NGUYEN THAI HOA - ĐỖ KIM HỎI - NGUYEN XUAN NAM ĐOÀN ĐỨC PHƯƠNG - NGUYÊN PHƯỢNG - VŨ DƯƠNG QUY N ] 1 l }ẹ (Tái bản lần thứ mười hai) NHÀ XUẤT BẢN GIÁO DỤC VIỆT NAM Hãy bảo quản, giữ gìn sách giáo khoa đề dành tặng các em học sinh lép sau ! Bản quyền thuộc Nhà xuất bản Giáo dục Việt Nam - Bộ Giáo dục và Đào tạo. 01-2020/CXBIPH/622-869/GD Mã số : CH2II T0 KHAI QUAT VAN HOC VIET NAM Cách mạng tháng Tám năm 1945 vĩ đại đã mở ra một kỉ nguyên mới cho Nền văn học mới đã phát triển qua hai giai đoạn : giai đoạn từ năm 1945 I- KHÁI QUÁT VĂN HỌC VIỆT NAM TỪ CÁCH MANG THANG TAM 1. Vài nét về hoàn cảnh lịch sử, xã hội, văn hoa Văn học Việt Nam từ Cách mạng tháng Tám năm 1945 đến năm 1975 là nền Từ năm 1945 đến năm 1975, trên đất nước ta diễn ra nhiều sự kiện lớn lao : 3 TU CACH MANG THANG TAM NAM 1945 dân tộc ta. Từ đây, một nền van học mới gắn liền với lí độc lập, tự do và đến năm 1975 và giai đoạn từ năm 1975 đến hết thế kỉ XX. NAM 1945 DEN NĂM 1975 văn học của chế độ mới, vận động và phát triển dưới sự lãnh đạo của Đảng cuộc chiến tranh giải phóng dân tộc vô cùng ác liệt kéo dài suốt ba mươi năm, ĐEN HET THẺ KIXX_ chủ nghĩa xã hội được khai sinh. Cộng sản. Đường lối văn nghệ của Đẳng là một trong những nhân tố quan trọng công c"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Đọc thêm : Bác ơi !",
+    "trang": 167,
+    "cha": "Tuần 12",
+    "noi_dung": "HUONG DAN HOC BAI 1. Bài thơ viết theo thể tự do, thiết lập cấu tứ trên dòng cảm xúc mãnh liệt về 2. Nêu cảm của anh (chị) khi đọc đoạn thơ : không ai chôn cất tiếng đàn tiếng đàn như có mọc hoang - Z “ ^ ~ giot nước mắt Uẫng trăng long lanh trong đáy giếng. GHI NHỚ ¢ Bai tho Dan ghi ta cúa for-ca thế hiện nỗi đau xót sâu sắc trước cái chết bi s Thái độ ngưỡng mộ người nghệ sĩ đại diện cho tỉnh thần tự do và khát vọng LUYỆN TẬP Cảm nhận của anh (chị) về hình ảnh Ph.G. Lor-ca được thể hiện qua bài cái chết bi thảm của Lor-ca. Để nắm bắt mạch cảm xúc chính, hãy đọc kĩ và 3. Hình tượng tiếng đàn trong bài thơ mang ý nghĩa ẩn dụ gì ? thảm cúa Phê-đê-ri-cô Gar-xi-a Lor-ca, nhà thơ thiên tài Tây Ban Nha. cách tân nghệ thuật cúa thế kỉ XX bị giết hại một cách phũ phàng được biếu thơ Đàn ghi ta của Lor-ca ? tìm khả năng gợi liên tưởng của các hình ảnh từ : tiếng đàn bọt nước, áo đạt bằng một hình thức độc đáo : kết hợp hài hoà hai yếu tố thơ và nhạc về 166 choang dé gat, vang trang chénh choáng, yên ngựa mỏi mòn ; qua các hình cấu tứ ; sức gợi mở đa dạng, phong phú về hình ảnh và sự mới mẻ về ngôn từ. ảnh : áo choàng bê bết đỏ, tiếng ghi ta nâu, tiếng ghi ta lá xanh, tiếng ghi ta tròn bọt nước uỡ tan, tiếng ghỉ ta ròng ròng máu chảy,... ; đến : Lor-ca bơi sang ngang, trên chiếc ghỉ ta màu bạc, chàng ném lá bùa cô gái Di-gan uào xoáy nước, ném trái tìm mình uào lặng yên... DOC THEM “ —. Trong các nhà thơ Việt Nam hiện đại, Tố Hữu là người sáng tác nhiều nhất, có nhiều tác Ngày 2- 9- 1"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Đọc thêm : Tự đo (trích)",
+    "trang": 170,
+    "cha": "Tuần 12",
+    "noi_dung": "Bác để tình thương cho chúng con Một đời thanh bạch, chẳng vàng son Mong manh áo vải, hồn muôn trượng Hơn tượng đồng phơi những lối mồn. Ôi Bác Hồ ơi, những xế chiều Nghìn thu nhớ Bác biết bao nhiêu ! Ra đi, Bác dặn : “Còn non nước...” Nghĩa nặng, lòng không dám khóc nhiều. Bác đã lên đường, theo tổ tiên Mác - Lê-nin, thế giới Người Hiền Ánh hào quang đỏ thêm sông núi Dắt chúng con cùng nhau tiến lên ! Nhớ đôi dép cũ nặng công ơn Yêu Bác, lòng ta trong sáng hơn Xin nguyện cùng Người vươn tới mãi Vững như muôn ngọn dải Trường Sơn. 6-9-1969 (Ra trận, NXB Văn học, Hà Nội, 1972) HUONG DAN DOC THEM 1. Nỗi đau xót lớn lao trước sự kiện Bác Hồ qua đời đã được diễn tả như thế 2. Sáu khổ giữa bài thơ tập trung thể hiện hình tượng Bác Hồ như thế nào (về 3. Nêu rõ cảm nghĩ của mọi người Việt Nam trước sự ra đi của Bác (ba khổ (1) “Con non nước...” : lấy ý câu thơ trong Di chúc của Chủ tịch Hồ Chí Minh : “Còn non, còn 169 nào trong bốn khổ thơ đầu ? lí tưởng và lẽ sống ; niềm vui và tình thương, ân nghĩa ; đức tính khiêm tốn, thơ cuối). nước, còn người - Thắng giặc Mi, ta sẽ xây dựng hơn mười ngày nay !”. giản dị và sự hi sinh quên mình) ? . ĐỌC THÊM 8 co) TỰ DO P.Ê-LUY-A (Trích) TIỂU DÂN Pôn Ê-luy-a (1895 - 1952), nhà thơ Pháp, tên thật là ; , Pồn Ơ-gien Granh-đen, sinh ở Xanh Đơ-ni, một thị trấn nhỏ ở phía bắc Pa-ri. Trong Chiến tranh thế giới thứ Y.. d nhất, ông bị động viên vào lính và bị thương. Năm 1919, 2 tham gia trào lưu siêu thực) nhưng dân dân, ông ..á - , nhận thức được rằng"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Luyện tập vận dụng kết hợp các thao tác lập luận",
+    "trang": 174,
+    "cha": "Tuần 12",
+    "noi_dung": "Trên sức khoẻ được phục hồi HƯỚNG DAN DOC THEM 1. Doc ki bai Tự do để hiểu được chủ đề tác phẩm. Tìm hiểu cách liệt kê các 2. Tìm hiểu câu kết “Tôi viết tên em” của mõi khổ thơ, cách lặp từ theo kiểu 3. So sánh ý nghĩa của từ frên được sử dụng nhiều lần trong bài để chỉ không 4. Trong câu thơ “Tôi viết tên em” được lặp đi lặp lại, fô¡ có thể là tác giả và 173 Trên hiểm nguy đã tan biến hình ảnh trong bài thơ (chú ý tính chất hình ảnh thị giác). “xoáy tròn” (Trên... trên...) và nhạc điệu bài thơ. Phân tích cách sử dụng đại gian và thời gian. cũng có thể là những độc giả của bài thơ ; có thể hiểu là “ghi, chép”, có Trên hi vọng chẳng vấn vương từ em. thể hiểu là “hành động”. Từ đó hãy suy luận để chỉ ra tính chất thánh ca của Tôi viết tên em bài thơ này trong cuộc kháng chiến chống phát xít Đức. Và bằng phép màu một tiếng Tôi bắt đầu lại cuộc đời Tôi sinh ra để biết em Để gọi tên em TỰ DO. (Phùng Văn Tửu dịch) KET QUA CAN DAT e Cúng cố những kiến thức và kĩ năng cơ bản e Biết vận dụng kết hợp các thao tác lập luận I - LUYEN TAP TREN LOP 1. Hãy nhắc lại các thao tác lập luận mà anh (chị) đã học cùng những đặc 2. Trong đoạn trích dưới đây, tác giả đã vận dụng kết hợp những thao tác Thế mà hơn 80 năm nay, bọn thực dân Pháp lợi dụng lá cờ tự do, bình Về chính trị, chúng tuyệt đối không cho nhân dân ta một chút tự do dân Chúng thi hành những luật pháp dã man. Chúng lập ba chế độ khác nhau Chúng lập ra nhà tù nhiều hơn trường học. Chúng thẳng tay chém giết Chúng ràng buộc dư luận, th"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Trả bài làm văn số 3",
+    "trang": 184,
+    "cha": "Tuần 12",
+    "noi_dung": "Độc đáo một cách đa dạng, bền vững mà luôn đổi mới, nhưng phong cách Mỗi công dân đều có một dạng uân tay HUONG DAN HOC BAI 1. Quá trình văn học là gì ? Nêu các quy luật chung của quá trình văn học. 2. Xác định đặc trưng cơ bản của văn học Phục hưng, chủ nghĩa cổ điển, chủ 3. Thế nào là phong cách văn học ? 4. Phân tích những biểu hiện của phong cách văn học. GHI NHỚ LUYỆN TẬP 1. Nhận xét vắn tắt sự khác biệt về đặc trưng của văn học lãng mạn và văn học 2. Nêu những nét chính của phong cách nghệ thuật Nguyên Tuân và Tố Hữu. 183 còn phải có phẩm chất thẩm mĩ, nghĩa là nó phải đem lại cho người đọc một Mỗi nhà thơ thứ thiệt có một dạng uân chữ nghĩa lãng mạn, chủ nghĩa hiện thực phê phán, chủ nghĩa hiện thực xã hội Quá trình văn học là diễn tiến hình thành, tồn tại, thay đổi, phát triến cúa văn hiện thực phê phán qua truyện Chữ người tử tù (Nguyễn Tuân) và đoạn sự hưởng thụ mĩ cảm dồi dào qua những tác phẩm giàu tính nghệ thuật, hay, Không trộn lân chủ nghĩa. Nói vắn tắt về các trào lưu văn học hiện đại trên thế giới và các học qua các thời kì lịch sử. Hoạt động nổi bật cúa quá trình văn học là các trích Hạnh phúc của một tang gia (trích Số đỏ - Vũ Trọng Phụng). sinh động, hấp dân. Chỉ khi đó dấu ấn của phong cách trong quá trình văn học (Vân chữ) trào lưu văn học ở Việt Nam. trào lưu văn học. Thành tựu chính cúa quá trình văn học kết tỉnh ở các phong mới được ghi nhớ mãi mãi, không thể phai mờ, nói một cách hình ảnh như cách văn học độc đáo. nhà thơ Lê Đạt :"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 1,
+    "tieu_de": "Tuần 16",
+    "trang": 185,
+    "cha": null,
+    "noi_dung": ""
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Người lái đò Sông Đà (trích)",
+    "trang": 185,
+    "cha": "Tuần 16",
+    "noi_dung": "KET QUA CAN DAT Nhận ra những ưu điếm, nhược điếm về e Rút kinh nghiệm đế phát huy những ưu điểm 1. Tham khảo tiết Trả bài làm van so 1. 2. Ngoài ra, với tiết trả bài này cần lưu ý một số điểm sau : ~ Mỗi bài viết có hai câu hỏi với những yêu cầu và điểm số đánh giá khác ~ Chuẩn bị cho bài kiểm tra tổng hợp cuối học kì I: Ôn tập lại các bài học của cả ba phần : Văn học, Tiếng Việt và Làm văn. kiến thức và kĩ năng viết bài nghị luận văn và hạn chế nhược diém dé chuan bị cho bai nhau. Cần rút kinh nghiệm về phân phối thời gian và dung lượng bài viết cho 184 học. làm văn tiếp theo. thích hợp. NGƯỜI LAI ĐÔ SÔNG ĐA NGUYEN TUAN” e Cảm nhận được vẻ đẹp đa dạng của con e Hiếu và yêu mến tài năng nghệ thuật độc TIEU DAN Người lái đò Sông Đà là bài tuỳ bút được in trong tập Sông Đà (1960) của Nguyễn Tuân. Sông Đà là thành quả nghệ thuật đẹp đẽ mà Nguyễn Tuân đã thu hoạch được trong chuyến Sông Đà nói chung và Người lái đò Sông Đà nói riêng còn tiêu biểu cho phong cách nghệ (1) Về tác giả Nguyễn Tuân, xem phần Tiếu dẫn bài Chữ người tử tù, SGK Ngữ uăn 11, tập một. (Trich) sông Đà vừa \"hung bạo\" vừa \"trữ tình\" cùng đáo của nhà văn được thế hiện trên những đi gian khổ và hào hứng tới miền Tây Bắc rộng lớn, xa xôi, không chỉ để thoả mãn cái thú tìm đến thuật độc đáo của Nguyễn Tuân : uyên bác, tài hoa, không quản nhọc nhằn để cố gắng khai thác 185 KET QUA CAN DAT hình ảnh giản dị mà kì vĩ cúa người lái đò trang tuỳ bút. những miền đất lạ cho thoả niềm khát khao “xê dịch”, mà chủ yếu để tìm"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Chữa lỗi lập luận trong văn nghị luận",
+    "trang": 194,
+    "cha": "Tuần 16",
+    "noi_dung": "nhiên Tây Bắc quý như vàng, nhưng con người Tây Bắc mới thật xứng đáng e Người lái đò Sông Đà là một áng văn đẹp được làm nên từ tình yêu đất nước e Tác phấm còn cho thấy công phu lao động nghệ thuật khó nhọc, cùng sự tài LUYỆN TẬP là vàng mười của đất nước ta. say đắm, thiết tha cúa một con người muốn dùng văn chương đế ca ngợi vẻ hoa, uyên bác cúa người nghệ sĩ Nguyễn Tuân trong việc dùng chữ nghĩa đế 1. Tìm đọc trọn vẹn tuỳ bút Người lái đò Sông Đà. 5. Chọn phân tích một số câu văn thể hiện rõ nhất nét tài hoa về bút pháp đẹp vừa kì vĩ, hào hùng, vừa trữ tình, thơ mộng cúa thiên nhiên, và nhất là tái tạo những kì công của tạo hoá và những kì tích lao động của con người. 2. Phân tích và phát biểu cảm nghĩ về một đoạn văn khiến anh (chị) thấy yêu trong cách sử dụng ngôn ngữ của Nguyên Tuân. cúa con người lao động bình dị ở miễn Tây Bắc. thích, say mê nhất trong thiên tuỳ bút. GHI NHỚ 193 KẾT QUÁ CÂN ĐẠT 1. Tìm hiểu những đoạn văn sau và cho biết việc nêu luận điểm mắc lỗi gì. a) Cảnh uật trong bài thơ Thu điếu của Nguyên Khuyến thật là uắng uẻ. b) “Nam nhỉ uị liễu công danh trái, Tu thính nhân gian thuyết Vũ hầu.” Người làm trai thời xưa luôn mang theo bên mình món nợ công danh, c) Văn học dân gian ra đời từ thời xa xưa nhưng đến nay uẫn tiếp tục phát 2. Hãy chữa lại những đoạn văn trên để nêu rõ luận điểm cần trình bày. Phát hiện, phân tích và sửa chữa được các lỗi Ngõ trúc quanh co, sóng nước gợn tí, lá uàng đưa uèo, chiếc thuyền bé tẻo teo... mang khao khát “uinh quy bái"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 1,
+    "tieu_de": "Tuần 17",
+    "trang": 197,
+    "cha": null,
+    "noi_dung": ""
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Ai dda đặt tên cho dòng sông ? (trích)",
+    "trang": 197,
+    "cha": "Tuần 17",
+    "noi_dung": ""
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Đọc thêm : Những ngày đầu của nước Việt Nam mới",
+    "trang": 0,
+    "cha": "Tuần 17",
+    "noi_dung": "-. we, ñ d `3: NHA XUAT BAN GIAO DUC VIET NAM BỘ GIÁO DỤC VÀ ĐÀO TẠO PHAN TRỌNG LUẬN (Tổng Chủ biên) - TRÂN ĐĂNG SUYÊN (Chủ biên phần Văn) BÙI MINH TOÁN (Chủ biên phản Tiếng Việt) - LÊ A (Chủ biên phần Làm văn) LÊ NGUYÊN CẨN - ĐẶNG ANH ĐÀO - NGUYÊN THỊ NGÂN HOA NGUYEN THAI HOA - ĐỖ KIM HỎI - NGUYEN XUAN NAM ĐOÀN ĐỨC PHƯƠNG - NGUYÊN PHƯỢNG - VŨ DƯƠNG QUY N ] 1 l }ẹ (Tái bản lần thứ mười hai) NHÀ XUẤT BẢN GIÁO DỤC VIỆT NAM Hãy bảo quản, giữ gìn sách giáo khoa đề dành tặng các em học sinh lép sau ! Bản quyền thuộc Nhà xuất bản Giáo dục Việt Nam - Bộ Giáo dục và Đào tạo. 01-2020/CXBIPH/622-869/GD Mã số : CH2II T0 KHAI QUAT VAN HOC VIET NAM Cách mạng tháng Tám năm 1945 vĩ đại đã mở ra một kỉ nguyên mới cho Nền văn học mới đã phát triển qua hai giai đoạn : giai đoạn từ năm 1945 I- KHÁI QUÁT VĂN HỌC VIỆT NAM TỪ CÁCH MANG THANG TAM 1. Vài nét về hoàn cảnh lịch sử, xã hội, văn hoa Văn học Việt Nam từ Cách mạng tháng Tám năm 1945 đến năm 1975 là nền Từ năm 1945 đến năm 1975, trên đất nước ta diễn ra nhiều sự kiện lớn lao : 3 TU CACH MANG THANG TAM NAM 1945 dân tộc ta. Từ đây, một nền van học mới gắn liền với lí độc lập, tự do và đến năm 1975 và giai đoạn từ năm 1975 đến hết thế kỉ XX. NAM 1945 DEN NĂM 1975 văn học của chế độ mới, vận động và phát triển dưới sự lãnh đạo của Đảng cuộc chiến tranh giải phóng dân tộc vô cùng ác liệt kéo dài suốt ba mươi năm, ĐEN HET THẺ KIXX_ chủ nghĩa xã hội được khai sinh. Cộng sản. Đường lối văn nghệ của Đẳng là một trong những nhân tố quan trọng công c"
+  },
+  {
+    "mon": "Ngữ Văn 12 - Tập 1",
+    "cap": 2,
+    "tieu_de": "Kiểm tra tổng hợp cuối học kì I",
+    "trang": 216,
+    "cha": "Tuần 17",
+    "noi_dung": "2. Những đặc điểm cơ bản của văn học Việt Nam từ năm 1945 đến năm 1975 ? 3. Quan điểm sáng tác văn học nghệ thuật của Hồ Chí Minh ? Chứng minh 4. Mục đích và đối tượng của bản Tuyên ngôn Độc lập (căn cứ vào hoàn 5. Vì sao nói Tố Hữu là nhà thơ trữ tình - chính trị ? Phân tích khuynh 6. Phân tích những biểu hiện của tính dân tộc trong bài thơ Bắc của Tố Hữu. 7. Vấn đề đặt ra và hệ thống luận điểm, cách triển khai lí lẽ và dẫn chứng 8. Phân tích vẻ đẹp của hình tượng người lính trong bài thơ Tây Tiến của 9. Những khám phá riêng của mỗi nhà thơ về đất nước quê hương qua bài 10. Phân tích hình tượng sóng trong bài thơ cùng tên của Xuân Quỳnh. 11. Những điểm co bản về nội dung và nghệ thuật của các bài thơ Dọn uê 12. So sánh Chữ người tử tù (Ngữ uăn 11, tập một) với Người lái đò Sông Đà, 13. Cảm hứng thẩm mĩ và văn phong của Hoàng Phủ Ngọc Tường qua * Lưu ý : Về những tác phẩm khác, học sinh dựa vào Hướng dân học bài và 215 mối quan hệ nhất quán giữa quan điểm sáng tác với sự nghiệp văn học của Người. cảnh cụ thể khi Hồ Chí Minh đọc bản Tuyên ngôn) ? Phân tích nội dung và hướng sử thi và cảm hứng lãng mạn trong thơ Tố Hữu. trong các bài viết Nguyên Đình Chiếu, ngôi sao sáng trong uăn nghệ của dân Quang Dũng (so sánh với hình tượng người lính trong bài thơ Đồng chí của thơ Đất nước (Nguyên Đình Thi) và đoạn trích Đất Nước trong trường ca Mặt Anh (chi) cam nhan duoc gi vé tam hồn người phụ nữ trong tình yêu qua bài làng (Nông Quốc Chấn), Tiếng hát con tàu (Chế Lan Viên), Dé Lén (Ngu"
+  }
+]

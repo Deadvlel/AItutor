@@ -5,6 +5,8 @@ const navItems = [
   { icon: '▤', label: 'Khóa học', id: 'courses' },
   { icon: '▥', label: 'Kiểm tra', id: 'exam' },
   { icon: '◈', label: 'Lộ trình', id: 'roadmap' },
+  { icon: '▥', label: 'dò bài', id: 'dobai' },
+  { icon: '◈', label: 'upload', id: 'upload' },
 ]
 
 export default function Sidebar({ active, setActive }) {

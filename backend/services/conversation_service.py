@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy.orm import Session
-from models import cuocTroChuyen, tinNhan
-from services.ai_service import hoi_gia_su
+from models.conversation import cuocTroChuyen, tinNhan
+from services.ai_service import hoi_gia_su_ollama
 
 
 def lay_lich_su(db: Session, user_id: int) -> list[dict]:
@@ -51,7 +51,7 @@ def lay_tin_nhan(db: Session, id_cuoc: int) -> list[dict]:
     ]
 
 
-def gui_tin(db: Session, user_id: int, id_cuoc: int, noi_dung: str) -> dict:
+def gui_tin(db: Session, user_id: int, id_cuoc: int, noi_dung: str) -> dict | None:
     cuoc = db.query(cuocTroChuyen).filter(
         cuocTroChuyen.id_cuocTroChuyen == id_cuoc,
         cuocTroChuyen.id_ngDung == user_id,
@@ -59,6 +59,7 @@ def gui_tin(db: Session, user_id: int, id_cuoc: int, noi_dung: str) -> dict:
     if not cuoc:
         return None
 
+    # Lấy lịch sử để AI nhớ ngữ cảnh (tối đa 20 tin)
     msgs_cu = (
         db.query(tinNhan)
         .filter(tinNhan.id_cuocTroChuyen == id_cuoc)
@@ -71,6 +72,7 @@ def gui_tin(db: Session, user_id: int, id_cuoc: int, noi_dung: str) -> dict:
         for m in msgs_cu
     ]
 
+    # Lưu tin nhắn user
     db.add(tinNhan(
         id_cuocTroChuyen=id_cuoc,
         noiDung=noi_dung,
@@ -78,13 +80,17 @@ def gui_tin(db: Session, user_id: int, id_cuoc: int, noi_dung: str) -> dict:
         ngayTao=datetime.utcnow(),
     ))
 
-    if cuoc.tieuDe == "Cuộc trò chuyện mới":
-        cuoc.tieuDe = noi_dung[:60] + ("..." if len(noi_dung) > 60 else "")
-        db.add(cuoc)
+    # Tự động đặt tiêu đề từ tin nhắn đầu tiên
+    if cuoc.tieuDe in ("Cuộc trò chuyện mới", None) or cuoc.tieuDe.startswith("Bài:"):
+        # Chỉ đổi tên nếu còn là tên mặc định và chưa có tin nào
+        if not msgs_cu:
+            cuoc.tieuDe = noi_dung[:60] + ("..." if len(noi_dung) > 60 else "")
+            db.add(cuoc)
 
     db.commit()
 
-    reply_text = hoi_gia_su(noi_dung, lich_su)
+    reply_text = hoi_gia_su_ollama(noi_dung, lich_su, ten_mon=None)
+
 
     db.add(tinNhan(
         id_cuocTroChuyen=id_cuoc,
@@ -104,7 +110,6 @@ def xoa_cuoc(db: Session, user_id: int, id_cuoc: int) -> bool:
     ).first()
     if not cuoc:
         return False
-
     db.query(tinNhan).filter(tinNhan.id_cuocTroChuyen == id_cuoc).delete()
     db.delete(cuoc)
     db.commit()

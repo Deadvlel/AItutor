@@ -27,3 +27,5 @@ Thumbs.db
 
 *.log
 logs/
+
+/backend/chroma_sgk/
