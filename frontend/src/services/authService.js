@@ -17,7 +17,11 @@ export const authService = {
 
   saveSession(data) {
     localStorage.setItem('token', data.access_token)
-    localStorage.setItem('user', JSON.stringify({ full_name: data.full_name, email: data.email }))
+    localStorage.setItem('user', JSON.stringify({
+      full_name: data.full_name,
+      email: data.email,
+      vai_tro: data.vai_tro || 'hoc_sinh',
+    }))
   },
 
   logout() {
@@ -28,6 +32,12 @@ export const authService = {
   getUser() {
     const u = localStorage.getItem('user')
     return u ? JSON.parse(u) : null
+  },
+
+  updateUser(data) {
+    const current = this.getUser() || {}
+    const updated = { ...current, ...data }
+    localStorage.setItem('user', JSON.stringify(updated))
   },
 
   isLoggedIn() {

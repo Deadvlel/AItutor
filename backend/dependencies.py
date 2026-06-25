@@ -13,10 +13,6 @@ def get_current_user(
     authorization: str = Header(...),
     db: Session = Depends(get_db)
 ):
-    """
-    Đọc JWT từ header Authorization: Bearer <token>
-    Dùng chung cho tất cả router cần xác thực
-    """
     try:
         scheme, token = authorization.split()
         if scheme.lower() != "bearer":

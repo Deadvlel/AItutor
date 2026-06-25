@@ -1,30 +1,38 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { authService } from './services/authService'
-import AuthPage from './pages/AuthPage'
+import DangNhapPage from './pages/DangNhapPage'
 import Sidebar from './components/Sidebar'
 import Topbar from './components/Topbar'
-import CoursesPage from './pages/CoursesPage'
-import StatsPage from './pages/StatsPage'
-import ExamPage from './pages/ExamPage'
+import KhoaHocPage from './pages/KhoaHocPage'
+import ThongKePage from './pages/ThongKePage'
+import KiemTraPage from './pages/KiemTraPage'
 import DoBaiPage from './pages/DoBaiPage'
 import UploadBaiHocPage from './pages/UploadBaiHocPage'
-
-function PlaceholderPage({ title }) {
-  return (
-    <div className="flex flex-col items-center justify-center h-full text-center gap-4">
-      <span className="text-6xl opacity-30"></span>
-      <p className="text-slate-400 text-lg">{title} — đang phát triển</p>
-    </div>
-  )
-}
+import LoTrinhPage from './pages/LoTrinhPage'
+import ChamBaiPage from './pages/ChamBaiPage'
+import HoSoPage from './pages/HoSoPage'
+import LichSuPage from './pages/LichSuPage'
+import QuanTriPage from './pages/QuanTriPage'
 
 export default function App() {
   const [user, setUser] = useState(() => authService.getUser())
+  const [active, setActive] = useState({ page: 'courses', params: {} })
+  const navigate = (page, params = {}) => setActive({ page, params })
 
-  const [active, setActive] = useState('courses')
+  useEffect(() => {
+    const onStorage = (e) => {
+      if (e.key === 'token' && !e.newValue) setUser(null)
+    }
+    window.addEventListener('storage', onStorage)
+    return () => window.removeEventListener('storage', onStorage)
+  }, [])
 
   const handleLoginSuccess = (data) => {
-    setUser({ full_name: data.full_name, email: data.email })
+    setUser({
+      full_name: data.full_name,
+      email: data.email,
+      vai_tro: data.vai_tro || 'hoc_sinh',
+    })
   }
 
   const handleLogout = () => {
@@ -32,31 +40,40 @@ export default function App() {
     setUser(null)
   }
 
+  const handleProfileUpdate = (data) => {
+    setUser(prev => ({ ...prev, ...data }))
+    authService.updateUser(data)
+  }
+
   if (!user) {
-    return <AuthPage onLoginSuccess={handleLoginSuccess} />
+    return <DangNhapPage onLoginSuccess={handleLoginSuccess} />
   }
 
   const pages = {
-    stats: <StatsPage />,
-    courses: <CoursesPage />,
-    exam: <ExamPage />,
-    roadmap: <PlaceholderPage title="Lộ trình" />,
-    dobai: <DoBaiPage/>,
-    upload: <UploadBaiHocPage/>,
+    courses: <KhoaHocPage
+           params={active.params}
+           onNavigateToDoBai={(bai) => navigate('dobai', { initialBai: bai })}/>,
+    lotrinh: <LoTrinhPage    onNavigate={navigate} />,
+    dobai: <DoBaiPage initialBai={active.params?.initialBai} />,
+    exam: <KiemTraPage />,
+    chambai: <ChamBaiPage />,
+    lichsu: <LichSuPage />,
+    stats: <ThongKePage />,
+    upload: <UploadBaiHocPage />,
+    profile: <HoSoPage onUpdate={handleProfileUpdate} />,
+    admin: <QuanTriPage initialTab="users" />,
+    adminstats: <QuanTriPage initialTab="stats" />,
   }
 
   return (
-    <div className="flex h-screen bg-[#0a0720] overflow-hidden text-slate-100">
-      
-      <Sidebar active={active} setActive={setActive} />
-      
-      <div className="flex flex-col flex-1 overflow-hidden relative">
-        <Topbar user={user} onLogout={handleLogout} />
-        
-        <main className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-white/10">
-          {pages[active]}
+    <div className="flex h-screen bg-slate-50 overflow-hidden text-slate-800">
+      <Sidebar active={active.page} setActive={(p) => navigate(p)} vaiTro={user.vai_tro} />
+      <div className="flex flex-col flex-1 overflow-hidden">
+        <Topbar user={user} onLogout={handleLogout} onNavigate={navigate} />
+        <main className="flex-1 overflow-y-auto p-6">
+          {pages[active.page]}
         </main>
-      </div>      
+      </div>
     </div>
   )
 }

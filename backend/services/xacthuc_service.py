@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from passlib.context import CryptContext
 from jose import jwt
 
-SECRET_KEY                  = os.getenv("SECRET_KEY", "tutor_secret_key_change_this_in_production")
+SECRET_KEY                  = os.getenv("SECRET_KEY")
 ALGORITHM                   = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 
 

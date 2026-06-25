@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { Upload, FileText, MoreVertical, CheckCircle2, Loader2 } from 'lucide-react'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
@@ -6,40 +7,93 @@ function authHeader() {
   return { Authorization: `Bearer ${localStorage.getItem('token')}` }
 }
 
-// ── Component dùng chung cho PDF và Word ─────────────────────
-function UploadAIFile({ loai, onDone }) {
-  const config = {
-    pdf:  { icon: '📕', label: 'PDF',  accept: '.pdf',        ext: '.pdf',
-            mauIcon: '🔴', color: 'from-rose-600 to-rose-800' },
-    word: { icon: '📘', label: 'Word', accept: '.docx,.doc',  ext: '.docx / .doc',
-            mauIcon: '🔵', color: 'from-blue-600 to-blue-800' },
-  }[loai]
+const FILE_TABS = [
+  { id: 'all', label: 'Tất cả định dạng' },
+  { id: 'pdf', label: 'PDF' },
+  { id: 'word', label: 'Word (.doc, .docx)' },
+  { id: 'excel', label: 'Excel (.xls, .xlsx)' },
+]
 
-  const [file,      setFile]      = useState(null)
-  const [tenChuDe,  setTenChuDe]  = useState('')
-  const [tieuDe,    setTieuDe]    = useState('')
-  const [soCau,     setSoCau]     = useState(5)
-  const [loading,   setLoading]   = useState(false)
-  const [result,    setResult]    = useState(null)
-  const [error,     setError]     = useState('')
+const ACCEPT_MAP = {
+  all: '.pdf,.doc,.docx,.xls,.xlsx,.csv',
+  pdf: '.pdf',
+  word: '.doc,.docx',
+  excel: '.xls,.xlsx,.csv',
+}
+
+function getUploadEndpoint(filename) {
+  const ext = filename.toLowerCase().split('.').pop()
+  if (ext === 'pdf') return 'pdf'
+  if (['doc', 'docx'].includes(ext)) return 'word'
+  if (['xls', 'xlsx', 'csv'].includes(ext)) return 'excel'
+  return 'pdf'
+}
+
+export default function UploadBaiHocPage({ onDone }) {
+  const [tab, setTab] = useState('all')
+  const [file, setFile] = useState(null)
+  const [tenChuDe, setTenChuDe] = useState('')
+  const [tieuDe, setTieuDe] = useState('')
+  const [soCau, setSoCau] = useState(5)
+  const [loading, setLoading] = useState(false)
+  const [result, setResult] = useState(null)
+  const [error, setError] = useState('')
+  const [dragOver, setDragOver] = useState(false)
+  const [recentFiles, setRecentFiles] = useState([
+    { name: 'Bai_giang_Toan_cao_cap_Chuong1.pdf', size: '2.4 MB', time: 'Tải lên 2 giờ trước' },
+  ])
+  const [processingStep, setProcessingStep] = useState(0)
   const inputRef = useRef()
 
-  const handle = async () => {
-    if (!file || !tenChuDe || !tieuDe) return
-    setLoading(true); setError(''); setResult(null)
+  const handleDrop = (e) => {
+    e.preventDefault()
+    setDragOver(false)
+    const f = e.dataTransfer.files[0]
+    if (f) setFile(f)
+  }
+
+  const handleUpload = async () => {
+    if (!file) return
+
+    const endpoint = getUploadEndpoint(file.name)
+    const maxMB = endpoint === 'excel' ? 5 : 10
+    if (file.size > maxMB * 1024 * 1024) {
+      setError(`File quá lớn. Tối đa ${maxMB}MB cho ${endpoint === 'excel' ? 'Excel/CSV' : 'PDF/Word'}.`)
+      return
+    }
+
+    setLoading(true)
+    setError('')
+    setResult(null)
+    setProcessingStep(1)
 
     const form = new FormData()
-    form.append('file',        file)
-    form.append('ten_chu_de',  tenChuDe)
-    form.append('tieu_de',     tieuDe)
-    form.append('so_cau',      soCau)
+    form.append('file', file)
+
+    if (endpoint !== 'excel') {
+      if (!tenChuDe || !tieuDe) {
+        setError('Vui lòng nhập chủ đề và tên bài')
+        setLoading(false)
+        return
+      }
+      form.append('ten_chu_de', tenChuDe)
+      form.append('tieu_de', tieuDe)
+      form.append('so_cau', soCau)
+    }
 
     try {
-      const res  = await fetch(`${API_URL}/api/do-bai/upload/${loai}`,
-        { method: 'POST', headers: authHeader(), body: form })
+      setProcessingStep(2)
+      const res = await fetch(`${API_URL}/api/do-bai/upload/${endpoint}`, {
+        method: 'POST',
+        headers: authHeader(),
+        body: form,
+      })
       const data = await res.json()
       if (!res.ok) throw new Error(data.detail)
-      setResult(data); onDone?.()
+      setProcessingStep(3)
+      setResult(data)
+      setRecentFiles(prev => [{ name: file.name, size: `${(file.size / 1024 / 1024).toFixed(1)} MB`, time: 'Vừa tải lên' }, ...prev])
+      onDone?.()
     } catch (e) {
       setError(e.message)
     } finally {
@@ -47,202 +101,217 @@ function UploadAIFile({ loai, onDone }) {
     }
   }
 
+  const isAIFile = file && getUploadEndpoint(file.name) !== 'excel'
+
   return (
-    <div className="flex flex-col gap-4">
-      {/* Drop zone */}
-      <div onClick={() => inputRef.current?.click()}
-        className={`border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-all
-          ${file ? 'border-violet-500/50 bg-violet-500/5' : 'border-white/15 hover:border-white/25'}`}>
-        <p className="text-3xl mb-1">{file ? config.icon : '⬆️'}</p>
-        <p className="text-white text-sm font-medium">{file ? file.name : `Chọn file ${config.label}`}</p>
-        <p className="text-slate-500 text-xs mt-0.5">{config.ext} — tối đa 10MB</p>
-        <input ref={inputRef} type="file" accept={config.accept} className="hidden"
-          onChange={e => setFile(e.target.files[0])} />
-      </div>
-
-      {/* Thông tin */}
-      <div className="grid grid-cols-2 gap-3">
+    <div className="flex gap-6 max-w-5xl">
+      <div className="flex-1 flex flex-col gap-6">
         <div>
-          <label className="text-xs text-slate-400 mb-1 block">Chủ đề *</label>
-          <input value={tenChuDe} onChange={e => setTenChuDe(e.target.value)}
-            placeholder="Toán 12, Ngữ văn 11..."
-            className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm
-              text-white placeholder-slate-600 outline-none focus:border-amber-400/40 transition-colors" />
+          <h1 className="text-slate-800 font-bold text-2xl">Tải lên tài liệu</h1>
+          <p className="text-slate-400 text-sm mt-1">Kéo thả tài liệu để AI phân tích và tạo bài học tự động.</p>
         </div>
-        <div>
-          <label className="text-xs text-slate-400 mb-1 block">Tên bài *</label>
-          <input value={tieuDe} onChange={e => setTieuDe(e.target.value)}
-            placeholder="Hàm số lũy thừa..."
-            className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm
-              text-white placeholder-slate-600 outline-none focus:border-amber-400/40 transition-colors" />
-        </div>
-      </div>
 
-      {/* Số câu */}
-      <div>
-        <label className="text-xs text-slate-400 mb-2 block">
-          AI sinh <span className="text-amber-400 font-medium">{soCau}</span> câu hỏi
-        </label>
-        <div className="flex gap-2">
-          {[3, 5, 7, 10].map(n => (
-            <button key={n} onClick={() => setSoCau(n)}
-              className={`flex-1 py-2 rounded-lg text-sm transition-all
-                ${soCau === n
-                  ? 'bg-amber-400 text-[#0a0720] font-medium'
-                  : 'bg-white/5 text-slate-400 hover:bg-white/10'}`}>
-              {n}
+        <div className="flex gap-1 border-b border-slate-200">
+          {FILE_TABS.map(t => (
+            <button
+              key={t.id}
+              onClick={() => setTab(t.id)}
+              className={`px-4 py-2.5 text-sm font-medium transition-all border-b-2 -mb-px ${
+                tab === t.id
+                  ? 'text-blue-600 border-blue-600'
+                  : 'text-slate-400 border-transparent hover:text-slate-600'
+              }`}
+            >
+              {t.label}
             </button>
           ))}
         </div>
-      </div>
 
-      {error && (
-        <div className="bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-2.5">
-          <p className="text-red-400 text-sm">⚠ {error}</p>
+        <div
+          onClick={() => inputRef.current?.click()}
+          onDrop={handleDrop}
+          onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
+          onDragLeave={() => setDragOver(false)}
+          className={`border-2 border-dashed rounded-2xl p-12 text-center cursor-pointer transition-all ${
+            dragOver
+              ? 'border-blue-400 bg-blue-50'
+              : file
+                ? 'border-blue-300 bg-blue-50/50'
+                : 'border-slate-200 hover:border-blue-300 hover:bg-slate-50'
+          }`}
+        >
+          <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center mx-auto mb-4">
+            <Upload size={24} className="text-blue-500" />
+          </div>
+          {file ? (
+            <>
+              <p className="text-slate-700 font-semibold">{file.name}</p>
+              <p className="text-slate-400 text-sm mt-1">{(file.size / 1024 / 1024).toFixed(1)} MB</p>
+            </>
+          ) : (
+            <>
+              <p className="text-slate-700 font-semibold">Kéo thả file vào đây</p>
+              <p className="text-slate-400 text-sm mt-1">hoặc click để chọn file từ máy tính</p>
+              <p className="text-slate-300 text-xs mt-2">Hỗ trợ PDF, DOCX, XLSX. Tối đa 10MB (Excel: 5MB).</p>
+            </>
+          )}
+          <input
+            ref={inputRef}
+            type="file"
+            accept={ACCEPT_MAP[tab]}
+            className="hidden"
+            onChange={e => setFile(e.target.files[0])}
+          />
         </div>
-      )}
 
-      {result && (
-        <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl px-4 py-3">
-          <p className="text-emerald-400 font-semibold text-sm">✅ {result.message}</p>
-          <div className="flex flex-col gap-1 mt-2 max-h-36 overflow-y-auto">
-            {result.cac_cau_hoi?.map((c, i) => (
-              <p key={i} className="text-slate-400 text-xs">• {c}</p>
+        {isAIFile && (
+          <div className="bg-white border border-slate-100 rounded-2xl p-5 flex flex-col gap-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">Chủ đề</label>
+                <input
+                  value={tenChuDe}
+                  onChange={e => setTenChuDe(e.target.value)}
+                  placeholder="Toán 12, Ngữ văn 11..."
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 outline-none focus:border-blue-300 focus:bg-white transition-all"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 block">Tên bài</label>
+                <input
+                  value={tieuDe}
+                  onChange={e => setTieuDe(e.target.value)}
+                  placeholder="Hàm số lũy thừa..."
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 placeholder-slate-400 outline-none focus:border-blue-300 focus:bg-white transition-all"
+                />
+              </div>
+            </div>
+            <div>
+              <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 block">Số câu hỏi AI sinh</label>
+              <div className="flex gap-2">
+                {[3, 5, 7, 10].map(n => (
+                  <button
+                    key={n}
+                    onClick={() => setSoCau(n)}
+                    className={`flex-1 py-2 rounded-xl text-sm font-semibold transition-all ${
+                      soCau === n
+                        ? 'bg-blue-600 text-white shadow-md shadow-blue-200'
+                        : 'bg-slate-50 border border-slate-200 text-slate-500 hover:border-blue-300'
+                    }`}
+                  >
+                    {n} câu
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {error && (
+          <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3">
+            <p className="text-red-600 text-sm">{error}</p>
+          </div>
+        )}
+
+        {result && (
+          <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3">
+            <p className="text-emerald-700 font-semibold text-sm">{result.message}</p>
+            {result.cac_cau_hoi && (
+              <div className="mt-2 flex flex-col gap-1">
+                {result.cac_cau_hoi.map((c, i) => (
+                  <p key={i} className="text-slate-600 text-xs">* {c}</p>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {file && (
+          <button
+            onClick={handleUpload}
+            disabled={loading}
+            className="w-full py-3.5 rounded-xl bg-blue-600 text-white font-bold text-sm hover:bg-blue-700 disabled:opacity-50 transition-all shadow-md shadow-blue-200 flex items-center justify-center gap-2"
+          >
+            {loading ? (
+              <>
+                <Loader2 size={16} className="animate-spin" />
+                AI đang xử lý...
+              </>
+            ) : (
+              <>
+                <Upload size={16} />
+                Tải lên và phân tích
+              </>
+            )}
+          </button>
+        )}
+
+        <div>
+          <p className="text-slate-800 font-semibold mb-3">Tài liệu gần đây</p>
+          <div className="flex flex-col gap-2">
+            {recentFiles.map((f, i) => (
+              <div key={i} className="bg-white border border-slate-100 rounded-xl px-4 py-3 flex items-center gap-3 hover:shadow-sm transition-all">
+                <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0">
+                  <FileText size={18} className="text-red-500" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-slate-700 text-sm font-medium truncate">{f.name}</p>
+                  <p className="text-slate-400 text-xs">{f.size} * {f.time}</p>
+                </div>
+                <button className="text-slate-300 hover:text-slate-500 transition-colors">
+                  <MoreVertical size={16} />
+                </button>
+              </div>
             ))}
           </div>
         </div>
-      )}
-
-      <button onClick={handle}
-        disabled={!file || !tenChuDe || !tieuDe || loading}
-        className="w-full py-3 rounded-xl bg-amber-400 text-[#0a0720] font-semibold text-sm
-          hover:bg-amber-300 disabled:opacity-40 disabled:cursor-not-allowed transition-all active:scale-[0.98]">
-        {loading ? (
-          <span className="flex items-center justify-center gap-2">
-            <span className="w-4 h-4 border-2 border-[#0a0720]/30 border-t-[#0a0720] rounded-full animate-spin" />
-            AI đang đọc và tạo câu hỏi...
-          </span>
-        ) : `🤖 AI sinh câu hỏi từ ${config.label}`}
-      </button>
-    </div>
-  )
-}
-
-// ── Upload Excel/CSV ─────────────────────────────────────────
-function UploadExcel({ onDone }) {
-  const [file,    setFile]    = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [result,  setResult]  = useState(null)
-  const [error,   setError]   = useState('')
-  const inputRef = useRef()
-
-  const handle = async () => {
-    if (!file) return
-    setLoading(true); setError(''); setResult(null)
-    const form = new FormData()
-    form.append('file', file)
-    try {
-      const res  = await fetch(`${API_URL}/api/do-bai/upload/excel`,
-        { method: 'POST', headers: authHeader(), body: form })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.detail)
-      setResult(data); onDone?.()
-    } catch (e) {
-      setError(e.message)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  return (
-    <div className="flex flex-col gap-4">
-      <div onClick={() => inputRef.current?.click()}
-        className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all
-          ${file ? 'border-violet-500/50 bg-violet-500/5' : 'border-white/15 hover:border-white/25'}`}>
-        <p className="text-3xl mb-2">{file ? '📄' : '⬆️'}</p>
-        <p className="text-white text-sm font-medium">{file ? file.name : 'Chọn file Excel / CSV'}</p>
-        <p className="text-slate-500 text-xs mt-1">.xlsx, .xls, .csv — tối đa 5MB</p>
-        <input ref={inputRef} type="file" accept=".xlsx,.xls,.csv" className="hidden"
-          onChange={e => setFile(e.target.files[0])} />
       </div>
 
-      {/* Tải file mẫu */}
-      <p className="text-center text-xs text-slate-500">
-        Chưa có file mẫu?{' '}
-        <a href={`${API_URL}/api/do-bai/tai-file-mau`}
-          className="text-amber-400 hover:text-amber-300 transition-colors">
-          Tải file mẫu Excel
-        </a>
-      </p>
+      {loading && (
+        <div className="w-72 flex-shrink-0">
+          <div className="bg-white border border-slate-100 rounded-2xl p-5 sticky top-6">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
+                <Loader2 size={14} className="text-white animate-spin" />
+              </div>
+              <p className="text-slate-800 font-bold text-sm">AI Đang Phân Tích</p>
+            </div>
 
-      {error && (
-        <div className="bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-2.5">
-          <p className="text-red-400 text-sm">⚠ {error}</p>
+            <div className="bg-slate-50 border border-slate-100 rounded-xl px-3 py-2 mb-4">
+              <p className="text-slate-400 text-xs">Đang xử lý:</p>
+              <p className="text-slate-700 text-sm font-medium truncate">{file?.name}</p>
+            </div>
+
+            <div className="flex flex-col gap-3">
+              {[
+                { label: 'Trích xuất văn bản', done: processingStep >= 2 },
+                { label: 'Nhận diện khái niệm chính', done: processingStep >= 3, active: processingStep === 2 },
+                { label: 'Tạo bộ câu hỏi trắc nghiệm', done: processingStep >= 4, active: processingStep === 3 },
+              ].map((s, i) => (
+                <div key={i} className="flex items-start gap-2.5">
+                  {s.done ? (
+                    <CheckCircle2 size={18} className="text-emerald-500 flex-shrink-0 mt-0.5" />
+                  ) : s.active ? (
+                    <Loader2 size={18} className="text-blue-500 flex-shrink-0 mt-0.5 animate-spin" />
+                  ) : (
+                    <div className="w-[18px] h-[18px] rounded-full border-2 border-slate-200 flex-shrink-0 mt-0.5" />
+                  )}
+                  <div>
+                    <p className={`text-sm font-medium ${
+                      s.done ? 'text-slate-700' : s.active ? 'text-blue-600' : 'text-slate-400'
+                    }`}>
+                      {s.label}
+                    </p>
+                    {s.done && <p className="text-emerald-600 text-xs">Đã hoàn thành 100%</p>}
+                    {s.active && <p className="text-blue-500 text-xs">Đang phân tích cú pháp...</p>}
+                    {!s.done && !s.active && <p className="text-slate-300 text-xs">Chờ xử lý</p>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       )}
-
-      {result && (
-        <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl px-4 py-3">
-          <p className="text-emerald-400 font-semibold text-sm">✅ {result.message}</p>
-          <p className="text-slate-400 text-xs mt-1">Bài: {result.bai_hocs?.join(', ')}</p>
-        </div>
-      )}
-
-      <button onClick={handle} disabled={!file || loading}
-        className="w-full py-3 rounded-xl bg-violet-600 text-white font-medium text-sm
-          hover:bg-violet-500 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
-        {loading ? (
-          <span className="flex items-center justify-center gap-2">
-            <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            Đang xử lý...
-          </span>
-        ) : '⬆️ Upload và lưu câu hỏi'}
-      </button>
-    </div>
-  )
-}
-
-// ── Main Page ─────────────────────────────────────────────────
-const TABS = [
-  { id: 'excel', label: '📊 Excel / CSV', desc: 'Tự soạn câu hỏi' },
-  { id: 'pdf',   label: '📕 PDF',          desc: 'AI sinh câu hỏi' },
-  { id: 'word',  label: '📘 Word',         desc: 'AI sinh câu hỏi' },
-]
-
-export default function UploadBaiHocPage({ onDone }) {
-  const [tab, setTab] = useState('excel')
-
-  return (
-    <div className="flex flex-col gap-5 max-w-2xl mx-auto">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-violet-700 to-violet-900 rounded-2xl p-6">
-        <p className="text-violet-300 text-xs uppercase tracking-wider mb-1">Quản lý nội dung</p>
-        <h1 className="text-white text-xl font-semibold">Tải chương trình học lên 📚</h1>
-        <p className="text-violet-200/70 text-sm mt-1">
-          Excel: tự soạn câu hỏi · PDF/Word: AI tự sinh câu hỏi từ nội dung
-        </p>
-      </div>
-
-      {/* Tabs */}
-      <div className="bg-white/5 rounded-xl p-1 flex gap-1">
-        {TABS.map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)}
-            className={`flex-1 py-2.5 rounded-lg text-sm transition-all flex flex-col items-center gap-0.5
-              ${tab === t.id
-                ? 'bg-violet-600 text-white'
-                : 'text-slate-400 hover:text-white'}`}>
-            <span className="font-medium">{t.label}</span>
-            <span className="text-xs opacity-70">{t.desc}</span>
-          </button>
-        ))}
-      </div>
-
-      {/* Nội dung tab */}
-      <div className="bg-[#130f2e] border border-white/10 rounded-2xl p-6">
-        {tab === 'excel' && <UploadExcel onDone={onDone} />}
-        {tab === 'pdf'   && <UploadAIFile loai="pdf"  onDone={onDone} />}
-        {tab === 'word'  && <UploadAIFile loai="word" onDone={onDone} />}
-      </div>
     </div>
   )
 }

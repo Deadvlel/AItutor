@@ -22,7 +22,7 @@ class tinNhan(Base):
     id_tinNhan       = Column(Integer, primary_key=True, index=True)
     id_cuocTroChuyen = Column(Integer, ForeignKey("cuocTroChuyen.id_cuocTroChuyen"))
     noiDung          = Column(Text)
-    anh              = Column(String(20), nullable=True)   # "user" | "assistant"
+    nguoiGui         = Column(String(20), nullable=True)
     ngayTao          = Column(DateTime, default=datetime.utcnow)
 
     cuoc_tro_chuyen = relationship("cuocTroChuyen", back_populates="tin_nhan")

@@ -5,45 +5,49 @@ from fastapi import APIRouter, HTTPException, Depends, UploadFile, File, Form
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
+from models import ngDung
 
 from database import get_db
 from dependencies import get_current_user
-from models.course import chuDe, taiLieu, cauHoi, lichSuLamKT, cauTraLoi, aiLog
-from services.ai_service import hoi_gia_su, tim_sgk, _xay_dung_ngu_canh, tao_de_thi_json
+from models.khoahoc import chuDe, taiLieu, cauHoi, lichSuLamKT, cauTraLoi, aiLog, kyNang, tienDoKyNang, thongBao
+from services.ai_service import hoi_gia_su, tim_sgk, _xay_dung_ngu_canh, tao_de_thi_json, _goi_gemini
 from services.upload_service import xu_ly_excel, xu_ly_pdf, xu_ly_word
 
 router = APIRouter()
 ID_DO_BAI = 2
 
-
-# ── Schema ──────────────────────────────────────────────────────
 class ChamDoBaiRequest(BaseModel):
-    id_cau_hoi:  int | None = None   # None nếu dùng câu hỏi sinh từ Chroma
-    cau_hoi:     str | None = None   # câu hỏi gốc (khi không có id)
-    dap_an_mau:  str | None = None   # đáp án mẫu (khi không có id)
+    id_cau_hoi:  int | None = None
+    cau_hoi:     str | None = None
+    dap_an_mau:  str | None = None
     cau_tra_loi: str
 
 
 class SinhCauHoiRequest(BaseModel):
-    id_tai_lieu: int         # id bài học trong bảng taiLieu
-    so_cau:      int = 5     # số câu muốn sinh
+    id_tai_lieu: int
+    so_cau:      int = 5
 
+
+class CauTraLoiItem(BaseModel):
+    cau_hoi:     str
+    cau_tra_loi: str
+    dung:        bool
 
 class LuuKetQuaRequest(BaseModel):
-    id_tai_lieu: int
-    tong_cau:    int
-    so_cau_dung: int
+    id_tai_lieu:  int
+    tong_cau:     int
+    so_cau_dung:  int
+    chi_tiet:     list[CauTraLoiItem] = []
+    # --- FIX: nhận id_buoc_hoc từ lộ trình để unlock bước tiếp ---
+    id_buoc_hoc:  int | None = None
 
 
-# ── Sinh câu hỏi từ Chroma (không cần upload) ───────────────────
 @router.post("/sinh-cau-hoi")
 def sinh_cau_hoi(
     req: SinhCauHoiRequest,
     user=Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    """Sinh câu hỏi dò bài từ nội dung SGK trong ChromaDB."""
-    # Lấy thông tin bài học
     bai = db.query(taiLieu).filter(taiLieu.id_taiLieu == req.id_tai_lieu).first()
     if not bai:
         raise HTTPException(404, "Không tìm thấy bài học")
@@ -54,7 +58,6 @@ def sinh_cau_hoi(
         if cd:
             ten_mon = cd.ten_chuDe
 
-    # Lấy nội dung từ Chroma
     doan_list = tim_sgk(bai.tieuDe, ten_mon=ten_mon, top_k=5)
     ngu_canh  = _xay_dung_ngu_canh(doan_list)
 
@@ -82,16 +85,16 @@ Yêu cầu:
 - Không hỏi về số trang, không hỏi câu quá khó"""
 
     try:
-        raw = tao_de_thi_json(prompt)
-        raw = raw.strip()
+        raw = _goi_gemini(prompt).strip()
         if raw.startswith("```"):
             raw = raw.split("\n", 1)[1].rsplit("```", 1)[0].strip()
         data = json.loads(raw)
         cau_hois = data.get("cau_hois", [])
         if not cau_hois:
             raise ValueError("Không có câu hỏi")
-    except Exception as e:
-        # Fallback: sinh câu hỏi đơn giản từ tiêu đề
+    except HTTPException:
+        raise
+    except Exception:
         cau_hois = [
             {
                 "thu_tu": 1,
@@ -115,14 +118,12 @@ Yêu cầu:
     }
 
 
-# ── Chấm điểm (hỗ trợ cả câu có id và câu sinh từ Chroma) ──────
 @router.post("/cham-diem")
 def cham_diem(
     req: ChamDoBaiRequest,
     user=Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    # Lấy câu hỏi + đáp án
     if req.id_cau_hoi:
         cau = db.query(cauHoi).filter(cauHoi.id_cauHoi == req.id_cau_hoi).first()
         if not cau:
@@ -130,23 +131,37 @@ def cham_diem(
         cau_hoi_text = cau.noiDung
         dap_an_text  = cau.dapAnMau
         goi_y_text   = cau.goiY
-    elif req.cau_hoi and req.dap_an_mau:
+    elif req.cau_hoi:
         cau_hoi_text = req.cau_hoi
-        dap_an_text  = req.dap_an_mau
+        dap_an_text  = req.dap_an_mau or ""
         goi_y_text   = None
     else:
         raise HTTPException(400, "Thiếu thông tin câu hỏi")
 
+    ngu_canh_sgk = ""
+    if not dap_an_text:
+        doan_list = tim_sgk(cau_hoi_text)
+        if doan_list:
+            ngu_canh_sgk = _xay_dung_ngu_canh(doan_list)
+
+    if dap_an_text:
+        phan_dap_an = f"Đáp án chuẩn: {dap_an_text}"
+    elif ngu_canh_sgk:
+        phan_dap_an = f"Nội dung SGK liên quan:\n{ngu_canh_sgk}\nDựa vào SGK trên để đánh giá câu trả lời."
+    else:
+        phan_dap_an = "Không có đáp án mẫu, hãy tự đánh giá dựa trên kiến thức chung."
+
     prompt = f"""Em là gia sư đang chấm bài dò bài.
 
 Câu hỏi: {cau_hoi_text}
-Đáp án chuẩn: {dap_an_text}
+{phan_dap_an}
 Câu trả lời học sinh: {req.cau_tra_loi}
 
 Hãy đánh giá và trả về JSON thuần (không markdown, không giải thích thêm):
 {{
   "ket_qua": "dung",
-  "nhan_xet": "Nhận xét ngắn gọn bằng tiếng Việt, xưng Thầy gọi Em"
+  "nhan_xet": "Nhận xét ngắn gọn bằng tiếng Việt, xưng Thầy gọi Em",
+  "dap_an_mau": "Đáp án đúng đầy đủ"
 }}
 
 Quy tắc ket_qua:
@@ -156,8 +171,10 @@ Quy tắc ket_qua:
 
 Nhan_xet: chỉ ra điểm đúng/thiếu, nhắc lại kiến thức trọng tâm (2-3 câu)."""
 
-    raw = hoi_gia_su(prompt)
-    raw = raw.strip()
+    try:
+        raw = _goi_gemini(prompt).strip()
+    except Exception:
+        raw = ""
     if raw.startswith("```"):
         raw = raw.split("\n", 1)[1].rsplit("```", 1)[0].strip()
 
@@ -165,6 +182,8 @@ Nhan_xet: chỉ ra điểm đúng/thiếu, nhắc lại kiến thức trọng t�
         data = json.loads(raw)
         ket_qua  = data.get("ket_qua", "sai")
         nhan_xet = data.get("nhan_xet", raw)
+        if not dap_an_text and data.get("dap_an_mau"):
+            dap_an_text = data["dap_an_mau"]
     except (json.JSONDecodeError, ValueError):
         ket_qua  = "dung" if any(kw in raw.lower() for kw in
                     ["đúng rồi", "chính xác", "đúng!", "tốt lắm"]) else "sai"
@@ -189,7 +208,6 @@ Nhan_xet: chỉ ra điểm đúng/thiếu, nhắc lại kiến thức trọng t�
     }
 
 
-# ── Lưu kết quả ─────────────────────────────────────────────────
 @router.post("/luu-ket-qua")
 def luu_ket_qua(
     req: LuuKetQuaRequest,
@@ -207,18 +225,52 @@ def luu_ket_qua(
         tg_batDau=datetime.utcnow(), tg_ketThuc=datetime.utcnow(),
     )
     db.add(ls)
+    db.flush()
+
+    for ct in req.chi_tiet:
+        db.add(cauTraLoi(
+            id_lsIKT=ls.id_lsIKT,
+            id_dapAn=None,
+            noiDungTuLuan=f"[Q] {ct.cau_hoi}\n[A] {ct.cau_tra_loi}",
+            ketQua=ct.dung,
+        ))
     db.commit()
 
+    bai = db.query(taiLieu).filter(taiLieu.id_taiLieu == req.id_tai_lieu).first()
+    if bai and bai.id_chuDe:
+        _cap_nhat_tien_do(db, user.id_ngDung, bai.id_chuDe, diem)
+        _tao_goi_y(db, user.id_ngDung, bai, diem)
+
+    # --- FIX: nếu đến từ lộ trình và điểm >= 5 → hoàn thành bước hiện tại ---
+    buoc_hoan_thanh = None
+    if req.id_buoc_hoc and diem >= 5:
+        from models.khoahoc import buocHoc, loTrinh
+        buoc = db.query(buocHoc).filter(buocHoc.id_buocHoc == req.id_buoc_hoc).first()
+        if buoc:
+            lt = db.query(loTrinh).filter(
+                loTrinh.id_loTrinh == buoc.id_loTrinh,
+                loTrinh.id_ngDung  == user.id_ngDung,
+            ).first()
+            if lt:
+                buoc.trangThai = 2  # hoan_thanh
+                db.commit()
+                buoc_hoan_thanh = req.id_buoc_hoc
+
     return {
-        "diem": diem, "so_dung": so_dung, "tong": tong,
-        "xep_loai": ["", "Giỏi", "Khá", "Trung bình", "Yếu"][xep],
+        "diem":             diem,
+        "so_dung":          so_dung,
+        "tong":             tong,
+        "xep_loai":         ["", "Gioi", "Kha", "Trung binh", "Yeu"][xep],
+        "buoc_hoan_thanh":  buoc_hoan_thanh,  # frontend dùng để cập nhật UI lộ trình
+        "dat_dieu_kien":    diem >= 5,
     }
 
 
-# ── Các endpoint upload giữ nguyên ──────────────────────────────
 @router.get("/tai-file-mau")
 def tai_file_mau():
-    path = "/tmp/cau_hoi_do_bai_mau.xlsx"
+    import tempfile, os
+    tmp_dir = tempfile.gettempdir()
+    path = os.path.join(tmp_dir, "cau_hoi_do_bai_mau.xlsx")
     _tao_excel_mau(path)
     return FileResponse(
         path,
@@ -243,6 +295,10 @@ def _tao_excel_mau(path: str):
     wb.save(path)
 
 
+def _id_ngDung_theo_quyen(user) -> int | None:
+    return None if getattr(user, "vaiTro", None) == "admin" else user.id_ngDung
+
+
 @router.post("/upload/excel")
 async def upload_excel(
     file: UploadFile = File(...),
@@ -256,11 +312,25 @@ async def upload_excel(
     if len(content) > 5 * 1024 * 1024:
         raise HTTPException(400, "File quá lớn (tối đa 5MB)")
     try:
-        kq = xu_ly_excel(content, file.filename, db)
+        kq = xu_ly_excel(content, file.filename, db, id_ngDung=_id_ngDung_theo_quyen(user))
     except ValueError as e:
         raise HTTPException(422, str(e))
     except RuntimeError as e:
         raise HTTPException(500, str(e))
+
+    if _id_ngDung_theo_quyen(user) is None:
+        hoc_sinhs = db.query(ngDung).filter(
+            (ngDung.vaiTro == "hoc_sinh") | (ngDung.vaiTro == None)
+        ).all()
+        for hs in hoc_sinhs:
+            db.add(thongBao(
+                id_ngDung=hs.id_ngDung,
+                tieuDe="Bài học mới đã được thêm",
+                noiDung=f"Có {kq['da_them']} câu hỏi mới được thêm vào hệ thống. Vào dò bài để ôn tập nhé!",
+                daDoc=False,
+            ))
+        db.commit()
+
     return {"message": f"Đã thêm {kq['da_them']} câu hỏi", **kq}
 
 
@@ -279,7 +349,10 @@ async def upload_pdf(
     if len(content) > 10 * 1024 * 1024:
         raise HTTPException(400, "File quá lớn (tối đa 10MB)")
     try:
-        kq = xu_ly_pdf(content, ten_chu_de, tieu_de, max(3, min(10, so_cau)), db)
+        kq = xu_ly_pdf(content, ten_chu_de, tieu_de, max(3, min(10, so_cau)), db,
+                       id_ngDung=_id_ngDung_theo_quyen(user))
+    except ValueError as e:
+        raise HTTPException(422, str(e))
     except Exception as e:
         raise HTTPException(500, str(e))
     return {"message": f"AI sinh {kq['da_them']} câu hỏi từ PDF", **kq}
@@ -301,30 +374,112 @@ async def upload_word(
     if len(content) > 10 * 1024 * 1024:
         raise HTTPException(400, "File quá lớn (tối đa 10MB)")
     try:
-        kq = xu_ly_word(content, ten_chu_de, tieu_de, max(3, min(10, so_cau)), db)
+        kq = xu_ly_word(content, ten_chu_de, tieu_de, max(3, min(10, so_cau)), db,
+                        id_ngDung=_id_ngDung_theo_quyen(user))
+    except ValueError as e:
+        raise HTTPException(422, str(e))
     except Exception as e:
         raise HTTPException(500, str(e))
     return {"message": f"AI sinh {kq['da_them']} câu hỏi từ Word", **kq}
 
 
 @router.get("/chu-de")
-def lay_chu_de(db: Session = Depends(get_db)):
-    return [{"id": c.id_chuDe, "ten": c.ten_chuDe}
-            for c in db.query(chuDe).order_by(chuDe.id_chuDe).all()]
+def lay_chu_de(user=Depends(get_current_user), db: Session = Depends(get_db)):
+    rows = db.query(chuDe).filter(
+        (chuDe.id_ngDung == None) | (chuDe.id_ngDung == user.id_ngDung)
+    ).order_by(chuDe.id_chuDe).all()
+    return [{"id": c.id_chuDe, "ten": c.ten_chuDe} for c in rows]
 
 
 @router.get("/bai-hoc/{id_chu_de}")
-def lay_bai_hoc(id_chu_de: int, db: Session = Depends(get_db)):
+def lay_bai_hoc(id_chu_de: int, user=Depends(get_current_user), db: Session = Depends(get_db)):
+    cd = db.query(chuDe).filter(chuDe.id_chuDe == id_chu_de).first()
+    if not cd or (cd.id_ngDung is not None and cd.id_ngDung != user.id_ngDung):
+        raise HTTPException(404, "Không tìm thấy khóa học")
     bais = db.query(taiLieu).filter(taiLieu.id_chuDe == id_chu_de).order_by(taiLieu.mucDoKho).all()
     return [{"id": b.id_taiLieu, "tieu_de": b.tieuDe, "loai": b.loai, "do_kho": b.mucDoKho} for b in bais]
 
 
 @router.get("/cau-hoi/{id_tai_lieu}")
-def lay_cau_hoi(id_tai_lieu: int, db: Session = Depends(get_db)):
+def lay_cau_hoi(id_tai_lieu: int, user=Depends(get_current_user), db: Session = Depends(get_db)):
+    bai = db.query(taiLieu).filter(taiLieu.id_taiLieu == id_tai_lieu).first()
+    if not bai or (bai.id_ngDung is not None and bai.id_ngDung != user.id_ngDung):
+        raise HTTPException(404, "Không tìm thấy bài học")
+
     caus = db.query(cauHoi).filter(
         cauHoi.id_taiLieu == id_tai_lieu,
         cauHoi.id_loaiCauHoi == ID_DO_BAI
     ).order_by(cauHoi.thuTu).all()
     if not caus:
         raise HTTPException(404, "Chưa có câu hỏi cho bài này")
-    return [{"id": c.id_cauHoi, "cau_hoi": c.noiDung, "thu_tu": c.thuTu} for c in caus]
+
+    return [{"id": c.id_cauHoi, "cau_hoi": c.noiDung, "thu_tu": c.thuTu, "dap_an_mau": c.dapAnMau} for c in caus]
+
+
+def _cap_nhat_tien_do(db: Session, id_ngDung: int, id_chuDe: int, diem: float):
+    ky_nangs = db.query(kyNang).filter(kyNang.id_chuDe == id_chuDe).all()
+    if not ky_nangs:
+        kn = kyNang(id_chuDe=id_chuDe, tenKyNang="Kien thuc tong hop")
+        db.add(kn)
+        db.flush()
+        ky_nangs = [kn]
+
+    for kn in ky_nangs:
+        td = db.query(tienDoKyNang).filter(
+            tienDoKyNang.id_ngDung == id_ngDung,
+            tienDoKyNang.id_kyNang == kn.id_kyNang,
+        ).first()
+
+        new_muc_do = min(100, diem * 10)
+
+        if td:
+            td.mucDoThanhThao = round((td.mucDoThanhThao + new_muc_do) / 2, 1) if td.mucDoThanhThao else new_muc_do
+            td.diemDanhGia = diem
+            td.ngayDanhGia = datetime.utcnow()
+            td.trangThai = "thanh_thao" if td.mucDoThanhThao >= 80 else "dang_hoc"
+        else:
+            td = tienDoKyNang(
+                id_ngDung=id_ngDung,
+                id_kyNang=kn.id_kyNang,
+                diemDanhGia=diem,
+                mucDoThanhThao=new_muc_do,
+                trangThai="dang_hoc",
+            )
+            db.add(td)
+
+    db.commit()
+
+
+def _tao_goi_y(db: Session, id_ngDung: int, bai, diem: float):
+    from models.khoahoc import aiGoiY, chuDe as ChuDe
+    from services.ai_service import tao_goi_y_gemini
+
+    cd = db.query(ChuDe).filter(ChuDe.id_chuDe == bai.id_chuDe).first()
+    ten_chu_de = cd.ten_chuDe if cd else bai.tieuDe
+
+    if diem >= 8:
+        tin_cay = min(100, int(diem * 12))
+    elif diem >= 5:
+        tin_cay = int(diem * 8)
+    else:
+        tin_cay = max(10, int(diem * 5))
+
+    try:
+        noi_dung = tao_goi_y_gemini(ten_chu_de, diem)
+    except Exception:
+        if diem >= 8:
+            noi_dung = f"Tuyệt vời! Hãy thử bài nâng cao hơn về {ten_chu_de}."
+        elif diem >= 5:
+            noi_dung = f"Khá tốt! Ôn lại phần chưa vững về {ten_chu_de} nhé."
+        else:
+            noi_dung = f"Cố lên! Xem lại lý thuyết {ten_chu_de} trước khi làm bài."
+
+    db.add(aiGoiY(
+        id_ngDung=id_ngDung,
+        id_chuDe=bai.id_chuDe,
+        id_taiLieu=bai.id_taiLieu,
+        noiDungGoiY=noi_dung,
+        trangThai=False,
+        diemTinCay=tin_cay,
+    ))
+    db.commit()

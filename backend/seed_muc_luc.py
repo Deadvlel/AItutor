@@ -78,4 +78,4 @@ def seed(json_file: str, ten_mon: str):
 
 if __name__ == "__main__":
     seed("muc_luc.json", "Giải Tích 12")
-    seed("muc_luc.json", "Ngữ Văn 12")
+    seed("muc_luc.json", "Ngữ Văn 12 - Tập 1")

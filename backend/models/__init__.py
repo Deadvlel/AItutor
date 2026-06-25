@@ -1,9 +1,8 @@
-from .user import ngDung
-from .conversation import cuocTroChuyen, tinNhan
-from .exam import kiemTra, lichSuBaiLam
-from .course import (
+from .nguoidung import ngDung
+from .cuoctrochuyen import cuocTroChuyen, tinNhan
+from .khoahoc import (
     loaiCauHoi, cauHoi, dapAn,
     baiKiemTra, chiTietKiemTra, cauTraLoi,
     lichSuLamKT, kyNang, tienDoKyNang,
-    loTrinh, buocHoc, aiGoiY, aiLog
+    loTrinh, buocHoc, aiGoiY, aiLog, thongBao
 )

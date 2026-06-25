@@ -2,37 +2,37 @@ from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 from database import get_db
 from dependencies import get_current_user
-from schemas.conversation import TaoMoiRequest, GuiTinRequest
-from services import conversation_service
+from schemas.cuoctrochuyen import TaoMoiRequest, GuiTinRequest
+from services import cuoctrochuyen_service
 
 router = APIRouter()
 
 
 @router.get("/lich-su")
 def lay_lich_su(user=Depends(get_current_user), db: Session = Depends(get_db)):
-    return conversation_service.lay_lich_su(db, user.id_ngDung)
+    return cuoctrochuyen_service.lay_lich_su(db, user.id_ngDung)
 
 
 @router.post("/tao-moi")
 def tao_cuoc_moi(req: TaoMoiRequest, user=Depends(get_current_user), db: Session = Depends(get_db)):
-    return conversation_service.tao_cuoc_moi(db, user.id_ngDung, req.tieu_de)
+    return cuoctrochuyen_service.tao_cuoc_moi(db, user.id_ngDung, req.tieu_de)
 
 
 @router.get("/tin-nhan/{id_cuoc}")
 def lay_tin_nhan(id_cuoc: int, user=Depends(get_current_user), db: Session = Depends(get_db)):
-    from models.conversation import cuocTroChuyen
+    from models.cuoctrochuyen import cuocTroChuyen
     cuoc = db.query(cuocTroChuyen).filter(
         cuocTroChuyen.id_cuocTroChuyen == id_cuoc,
         cuocTroChuyen.id_ngDung == user.id_ngDung,
     ).first()
     if not cuoc:
         raise HTTPException(404, "Không tìm thấy cuộc trò chuyện")
-    return conversation_service.lay_tin_nhan(db, id_cuoc)
+    return cuoctrochuyen_service.lay_tin_nhan(db, id_cuoc)
 
 
 @router.post("/gui")
 def gui_tin_nhan(req: GuiTinRequest, user=Depends(get_current_user), db: Session = Depends(get_db)):
-    result = conversation_service.gui_tin(db, user.id_ngDung, req.id_cuoc, req.noi_dung)
+    result = cuoctrochuyen_service.gui_tin(db, user.id_ngDung, req.id_cuoc, req.noi_dung)
     if result is None:
         raise HTTPException(404, "Không tìm thấy cuộc trò chuyện")
     return result
@@ -40,6 +40,6 @@ def gui_tin_nhan(req: GuiTinRequest, user=Depends(get_current_user), db: Session
 
 @router.delete("/{id_cuoc}")
 def xoa_cuoc(id_cuoc: int, user=Depends(get_current_user), db: Session = Depends(get_db)):
-    if not conversation_service.xoa_cuoc(db, user.id_ngDung, id_cuoc):
+    if not cuoctrochuyen_service.xoa_cuoc(db, user.id_ngDung, id_cuoc):
         raise HTTPException(404, "Không tìm thấy cuộc trò chuyện")
     return {"ok": True}

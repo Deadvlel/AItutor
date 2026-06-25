@@ -3,7 +3,7 @@ import httpx
 import chromadb
 from chromadb.utils import embedding_functions
 from dotenv import load_dotenv
-load_dotenv() 
+load_dotenv()
 
 OLLAMA_URL   = os.getenv("OLLAMA_URL",   "http://localhost:11434/api/chat")
 OLLAMA_URL_G = os.getenv("OLLAMA_URL_G", "http://localhost:11434/api/generate")
@@ -31,7 +31,7 @@ def _get_collection():
         return _collection
     except Exception as e:
         print(f"[Chroma] Lỗi khởi tạo: {e}")
-        _collection = None 
+        _collection = None
         return None
 
 
@@ -66,7 +66,6 @@ def tim_sgk(cau_hoi: str, ten_mon: str = None, top_k: int = TOP_K) -> list[dict]
 
 
 def _lam_sach_van_ban(text: str) -> str:
-    """Xóa ký tự lạ sinh ra từ OCR/encoding lỗi trong SGK."""
     if not text:
         return text
     import unicodedata, re
@@ -90,16 +89,80 @@ def _xay_dung_ngu_canh(doan_list: list[dict]) -> str:
     return ngu_canh
 
 
-# ──────────────────────────────────────────────────────────────
-# GEMINI — dùng cho phần HƯỚNG DẪN bài học (bước 1, 2, 3...)
-# ──────────────────────────────────────────────────────────────
+# ──────────────────────────
+# GEMINI — API KEY ROTATION
+# ──────────────────────────
 from google import genai
+import threading
 
-api_key = os.getenv("ai_key")
-_gemini_client = genai.Client(api_key=api_key)
+def _doc_keys():
+    keys = []
+    k0 = os.getenv("ai_key", "")
+    if k0.strip():
+        keys.append(k0.strip())
+    i = 1
+    while True:
+        k = os.getenv(f"ai_key{i}", "")
+        if not k.strip():
+            break
+        keys.append(k.strip())
+        i += 1
+    return keys
+
+GEMINI_KEYS = _doc_keys()
+_key_index = 0
+_key_lock = threading.Lock()
+
+_gemini_clients = {}
+for _k in GEMINI_KEYS:
+    _gemini_clients[_k] = genai.Client(api_key=_k)
+
+if not GEMINI_KEYS:
+    print("[WARN] Không tìm thấy ai_key trong .env!")
+else:
+    print(f"[Gemini] Da nap {len(GEMINI_KEYS)} API key(s)")
+
+_gemini_client = _gemini_clients.get(GEMINI_KEYS[0]) if GEMINI_KEYS else None
+
+
+def _goi_gemini(prompt: str, model: str = "gemini-2.5-flash") -> str:
+    global _key_index
+
+    if not GEMINI_KEYS:
+        raise RuntimeError("Chưa cấu hình API key Gemini trong .env")
+
+    so_key = len(GEMINI_KEYS)
+    last_error = None
+
+    for attempt in range(so_key):
+        with _key_lock:
+            idx = _key_index % so_key
+            key = GEMINI_KEYS[idx]
+            client = _gemini_clients[key]
+
+        try:
+            response = client.models.generate_content(
+                model=model,
+                contents=prompt,
+            )
+            return _lam_sach_van_ban(response.text)
+        except Exception as e:
+            last_error = e
+            masked = key[:8] + "..." + key[-4:]
+            print(f"[Gemini] Key {masked} lỗi: {e}. Đổi key...")
+            with _key_lock:
+                _key_index = (idx + 1) % so_key
+
+    raise RuntimeError(f"Tất cả {so_key} API key Gemini đều lỗi. Lỗi cuối: {last_error}")
+
+
+def _xoay_key():
+    global _key_index
+    with _key_lock:
+        _key_index = (_key_index + 1) % max(len(GEMINI_KEYS), 1)
+
 
 def hoi_gia_su(noi_dung: str, lich_su: list = [], ten_mon: str = None) -> str:
-    """Gọi Gemini — dùng cho phần hướng dẫn bài học theo bước."""
     try:
         doan_list = tim_sgk(noi_dung, ten_mon=ten_mon)
         ngu_canh  = _xay_dung_ngu_canh(doan_list)
@@ -112,29 +175,38 @@ def hoi_gia_su(noi_dung: str, lich_su: list = [], ten_mon: str = None) -> str:
         )
 
         full_prompt = f"{system}\n\nNỘI DUNG SGK:\n{ngu_canh}\n\nYÊU CẦU:\n{noi_dung}"
-
-        response = _gemini_client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=full_prompt,
-        )
-        return _lam_sach_van_ban(response.text)
+        return _goi_gemini(full_prompt)
 
     except Exception as e:
         return f"Lỗi AI: {str(e)}"
 
 
-# ──────────────────────────────────────────────────────────────
-# OLLAMA — dùng cho phần HỘI THOẠI chat với học sinh
-# ──────────────────────────────────────────────────────────────
+def tao_goi_y_gemini(chu_de: str, diem: float, ky_nang: str = "") -> str:
+    prompt = (
+        f"Học sinh vừa đạt {diem}/10 về chủ đề \"{chu_de}\".\n"
+        f"Kỹ năng: {ky_nang or 'chung'}.\n"
+        f"Hãy đưa 1 gợi ý ngắn (1-2 câu) bằng tiếng Việt để cải thiện.\n"
+        f"{'Khen ngợi và gợi ý nâng cao.' if diem >= 8 else 'Khuyến khích và gợi ý ôn lại phần yếu.' if diem >= 5 else 'Động viên và gợi ý cách học cơ bản.'}"
+    )
+    try:
+        return _goi_gemini(prompt)
+    except Exception:
+        if diem >= 8:
+            return f"Xuất sắc! Bạn nên thử thách với bài tập nâng cao về {chu_de}."
+        elif diem >= 5:
+            return f"Khá tốt! Hãy ôn lại phần chưa vững về {chu_de} nhé."
+        else:
+            return f"Cố lên! Hãy xem lại lý thuyết cơ bản về {chu_de} trước khi làm bài."
+
+
+# ────────
+# OLLAMA
+# ────────
 def hoi_gia_su_ollama(
     noi_dung: str,
     lich_su: list[dict] = [],
     ten_mon: str = None,
 ) -> str:
-    """
-    Gọi Ollama model local — dùng cho phần chat hội thoại.
-    `lich_su` là list [{"role": "user"|"assistant", "content": "..."}]
-    """
     doan_list = tim_sgk(noi_dung, ten_mon=ten_mon)
     ngu_canh  = _xay_dung_ngu_canh(doan_list)
 

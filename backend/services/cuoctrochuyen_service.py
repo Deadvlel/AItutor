@@ -1,6 +1,6 @@
 from datetime import datetime
 from sqlalchemy.orm import Session
-from models.conversation import cuocTroChuyen, tinNhan
+from models.cuoctrochuyen import cuocTroChuyen, tinNhan
 from services.ai_service import hoi_gia_su_ollama
 
 
@@ -43,7 +43,7 @@ def lay_tin_nhan(db: Session, id_cuoc: int) -> list[dict]:
     return [
         {
             "id":       m.id_tinNhan,
-            "role":     m.anh if m.anh in ["user", "assistant"] else "user",
+            "role":     m.nguoiGui if m.nguoiGui in ["user", "assistant"] else "user",
             "noi_dung": m.noiDung,
             "ngay_tao": m.ngayTao.strftime("%H:%M") if m.ngayTao else "",
         }
@@ -59,7 +59,6 @@ def gui_tin(db: Session, user_id: int, id_cuoc: int, noi_dung: str) -> dict | No
     if not cuoc:
         return None
 
-    # Lấy lịch sử để AI nhớ ngữ cảnh (tối đa 20 tin)
     msgs_cu = (
         db.query(tinNhan)
         .filter(tinNhan.id_cuocTroChuyen == id_cuoc)
@@ -68,21 +67,18 @@ def gui_tin(db: Session, user_id: int, id_cuoc: int, noi_dung: str) -> dict | No
         .all()
     )
     lich_su = [
-        {"role": m.anh or "user", "content": m.noiDung}
+        {"role": m.nguoiGui or "user", "content": m.noiDung}
         for m in msgs_cu
     ]
 
-    # Lưu tin nhắn user
     db.add(tinNhan(
         id_cuocTroChuyen=id_cuoc,
         noiDung=noi_dung,
-        anh="user",
+        nguoiGui="user",
         ngayTao=datetime.utcnow(),
     ))
 
-    # Tự động đặt tiêu đề từ tin nhắn đầu tiên
     if cuoc.tieuDe in ("Cuộc trò chuyện mới", None) or cuoc.tieuDe.startswith("Bài:"):
-        # Chỉ đổi tên nếu còn là tên mặc định và chưa có tin nào
         if not msgs_cu:
             cuoc.tieuDe = noi_dung[:60] + ("..." if len(noi_dung) > 60 else "")
             db.add(cuoc)
@@ -91,11 +87,10 @@ def gui_tin(db: Session, user_id: int, id_cuoc: int, noi_dung: str) -> dict | No
 
     reply_text = hoi_gia_su_ollama(noi_dung, lich_su, ten_mon=None)
 
-
     db.add(tinNhan(
         id_cuocTroChuyen=id_cuoc,
         noiDung=reply_text,
-        anh="assistant",
+        nguoiGui="assistant",
         ngayTao=datetime.utcnow(),
     ))
     db.commit()

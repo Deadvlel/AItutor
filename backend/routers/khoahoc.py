@@ -2,15 +2,17 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database import get_db
 from dependencies import get_current_user
-from models.course import chuDe, taiLieu, cauHoi
+from models.khoahoc import chuDe, taiLieu, cauHoi
 from schemas.khoahoc import HuongDanRequest, TraViTriRequest
 from services.ai_service import tim_vi_tri_tu_khoa
 
 router = APIRouter()
 
 @router.get("/mon-hoc")
-def lay_mon_hoc(db: Session = Depends(get_db)):
-    mons = db.query(chuDe).order_by(chuDe.id_chuDe).all()
+def lay_mon_hoc(user=Depends(get_current_user), db: Session = Depends(get_db)):
+    mons = db.query(chuDe).filter(
+        (chuDe.id_ngDung == None) | (chuDe.id_ngDung == user.id_ngDung)
+    ).order_by(chuDe.id_chuDe).all()
     style = {
         "toán":      {"color": "from-violet-600 to-violet-800", "emoji": "📐"},
         "văn":       {"color": "from-amber-600 to-amber-800",   "emoji": "📖"},
@@ -42,7 +44,11 @@ def lay_mon_hoc(db: Session = Depends(get_db)):
 
 
 @router.get("/muc-luc/{id_chu_de}")
-def lay_muc_luc(id_chu_de: int, db: Session = Depends(get_db)):
+def lay_muc_luc(id_chu_de: int, user=Depends(get_current_user), db: Session = Depends(get_db)):
+    cd = db.query(chuDe).filter(chuDe.id_chuDe == id_chu_de).first()
+    if not cd or (cd.id_ngDung is not None and cd.id_ngDung != user.id_ngDung):
+        raise HTTPException(404, "Không tìm thấy khóa học")
+
     chuongs = db.query(taiLieu).filter(
         taiLieu.id_chuDe == id_chu_de,
         taiLieu.loai == "chuong"
@@ -52,6 +58,16 @@ def lay_muc_luc(id_chu_de: int, db: Session = Depends(get_db)):
         taiLieu.id_chuDe == id_chu_de,
         taiLieu.loai == "bai"
     ).order_by(taiLieu.id_taiLieu).all()
+
+    # ── THÊM ĐOẠN NÀY ──
+    # Nếu không có taiLieu nào loai="chuong" hoặc loai="bai" (trường hợp khóa học
+    # do user upload, loai sẽ là "toan"/"ngu_van"/"khac"...) thì lấy hết taiLieu
+    # của chuDe này, không filter theo loai nữa.
+    if not chuongs and not bais:
+        bais = db.query(taiLieu).filter(
+            taiLieu.id_chuDe == id_chu_de
+        ).order_by(taiLieu.id_taiLieu).all()
+    # ── HẾT ĐOẠN THÊM ──
 
     if chuongs:
         chunk = max(1, len(bais) // len(chuongs))
@@ -100,8 +116,11 @@ def ai_huong_dan(
     from services.ai_service import hoi_gia_su, hoi_gia_su_ollama
 
     tai_lieu_obj = db.query(taiLieu).filter(taiLieu.id_taiLieu == req.id_tai_lieu).first()
-    if not tai_lieu_obj:
-        raise HTTPException(404, "Không tìm thấy bài học")
+    if tai_lieu_obj.id_ngDung is not None and tai_lieu_obj.id_ngDung != user.id_ngDung:
+        if not tai_lieu_obj:
+            raise HTTPException(404, "Không tìm thấy bài học")
+        if tai_lieu_obj.id_ngDung is not None and tai_lieu_obj.id_ngDung != user.id_ngDung:
+            raise HTTPException(404, "Không tìm thấy bài học")
 
     chu_de_obj = db.query(chuDe).filter(chuDe.id_chuDe == tai_lieu_obj.id_chuDe).first()
     ten_mon = chu_de_obj.ten_chuDe if chu_de_obj else "môn học"
@@ -114,7 +133,6 @@ def ai_huong_dan(
     do_kho_text = {1: "cơ bản", 2: "trung bình", 3: "nâng cao"}.get(tai_lieu_obj.mucDoKho, "trung bình")
     tong_buoc   = max(len(cau_hois) + 1, 3)
 
-    # ── Phân nhánh: Chat hội thoại (Ollama) vs Hướng dẫn theo bước (Gemini) ──
     if req.cau_hoi_hoc_sinh.strip():
         prompt = (
             f'Em đang học bài "{ten_bai}" ({ten_mon}, độ khó {do_kho_text}).\n'
@@ -124,21 +142,18 @@ def ai_huong_dan(
             f"Xưng Thầy gọi Em, tiếng Việt, tối đa 5 dòng."
         )
 
-        # Chuyển lịch sử chat từ frontend sang định dạng Ollama
         lich_su_ollama = [
             {"role": m["role"], "content": m["content"]}
             for m in (req.lich_su_chat or [])
         ]
 
-        if req.dung_ollama:
-            # Hội thoại → Ollama (model local đã train)
+        try:
             noi_dung = hoi_gia_su_ollama(
                 noi_dung = prompt,
                 lich_su  = lich_su_ollama,
                 ten_mon  = ten_mon,
             )
-        else:
-            # Fallback → Gemini nếu client không set dung_ollama
+        except Exception:
             noi_dung = hoi_gia_su(prompt, ten_mon=ten_mon)
 
     elif req.buoc_hien_tai == 1:

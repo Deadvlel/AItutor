@@ -1,4 +1,4 @@
-from .user import DangKyRequest, DangNhapRequest, TokenResponse
-from .conversation import TaoMoiRequest, GuiTinRequest
-from .exam import TaoDeThiRequest, NopBaiRequest
+from .nguoidung import DangKyRequest, DangNhapRequest, TokenResponse
+from .cuoctrochuyen import TaoMoiRequest, GuiTinRequest
+from .kiemtra import TaoDeThiRequest, NopBaiRequest
 from .khoahoc import HuongDanRequest, TraViTriRequest, GhiTienDoRequest

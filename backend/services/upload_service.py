@@ -1,8 +1,9 @@
 import io
 import json
 from sqlalchemy.orm import Session
-from models.course import chuDe, taiLieu, loaiCauHoi, cauHoi
-from services.ai_service import hoi_gia_su
+from models.khoahoc import chuDe, taiLieu, loaiCauHoi, cauHoi
+from sqlalchemy import func
+from services.ai_service import _goi_gemini
 ID_DO_BAI = 2
 
 
@@ -16,12 +17,17 @@ def ensure_loai_cau_hoi(db: Session):
     db.commit()
 
 
-def get_or_create_chu_de(db: Session, ten: str) -> int:
-    cd = db.query(chuDe).filter(chuDe.ten_chuDe == ten.strip()).first()
-    if not cd:
-        cd = chuDe(ten_chuDe=ten.strip())
-        db.add(cd)
-        db.flush()
+def tao_chu_de_moi(db: Session, ten: str, id_ngDung: int | None) -> int:
+    ten = ten.strip()
+    da_ton_tai = db.query(chuDe).filter(
+        func.lower(chuDe.ten_chuDe) == ten.lower()
+    ).first()
+    if da_ton_tai:
+        raise ValueError(f'Tên khóa học "{ten}" đã tồn tại. Vui lòng đặt tên khác.')
+
+    cd = chuDe(ten_chuDe=ten, id_ngDung=id_ngDung)
+    db.add(cd)
+    db.flush()
     return cd.id_chuDe
 
 
@@ -60,66 +66,43 @@ Trả về JSON thuần (không markdown, không giải thích thêm):
 
 Yêu cầu: tiếng Việt, bám sát nội dung, đáp án rõ ràng."""
 
-    raw = hoi_gia_su(prompt)
+    raw = _goi_gemini(prompt)
     raw = raw.strip()
     if raw.startswith("```"):
         raw = raw.split("\n", 1)[1].rsplit("```", 1)[0]
 
-    data = json.loads(raw)
-    return data.get("cau_hoi", [])
+    try:
+        data = json.loads(raw)
+        return data.get("cau_hoi", [])
+    except (json.JSONDecodeError, ValueError, KeyError):
+        raise ValueError("AI không sinh được câu hỏi hợp lệ. Thử lại hoặc kiểm tra nội dung file.")
 
 
-def _luu_vao_db(
-    db:       Session,
-    id_cd:    int,
-    tieu_de:  str,
-    loai:     str,
-    do_kho:   int,
-    cac_cau:  list[dict],
-    ten_file: str = None,
-) -> dict:
-    tl = db.query(taiLieu).filter(
-        taiLieu.tieuDe   == tieu_de,
-        taiLieu.id_chuDe == id_cd,
-    ).first()
-    if not tl:
-        tl = taiLieu(
-            id_chuDe=id_cd,
-            tieuDe=tieu_de,
-            loai=loai,
-            file=ten_file,
-            mucDoKho=do_kho,
-        )
-        db.add(tl)
-        db.flush()
+def _luu_vao_db(db, id_cd, tieu_de, loai, do_kho, cac_cau, ten_file=None, id_ngDung=None):
+    tl = taiLieu(
+        id_chuDe=id_cd, id_ngDung=id_ngDung, tieuDe=tieu_de,
+        loai=loai, file=ten_file, mucDoKho=do_kho,
+    )
+    db.add(tl)
+    db.flush()
 
     for ch in cac_cau:
         db.add(cauHoi(
-            id_taiLieu    = tl.id_taiLieu,
-            id_chuDe      = id_cd,
-            id_loaiCauHoi = ID_DO_BAI,
-            id_baiKiemTra = None,
-            noiDung       = ch.get("noi_dung") or ch.get("cau_hoi", ""),
-            dapAnMau      = ch.get("dap_an_mau", ""),
-            loiGiaiThich  = ch.get("dap_an_mau", ""),
-            goiY          = ch.get("goi_y") or None,
-            thuTu         = ch.get("thu_tu", 1),
+            id_taiLieu=tl.id_taiLieu, id_chuDe=id_cd, id_loaiCauHoi=ID_DO_BAI,
+            noiDung=ch.get("noi_dung") or ch.get("cau_hoi", ""),
+            dapAnMau=ch.get("dap_an_mau", ""),
+            loiGiaiThich=ch.get("dap_an_mau", ""),
+            goiY=ch.get("goi_y") or None,
+            thuTu=ch.get("thu_tu", 1),
         ))
-
     db.commit()
     return {
-        "id_taiLieu":  tl.id_taiLieu,
-        "tieu_de":     tieu_de,
-        "da_them":     len(cac_cau),
+        "id_taiLieu": tl.id_taiLieu, "tieu_de": tieu_de,
+        "da_them": len(cac_cau),
         "cac_cau_hoi": [c.get("noi_dung", c.get("cau_hoi", "")) for c in cac_cau],
     }
 
-
-def xu_ly_excel(file_bytes: bytes, ten_file: str, db: Session) -> dict:
-    """
-    Cột bắt buộc: chu_de | tieu_de | cau_hoi | dap_an_mau
-    Cột tuỳ chọn: goi_y | do_kho | thu_tu
-    """
+def xu_ly_excel(file_bytes: bytes, ten_file: str, db: Session, id_ngDung: int | None = None) -> dict:
     try:
         import pandas as pd
     except ImportError:
@@ -142,6 +125,7 @@ def xu_ly_excel(file_bytes: bytes, ten_file: str, db: Session) -> dict:
 
     da_them   = 0
     tai_lieus = {}
+    chu_de_cache = {}
 
     for _, row in df.iterrows():
         ten_cd   = str(row["chu_de"]).strip()
@@ -153,41 +137,31 @@ def xu_ly_excel(file_bytes: bytes, ten_file: str, db: Session) -> dict:
         thu_tu   = int(row["thu_tu"]) if "thu_tu" in row and str(row["thu_tu"]) != "nan" else da_them + 1
         if not noi_dung or noi_dung.lower() == "nan":
             continue
+        
+        if ten_cd not in chu_de_cache:
+            chu_de_cache[ten_cd] = tao_chu_de_moi(db, ten_cd, id_ngDung)
+        id_cd = chu_de_cache[ten_cd]
 
-        id_cd = get_or_create_chu_de(db, ten_cd)
-        key   = (ten_cd, tieu_de)
-
+        key = (ten_cd, tieu_de)
         if key not in tai_lieus:
-            tl = db.query(taiLieu).filter(
-                taiLieu.tieuDe == tieu_de, taiLieu.id_chuDe == id_cd
-            ).first()
-            if not tl:
-                tl = taiLieu(
-                    id_chuDe=id_cd, tieuDe=tieu_de,
-                    loai=_detect_loai(ten_cd), mucDoKho=do_kho,
-                )
-                db.add(tl)
-                db.flush()
+            tl = taiLieu(
+                id_chuDe=id_cd, id_ngDung=id_ngDung, tieuDe=tieu_de,
+                loai=_detect_loai(ten_cd), mucDoKho=do_kho,
+            )
+            db.add(tl)
+            db.flush()
             tai_lieus[key] = tl.id_taiLieu
 
         db.add(cauHoi(
-            id_taiLieu    = tai_lieus[key],
-            id_chuDe      = id_cd,
-            id_loaiCauHoi = ID_DO_BAI,
-            id_baiKiemTra = None,
-            noiDung       = noi_dung,
-            dapAnMau      = dap_an,
-            loiGiaiThich  = dap_an,
-            goiY          = goi_y if goi_y and goi_y.lower() != "nan" else None,
-            thuTu         = thu_tu,
+            id_taiLieu=tai_lieus[key], id_chuDe=id_cd, id_loaiCauHoi=ID_DO_BAI,
+            noiDung=noi_dung, dapAnMau=dap_an, loiGiaiThich=dap_an,
+            goiY=goi_y if goi_y and goi_y.lower() != "nan" else None,
+            thuTu=thu_tu,
         ))
         da_them += 1
 
     db.commit()
-    return {
-        "da_them":  da_them,
-        "bai_hocs": list({k[1] for k in tai_lieus}),
-    }
+    return {"da_them": da_them, "bai_hocs": list({k[1] for k in tai_lieus})}
 
 
 def xu_ly_pdf(
@@ -196,6 +170,7 @@ def xu_ly_pdf(
     tieu_de:    str,
     so_cau:     int,
     db:         Session,
+    id_ngDung=None,
 ) -> dict:
     try:
         import pdfplumber
@@ -217,8 +192,8 @@ def xu_ly_pdf(
     if not cac_cau:
         raise ValueError("AI không sinh được câu hỏi. Thử giảm số câu hoặc kiểm tra nội dung PDF.")
 
-    id_cd = get_or_create_chu_de(db, ten_chu_de)
-    return _luu_vao_db(db, id_cd, tieu_de, _detect_loai(ten_chu_de), 2, cac_cau)
+    id_cd = tao_chu_de_moi(db, ten_chu_de, id_ngDung)
+    return _luu_vao_db(db, id_cd, tieu_de, _detect_loai(ten_chu_de), 2, cac_cau, id_ngDung=id_ngDung)
 
 
 def xu_ly_word(
@@ -227,6 +202,7 @@ def xu_ly_word(
     tieu_de:    str,
     so_cau:     int,
     db:         Session,
+    id_ngDung=None,
 ) -> dict:
     try:
         from docx import Document
@@ -251,5 +227,5 @@ def xu_ly_word(
     if not cac_cau:
         raise ValueError("AI không sinh được câu hỏi. Thử giảm số câu hoặc kiểm tra nội dung.")
 
-    id_cd = get_or_create_chu_de(db, ten_chu_de)
-    return _luu_vao_db(db, id_cd, tieu_de, _detect_loai(ten_chu_de), 2, cac_cau)
+    id_cd = tao_chu_de_moi(db, ten_chu_de, id_ngDung)
+    return _luu_vao_db(db, id_cd, tieu_de, _detect_loai(ten_chu_de), 2, cac_cau, id_ngDung=id_ngDung)
